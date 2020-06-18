@@ -1,4 +1,25 @@
-.test {
-  text-decoration: underline;
-  color: pink;
+// @todo move to cta, props: primary
+.cta__white-on-white {
+  background: white;
+}
+
+// @todo move to cta, props: secondary
+.cta__white-on-gradient {
+  position: relative;
+  border-radius: 3px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    margin: -5px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%);
+  }
+}
+
+// @todo move to cta, props: tertiary
+.cta__gradient {
+  background: linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%);
 }
