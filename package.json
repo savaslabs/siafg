@@ -41,6 +41,7 @@
     "@types/node": "^11.15.2",
     "@webcomponents/webcomponentsjs": "^2.3.0",
     "autoprefixer": "^9.7.1",
+    "axios": "^0.19.2",
     "copy-webpack-plugin": "^5.0.5",
     "core-js": "^3.3.6",
     "cssnano": "^4.1.10",
