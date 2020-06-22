@@ -1,3 +1,105 @@
+// Fonts.
+@import url(https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap);
+$raleway: 'Raleway', sans-serif;
+$raleway-normal: '500';
+$raleway-semiBold: '600';
+$raleway-bold: '700';
+
+// Colors.
+$siafg-white : #FFFFFF;
+$siafg-palepurp: #F9F8FF;
+$siafg-lavender: #D1C6F3;
+$siafg-grape:#593EBF;
+$siafg-sun: #FFDD94;
+$siafg-gray: #4F4F4F;
+$siafg-charcoal: #181818;
+$siafg-gradient1: linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%);
+$siafg-gradient2: linear-gradient(125.78deg, #FFF4DC 0%, #D4C7FF 181.95%);
+
+// Breakpoints.
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-max: 1280px;
+
+// Media Queries.
+@mixin sm-only {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media (min-width: #{$screen-md}) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin md-max {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin max {
+  @media (min-width: #{$screen-max}) {
+    @content;
+  }
+}
+
+// Site container.
+.container {
+  padding: 0 30px;
+
+  @include lg {
+    max-width: 1160px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Accessibility.
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.hidden {
+  display: hidden;
+}
+
+// Typography.
+h1,
+h2,
+h3,
+h4 {
+  color: $siafg-grape;
+}
+
+body {
+  font-family: $raleway;
+  font-weight: $raleway-normal;
+  margin: 0;
+}
+
 // @todo move to cta, props: primary
 .cta__white-on-white {
   background: white;
@@ -22,20 +124,4 @@
 // @todo move to cta, props: tertiary
 .cta__gradient {
   background: linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%);
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.hidden {
-  display: hidden;
 }

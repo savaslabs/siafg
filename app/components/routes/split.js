@@ -19,16 +19,18 @@ const Split = ({ page }) => {
   const TitleArea = styled.div`
     width: 25%;
     background-color: white;
+    padding-top: 100px;
   `;
 
   const MainArea = styled.div`
     width: 75%;
     background-color: transparent;
+    padding-top: 100px;
   `;
 
   return (
     <SplitScreenWrapper>
-      <h1>{page}</h1>
+      <h1 className='sr-only'>{page}</h1>
       <TitleArea>
         <h2>Title Text</h2>
         <p>Description/Help Text</p>
