@@ -12,6 +12,9 @@
       "@babel/preset-react"
     ]
   },
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack -p --config webpack.config.js --mode production",
