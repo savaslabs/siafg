@@ -6,6 +6,7 @@ import { routes } from './constants';
 import Header from './components/header';
 import Split from './components/routes/split';
 import Full from './components/routes/full';
+import NoMatch from './components/routes/noMatch';
 import styled from 'styled-components';
 
 const SiteContainer = styled.div`
@@ -22,12 +23,7 @@ const App = () => {
           {routes.map((route, index) => {
             const path = route.toLowerCase();
             return route === 'Welcome' ? (
-              <Route
-                exact
-                path={['/', `/${path}`]}
-                key={index}
-                route={route}
-              >
+              <Route exact path={['/', `/${path}`]} key={index} route={route}>
                 <Full page={route} />
               </Route>
             ) : (
@@ -36,6 +32,9 @@ const App = () => {
               </Route>
             );
           })}
+          <Route path='*'>
+            <NoMatch />
+          </Route>
         </Switch>
       </main>
     </SiteContainer>
