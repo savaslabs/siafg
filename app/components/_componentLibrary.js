@@ -12,11 +12,11 @@ const componentLibrary = () => {
       <Card title='Just a card' />
       <CardList />
       {/* White with purple border */}
-      <CTA primary />
+      <CTA primary href='#' text='Click Me!' />
       {/* White with gradient border */}
-      <CTA secondary />
+      <CTA secondary href='#' text='Click Me!' />
       {/* Gradient */}
-      <CTA tertiary />
+      <CTA tertiary href='#' text='Click Me!' />
       <SearchBar />
       <Share />
     </>

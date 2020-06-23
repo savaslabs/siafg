@@ -3,17 +3,19 @@ import styled from 'styled-components'
 
 const gradient1 = 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)';
 
-const CTA = styled.button`
-  background: ${(props) =>
-    props.tertiary
-      ? gradient1
-      : 'white'};
+const CTA = styled.a`
+  text-decoration: none;
+  color: #593EBF;
+  font-weight: 600;
+  text-size: ${(props) => (props.size)};
+  background: ${(props) => (props.tertiary ? gradient1 : 'white')};
   border-radius: 3px;
   border: ${(props) => (props.secondary ? '5px' : 'none')};
   padding: 15px 40px;
   position: ${(props) => (props.secondary ? 'relative' : null)};
   ${(props) =>
-    props.secondary &&`
+    props.secondary &&
+    `
       &:before {
         content: '';
         position: absolute;
@@ -30,9 +32,8 @@ const cta = (props) => {
     <CTA
       {...props}
       {...(props.primary && { className: 'shadow' })}
-      href='#'
     >
-      Click me!
+      {props.text}
     </CTA>
   );
 }

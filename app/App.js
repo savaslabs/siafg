@@ -27,11 +27,16 @@ const App = () => {
                 <Full page={route} />
               </Route>
             ) : (
-              <Route path={`/${path}`} key={index} route={route}>
-                <Split page={route} />
+              <Route exact path={`/${path}`} key={index} route={route}>
+                <Split page={route} topic={route === 'Quiz' ? 'question' : 'archive'} />
               </Route>
             );
           })}
+          {/* Quiz Answer routes. */}
+          <Route path={`/quiz/:resultId`}>
+            <Split page='quiz' topic='answer' />
+          </Route>
+          {/* No Match routes */}
           <Route path='*'>
             <NoMatch />
           </Route>
