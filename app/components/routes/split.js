@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
 import TitleArea from '../titleArea';
 import Card from '../card';
 import CardList from '../cardList';
+import OptionList from '../optionList';
 import styled from 'styled-components';
 import { getRecordsList } from '../../services/airtable-service';
 
@@ -28,13 +28,6 @@ const MainArea = styled.div`
   padding-top: 100px;
 `;
 
-const Legend = styled.legend`
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 30px;
-  color: #593ebf;
-`;
-
 const Split = ({ page, topic }) => {
   const [questions, setQuestions] = useState([]);
 
@@ -52,8 +45,6 @@ const Split = ({ page, topic }) => {
     });
   }, []);
 
-  let { url } = useRouteMatch();
-
   return (
     <>
       <SplitScreenWrapper>
@@ -62,34 +53,7 @@ const Split = ({ page, topic }) => {
         {topic === 'archive' && <TitleArea archive page={page} />}
         <MainArea topic={topic}>
           {topic === 'question' && (
-            <>
-              <Legend>Select Your Best Response</Legend>
-              {answers.map((answer, index) => {
-                return (
-                  <div
-                    htmlFor={answer.fields.identifier}
-                    key={index}
-                    className='shadow card'
-                  >
-                    <Link
-                      to={`${url}/result_${answer.fields.identifier}`}
-                      key={index}
-                    >
-                      {answer.fields.identifier}
-
-                      <input
-                        type='radio'
-                        id={index}
-                        value={answer.fields.identifer}
-                        name='test'
-                        aria-checked
-                        data-next-step
-                      />
-                    </Link>
-                  </div>
-                );
-              })}
-            </>
+            <OptionList answers={answers} />
           )}
           {topic === 'answer' && (
             <>
