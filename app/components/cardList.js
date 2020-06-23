@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './card';
 
-function cardList() {
+const cardList = () => {
   const list = [ 'card 1', 'card 2'];
   return (
     <>

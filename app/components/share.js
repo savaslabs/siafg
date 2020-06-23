@@ -1,6 +1,6 @@
 import React from 'react'
 
-function share() {
+const share = () => {
   return (
     <p>Share me</p>
   );

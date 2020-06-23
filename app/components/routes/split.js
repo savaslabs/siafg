@@ -3,31 +3,31 @@ import SearchBar from '../searchBar';
 import Share from '../share';
 import styled from 'styled-components';
 
+const options = [
+  'Medical or Legal Reasons',
+  'Demograpihc Information',
+  'Profile Set Up',
+  'Census Information',
+];
+
+const SplitScreenWrapper = styled.div`
+  display: flex;
+  flex-direction: flex-row;
+`;
+
+const TitleArea = styled.div`
+  width: 25%;
+  background-color: white;
+  padding-top: 100px;
+`;
+
+const MainArea = styled.div`
+  width: 75%;
+  background-color: transparent;
+  padding-top: 100px;
+`;
+
 const Split = ({ page }) => {
-  const options = [
-    'Medical or Legal Reasons',
-    'Demograpihc Information',
-    'Profile Set Up',
-    'Census Information'
-  ];
-
-  const SplitScreenWrapper = styled.div`
-    display: flex;
-    flex-direction: flex-row;
-  `;
-
-  const TitleArea = styled.div`
-    width: 25%;
-    background-color: white;
-    padding-top: 100px;
-  `;
-
-  const MainArea = styled.div`
-    width: 75%;
-    background-color: transparent;
-    padding-top: 100px;
-  `;
-
   return (
     <SplitScreenWrapper>
       <h1 className='sr-only'>{page}</h1>

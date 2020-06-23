@@ -1,7 +1,6 @@
 import React from 'react'
-import CTA from './cta'
 
-function searchBar() {
+const searchBar = () => {
   return (
     <input
       type='search'

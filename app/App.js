@@ -8,12 +8,12 @@ import Split from './components/routes/split';
 import Full from './components/routes/full';
 import styled from 'styled-components';
 
-function App() {
-  const SiteContainer = styled.div`
-    height: 100vh;
-    position: relative;
-  `;
+const SiteContainer = styled.div`
+  height: 100vh;
+  position: relative;
+`;
 
+const App = () => {
   return (
     <SiteContainer className='container'>
       <Header />

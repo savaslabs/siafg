@@ -5,7 +5,7 @@ import CTA from './cta'
 import SearchBar from './searchBar'
 import Share from './share'
 
-function componentLibrary() {
+const componentLibrary = () => {
   return (
     <>
       <h2>Components</h2>
