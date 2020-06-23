@@ -25,9 +25,7 @@ const CTA = styled.button`
     `}a
 `;
 
-// @todo update to use styled components based on props.
 const cta = (props) => {
-  console.log(props);
   return (
     <CTA
       {...props}

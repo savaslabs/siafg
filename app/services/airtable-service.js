@@ -15,6 +15,7 @@
  */
 
 import axios from 'axios';
+import { AIRTABLE_API_KEY } from './secrets';
 
 export const api = axios.create({
   baseURL: 'https://api.airtable.com/v0/appfCE2iZ73VsQ1nY',

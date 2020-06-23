@@ -1,1 +1,1 @@
-export const routes = ['Welcome', 'Articles', 'Glossary', 'Quiz'];
+export const routes = ['Welcome', 'Resources', 'Glossary', 'Quiz'];
