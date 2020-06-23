@@ -17,11 +17,11 @@ const Header = styled.header`
 `;
 
 const Menu = styled.ul`
-  list-style: none;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 `;
+
 const MenuItem = styled.li`
   font-weight: 700;
   font-size: 36;

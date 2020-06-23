@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const gradient1 = 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)';
 
 const CTA = styled.a`
-  text-decoration: none;
   color: #593EBF;
   font-weight: 600;
   text-size: ${(props) => (props.size)};
@@ -24,7 +23,7 @@ const CTA = styled.a`
         margin: -5px;
         border-radius: inherit;
         background: ${gradient1};
-    `}a
+    `}
 `;
 
 const cta = (props) => {

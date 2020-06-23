@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { getSingleRecord } from '../services/airtable-service';
+import styled from 'styled-components';
 
+const Article = styled.article`
+  color: black;
+`;
 const card = ({ answer, term, resource, page, formattedText }) => {
   // const [terms, setTerms] = useState([]);
 
@@ -27,7 +31,7 @@ const card = ({ answer, term, resource, page, formattedText }) => {
   };
 
   return (
-    <article>
+    <Article className='shadow card'>
       {h1()}
       {formattedText}
       {page === 'Resources' && (
@@ -44,7 +48,7 @@ const card = ({ answer, term, resource, page, formattedText }) => {
           })}
         </>
       )} */}
-    </article>
+    </Article>
   );
 }
 

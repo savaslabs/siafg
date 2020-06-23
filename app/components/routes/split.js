@@ -9,23 +9,30 @@ import { getRecordsList } from '../../services/airtable-service';
 const SplitScreenWrapper = styled.div`
   display: flex;
   flex-direction: flex-row;
+  height: 100vh;
 `;
 
 const MainArea = styled.div`
-  width: 75%;
+  ${(props) =>
+    props.topic === 'question' &&
+    ` text-align: center;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    ` ||
+    `
+      width: 75%;
+    `
+  };
   background-color: transparent;
   padding-top: 100px;
 `;
 
 const Legend = styled.legend`
   margin-bottom: 30px;
-`;
-
-const Option = styled.label`
-  padding: 30px 70px;
-  background: white;
-  border-radius: 10px;
-  position: relative;
+  font-weight: 700;
+  font-size: 30px;
+  color: #593ebf;
 `;
 
 const Split = ({ page, topic }) => {
@@ -53,16 +60,16 @@ const Split = ({ page, topic }) => {
         {topic === 'question' && <TitleArea question items={questions} />}
         {topic === 'answer' && <TitleArea answer items={answers} />}
         {topic === 'archive' && <TitleArea archive page={page} />}
-        <MainArea>
+        <MainArea topic={topic}>
           {topic === 'question' && (
             <>
               <Legend>Select Your Best Response</Legend>
               {answers.map((answer, index) => {
                 return (
-                  <Option
+                  <div
                     htmlFor={answer.fields.identifier}
                     key={index}
-                    className='shadow'
+                    className='shadow card'
                   >
                     <Link
                       to={`${url}/result_${answer.fields.identifier}`}
@@ -79,7 +86,7 @@ const Split = ({ page, topic }) => {
                         data-next-step
                       />
                     </Link>
-                  </Option>
+                  </div>
                 );
               })}
             </>
