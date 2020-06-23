@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import TitleArea from '../titleArea';
+import Card from '../card';
+import CardList from '../cardList';
 import styled from 'styled-components';
 import { getRecordsList } from '../../services/airtable-service';
-
-const options = [
-  'Medical or Legal Reasons',
-  'Demograpihc Information',
-  'Profile Set Up',
-  'Census Information',
-];
 
 const SplitScreenWrapper = styled.div`
   display: flex;
@@ -59,7 +54,7 @@ const Split = ({ page, topic }) => {
         {topic === 'answer' && <TitleArea answer items={answers} />}
         {topic === 'archive' && <TitleArea archive page={page} />}
         <MainArea>
-          {page === 'Quiz' && topic === 'question' && (
+          {topic === 'question' && (
             <>
               <Legend>Select Your Best Response</Legend>
               {answers.map((answer, index) => {
@@ -88,6 +83,16 @@ const Split = ({ page, topic }) => {
                 );
               })}
             </>
+          )}
+          {topic === 'answer' && (
+            <>
+              <Card answer />
+              {/* Render related articles */}
+              {/* <CardList page='Resources' items={answers.fields.articles} /> */}
+            </>
+          )}
+          {topic === 'archive' && (
+            <CardList page={page} />
           )}
         </MainArea>
       </SplitScreenWrapper>
