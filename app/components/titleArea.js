@@ -18,9 +18,9 @@ const titleArea = (props) => {
         <h2>{props.title}</h2>
         <p>{props.description}</p>
         {props.tooltip && <span>{props.tooltip}</span>}
-        {props.archive && <SearchBar />}
-        {props.answer && <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />}
-        {props.answer && <Share />}
+        {props.topic === 'archive' && <SearchBar />}
+        {props.topic === 'answer' && <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />}
+        {props.topic === 'answer' && <Share />}
       </TitleArea>
     </>
   );

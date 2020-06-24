@@ -15,11 +15,11 @@ const optionList = ({ options }) => {
       <Legend>Select Your Best Response</Legend>
       {options &&
         options.map((option, index) => {
-          return <Option option={option} key={index} />
+          return <Option option={option} key={index} />;
         })
-      };
-  </>
-  )
-}
+      }
+    </>
+  );
+};
 
 export default optionList;

@@ -7,8 +7,10 @@ import styled from 'styled-components';
 import {
   getRecordsList,
   getSingleRecord,
+  getSelectedRecords,
 } from '../../services/airtable-service';
-import { useHistory, useLocation } from 'react-router-dom';
+import { entryQuestion } from '../../constants';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 
 const SplitScreenWrapper = styled.div`
   display: flex;
@@ -32,6 +34,11 @@ const MainArea = styled.div`
 `;
 
 const Split = ({ page, topic }) => {
+  /*
+   * Full list of questions not being used in code at present,
+   * but keeping code in case we need it. If still commented
+   * out at end of project, remove.
+
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -39,6 +46,12 @@ const Split = ({ page, topic }) => {
       setQuestions(recordList);
     });
   }, []);
+  */
+
+  /*
+   * Full list of answers not being used in code at present,
+   * but keeping code in case we need it. If still commented
+   * out at end of project, remove.
 
   const [answers, setAnswers] = useState([]);
 
@@ -47,52 +60,83 @@ const Split = ({ page, topic }) => {
       setAnswers(recordList);
     });
   }, []);
+  */
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [explanation, setExplanation] = useState('');
+  const [resources, setResources] = useState([]);
   const [options, setOptions] = useState([]);
-  const [questionId, setQuestionId] = useState([]);
   const location = useLocation();
   const history = useHistory();
 
-  const setActiveQuestion = (id) => {
+  /*
+   * Get a single record based on ID and store its data
+   * in state to pass to child components.
+   */
+  const getActiveQuestion = (id) => {
     getSingleRecord('questions', id).then((record) => {
       const { question, description, options } = record.fields;
       setTitle(question);
       setDescription(description);
       setOptions(options);
-      setQuestionId(record.id);
-      history.push({ ...location, state: { ...location.state, currentQuestion: record.id} });
     });
   };
 
+  const getRelatedResources = (table, view) => {
+    getRecordsList(table, {
+      params: {
+        view
+      },
+    }).then((res) => {
+      setResources(res);
+    });
+  };
+
+  const getActiveAnswer = (id) => {
+    getSingleRecord('answers', id).then((record) => {
+      const { title, explanation, identifier } = record.fields;
+      setTitle(title);
+      setDescription('');
+      setExplanation(explanation);
+      getRelatedResources('resources', identifier);
+    });
+  };
+
+  // Read browser history state to determine what to render.
   useEffect(() => {
-    if (!location.state) {
-      setActiveQuestion('recXV64HY1DxzL65B');
-    } else {
-      setActiveQuestion(location.state.currentQuestion);
+    if (!location.state && topic === 'question') {
+      /*
+       * If no question is defined in browser history state,
+       * use the default entry question.
+       */
+      getActiveQuestion(entryQuestion);
+      Object.assign(location, {
+        state: { activeId: 'recXV64HY1DxzL65B' },
+      });
+      // Replace instead of push so they don't have to hit back twice.
+      history.replace(location);
+    } else if (location.state && topic === 'question') {
+      getActiveQuestion(location.state.activeId);
+    } else if (topic === 'archive') {
+      setTitle(page);
+      setDescription('');
+    } else if (topic === 'answer') {
+      getActiveAnswer(location.pathname.replace('/quiz/', ''));
     }
-  }, []);
+  }, [location]);
 
   return (
     <>
       <SplitScreenWrapper>
-        {topic === 'question' && (
-          <TitleArea question title={title} description={description} />
-        )}
-        {topic === 'answer' && <TitleArea answer /*title={} description={}*/ />}
-        {topic === 'archive' && (
-          <TitleArea archive /*title={} description={}*/ />
-        )}
+        <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic}>
-          {topic === 'question' && (
-            <OptionList options={options} />
-          )}
+          {topic === 'question' && <OptionList options={options} />}
           {topic === 'answer' && (
             <>
-              <Card answer />
+              <Card answer formattedText={explanation} />
               {/* Render related articles */}
-              {/* <CardList page='Resources' items={answers.fields.articles} /> */}
+              <CardList page="Answer" items={resources} />
             </>
           )}
           {topic === 'archive' && <CardList page={page} />}

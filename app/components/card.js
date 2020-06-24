@@ -34,9 +34,10 @@ const card = ({ answer, term, resource, page, formattedText }) => {
     <Article className='shadow card'>
       {h1()}
       {formattedText}
-      {page === 'Resources' && (
+      {page === 'Resources' || page === 'Answer' && (
         <>
-          <p>{resource.fields.attribution}</p>
+          <p>{resource.fields.summary}</p>
+          <p>{resource.fields.source_author} | {resource.fields.date}</p>
           <a href={resource.fields.link}></a>
         </>
       )}

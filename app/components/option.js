@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getSingleRecord } from '../services/airtable-service';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const option = ({ option }) => {
   const [value, setValue] = useState('');
@@ -9,6 +9,7 @@ const option = ({ option }) => {
   const [nextQuestion, setNextQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     getSingleRecord('options', option).then((record) => {
@@ -16,22 +17,33 @@ const option = ({ option }) => {
       setValue(value);
       setDisplayText(display_text);
       setAnswer(answer);
-      location.state = { currentQuestion: next_question };
+      setNextQuestion(next_question);
     });
-  }, []);
+  }, [option]);
+
+  const handleClick = e => {
+    const nextPage = e.target.dataset.nextPage;
+    const answer = e.target.dataset.answer;
+    Object.assign(location, {
+      state: { activeId: nextPage || answer },
+      pathname: answer ? `/quiz/${answer}` : location.pathname
+    })
+    history.push(location);
+  }
 
   return (
     <div htmlFor={value} className="shadow card">
-      <Link to={location}>
-        {displayText}
-        <input
-          type="radio"
-          id={`option-${value}`}
-          value={value}
-          name={value}
-          aria-checked
-        />
-      </Link>
+      {displayText}
+      <input
+        type="radio"
+        id={`option-${value}`}
+        value={value}
+        name={value}
+        aria-checked
+        data-next-page={nextQuestion}
+        data-answer={answer}
+        onClick={handleClick}
+      />
     </div>
   );
 };

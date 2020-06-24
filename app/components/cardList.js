@@ -3,10 +3,9 @@ import Card from './card';
 import { getRecordsList } from '../services/airtable-service';
 
 const cardList = (props) => {
-   const [glossary, setGlossary] = useState([]);
-   const [resources, setResources] = useState([]);
-
-   useEffect(() => {
+  const [glossary, setGlossary] = useState([]);
+  const [resources, setResources] = useState([]);
+  useEffect(() => {
     if (props.page === 'Glossary') {
       getRecordsList('glossary').then((recordList) => {
         setGlossary(recordList);
@@ -16,16 +15,16 @@ const cardList = (props) => {
         setResources(recordList);
       });
     }
-   }, []);
+  }, []);
 
   return (
     <>
-      {props.page === 'Resources' ? <h2>Related Articles</h2> : null}
+      {props.page === 'Answer' ? <h2>Related Articles</h2> : null}
       <ul>
         {props.items &&
-          props.items.map((title, idx) => (
+          props.items.map((resource, idx) => (
             <li key={idx}>
-              <Card title={title} page={props.page} />
+              <Card page={props.page} resource={resource} />
             </li>
           ))}
         {props.page === 'Glossary' &&
@@ -49,6 +48,6 @@ const cardList = (props) => {
       </ul>
     </>
   );
-}
+};
 
 export default cardList;

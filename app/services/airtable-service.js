@@ -24,10 +24,10 @@ export const api = axios.create({
   },
 });
 
-export const getRecordsList = (tableName) => {
+export const getRecordsList = (tableName, params) => {
   return new Promise((resolve, reject) => {
     api
-      .get(`/${tableName}`)
+      .get(`/${tableName}`, params ? params : {})
       .then((res) => {
         resolve(res.data.records);
       })
