@@ -4,7 +4,11 @@ import Card from '../card';
 import CardList from '../cardList';
 import OptionList from '../optionList';
 import styled from 'styled-components';
-import { getRecordsList } from '../../services/airtable-service';
+import {
+  getRecordsList,
+  getSingleRecord,
+} from '../../services/airtable-service';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const SplitScreenWrapper = styled.div`
   display: flex;
@@ -14,16 +18,15 @@ const SplitScreenWrapper = styled.div`
 
 const MainArea = styled.div`
   ${(props) =>
-    props.topic === 'question' &&
-    ` text-align: center;
+    (props.topic === 'question' &&
+      ` text-align: center;
       width: fit-content;
       margin-left: auto;
       margin-right: auto;
-    ` ||
+    `) ||
     `
       width: 75%;
-    `
-  };
+    `};
   background-color: transparent;
   padding-top: 100px;
 `;
@@ -45,15 +48,45 @@ const Split = ({ page, topic }) => {
     });
   }, []);
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [options, setOptions] = useState([]);
+  const [questionId, setQuestionId] = useState([]);
+  const location = useLocation();
+  const history = useHistory();
+
+  const setActiveQuestion = (id) => {
+    getSingleRecord('questions', id).then((record) => {
+      const { question, description, options } = record.fields;
+      setTitle(question);
+      setDescription(description);
+      setOptions(options);
+      setQuestionId(record.id);
+      history.push({ ...location, state: { ...location.state, currentQuestion: record.id} });
+    });
+  };
+
+  useEffect(() => {
+    if (!location.state) {
+      setActiveQuestion('recXV64HY1DxzL65B');
+    } else {
+      setActiveQuestion(location.state.currentQuestion);
+    }
+  }, []);
+
   return (
     <>
       <SplitScreenWrapper>
-        {topic === 'question' && <TitleArea question items={questions} />}
-        {topic === 'answer' && <TitleArea answer items={answers} />}
-        {topic === 'archive' && <TitleArea archive page={page} />}
+        {topic === 'question' && (
+          <TitleArea question title={title} description={description} />
+        )}
+        {topic === 'answer' && <TitleArea answer /*title={} description={}*/ />}
+        {topic === 'archive' && (
+          <TitleArea archive /*title={} description={}*/ />
+        )}
         <MainArea topic={topic}>
           {topic === 'question' && (
-            <OptionList answers={answers} />
+            <OptionList options={options} />
           )}
           {topic === 'answer' && (
             <>
@@ -62,13 +95,11 @@ const Split = ({ page, topic }) => {
               {/* <CardList page='Resources' items={answers.fields.articles} /> */}
             </>
           )}
-          {topic === 'archive' && (
-            <CardList page={page} />
-          )}
+          {topic === 'archive' && <CardList page={page} />}
         </MainArea>
       </SplitScreenWrapper>
     </>
   );
-}
+};
 
 export default Split;

@@ -1,24 +1,39 @@
-import React from 'react'
-import { Link, useRouteMatch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getSingleRecord } from '../services/airtable-service';
+import { useLocation } from 'react-router-dom';
 
-const option = ({ answer }) => {
-  let { url } = useRouteMatch();
+const option = ({ option }) => {
+  const [value, setValue] = useState('');
+  const [displayText, setDisplayText] = useState('');
+  const [nextQuestion, setNextQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    getSingleRecord('options', option).then((record) => {
+      const { value, display_text, next_question, answer } = record.fields;
+      setValue(value);
+      setDisplayText(display_text);
+      setAnswer(answer);
+      location.state = { currentQuestion: next_question };
+    });
+  }, []);
+
   return (
-    <div htmlFor={answer.fields.identifier} className='shadow card'>
-      <Link to={`${url}/result_${answer.fields.identifier}`}>
-        {answer.fields.identifier}
-
+    <div htmlFor={value} className="shadow card">
+      <Link to={location}>
+        {displayText}
         <input
-          type='radio'
-          id={answer.fields_identifier}
-          value={answer.fields.identifer}
-          name='test'
+          type="radio"
+          id={`option-${value}`}
+          value={value}
+          name={value}
           aria-checked
-          data-next-step
         />
       </Link>
     </div>
   );
-}
+};
 
-export default option
+export default option;

@@ -1,4 +1,4 @@
 /node_modules
 build
 .env
-/services/secrets.js
+app/services/secrets.js

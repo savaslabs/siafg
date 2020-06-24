@@ -9,14 +9,13 @@ const Legend = styled.legend`
   color: #593ebf;
 `;
 
-const optionList = ({ answers }) => {
-
+const optionList = ({ options }) => {
   return (
     <>
       <Legend>Select Your Best Response</Legend>
-      {answers &&
-        answers.map((answer, index) => {
-          return <Option answer={answer} key={index} />
+      {options &&
+        options.map((option, index) => {
+          return <Option option={option} key={index} />
         })
       };
   </>
