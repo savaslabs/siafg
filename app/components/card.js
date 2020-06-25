@@ -6,9 +6,7 @@ const Article = styled.article`
   color: black;
 `;
 
-const card = ({ answer, item, resource, page }) => {
-  // Destructure glossary term fields.
-  const { related_term_names, term, definition } = item.fields;
+const card = ({ answer, term, resource, page }) => {
   let title;
 
   // Process glossay term name for id or href.
@@ -20,7 +18,7 @@ const card = ({ answer, item, resource, page }) => {
   const id = () => {
     if (page === 'Glossary') {
       return (
-        { id: cleanTerm(term) }
+        { id: cleanTerm(term.fields.term) }
       )
     }
   };
@@ -28,18 +26,17 @@ const card = ({ answer, item, resource, page }) => {
   // Conditionally render level one heading.
   const h1 = () => {
     if (answer) {
-      return (title = "And Here's Why...");
+      return title = "And Here's Why...";
     } else if (page === 'Glossary') {
-      return (title = term);
+      return title = term.fields.term;
     } else {
-      return (title = resource.fields.title);
+      return title = resource.fields.title;
     }
   };
 
   return (
     <Article className='shadow card' {...id()}>
       <h1>{h1()}</h1>
-
       {page === 'Resources' ||
         (page === 'Answer' && (
           <>
@@ -52,8 +49,8 @@ const card = ({ answer, item, resource, page }) => {
         ))}
       {page === 'Glossary' && (
         <>
-          {definition && (<p>{definition}</p>)}
-          {related_term_names && related_term_names.map(
+          {term.fields.definition && (<p>{term.fields.definition}</p>)}
+          {term.fields.related_term_names && term.fields.related_term_names.map(
             (related, index) => {
               return (
                 <CTA
