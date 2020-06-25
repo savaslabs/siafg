@@ -16,6 +16,10 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
+const Nav = styled.nav`
+  width: 40%;
+`;
+
 const Menu = styled.ul`
   display: flex;
   flex-direction: row;
@@ -24,7 +28,7 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li`
   font-weight: 700;
-  font-size: 36;
+  font-size: 27px;
   line-height: 1.2;
 `;
 
@@ -36,7 +40,7 @@ const header = () => {
         <img src={logo} alt='Home' />
       </Link>
       {/* Menu */}
-      <nav>
+      <Nav>
         <Menu>
           {routes.slice(1).map((menuItem, idx) => {
             return (
@@ -46,7 +50,7 @@ const header = () => {
             );
           })}
         </Menu>
-      </nav>
+      </Nav>
     </Header>
   );
 }
