@@ -112,7 +112,7 @@ const Split = ({ page, topic }) => {
        */
       getActiveQuestion(entryQuestion);
       Object.assign(location, {
-        state: { activeId: 'recXV64HY1DxzL65B' },
+        state: { activeId: entryQuestion },
       });
       // Replace instead of push so they don't have to hit back twice.
       history.replace(location);

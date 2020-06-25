@@ -6,7 +6,7 @@ const Article = styled.article`
   color: black;
 `;
 
-const card = ({ answer, term, resource, page }) => {
+const card = ({ answer, term, formattedText, resource, page }) => {
   let title;
 
   // Process glossay term name for id or href.
@@ -37,6 +37,7 @@ const card = ({ answer, term, resource, page }) => {
   return (
     <Article className='shadow card' {...id()}>
       <h1>{h1()}</h1>
+      {formattedText}
       {page === 'Resources' ||
         (page === 'Answer' && (
           <>
