@@ -1,38 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import { getSingleRecord } from '../services/airtable-service';
+import React from 'react'
+import CTA from './cta';
 import styled from 'styled-components';
 
 const Article = styled.article`
   color: black;
 `;
 const card = ({ answer, term, resource, page, formattedText }) => {
-  // const [terms, setTerms] = useState([]);
+  let title;
 
-  // // Fetch related Terms for each Glossary Item.
-  // useEffect(() => {
-  //   return () => {
-  //     term.fields.relatedTerms.map((term, index) => {
-  //       getSingleRecord('glossary', term).then((record) => {
-  //         setTerms(record);
-  //       });
-  //     });
-  //   };
-  // }, [term]);
+  // Process term name for id or href.
+  const cleanTerm = name => {
+    return name.toLowerCase().replace(/ /g, '_');
+
+  };
+
+  // Conditionally render id for glossary term articles.
+  const id = () => {
+    if (page === 'Glossary') {
+      return (
+        { id: cleanTerm(term.fields.term) }
+      )
+    }
+  };
 
   // Conditionally render level one heading.
   const h1 = () => {
     if (answer) {
-      return <h1>And Here's Why...</h1>
+      return (title = "And Here's Why...");
     } else if (page === 'Glossary') {
-      return <h1>{term.fields.term}</h1>
+      return (title = term.fields.term);
     } else {
-      return <h1>{resource.fields.title}</h1>
+      return (title = resource.fields.title);
     }
   };
 
   return (
-    <Article className='shadow card'>
-      {h1()}
+    <Article className='shadow card' {...id()}>
+      <h1>{h1()}</h1>
       {formattedText}
       {page === 'Resources' || page === 'Answer' && (
         <>
@@ -41,14 +45,15 @@ const card = ({ answer, term, resource, page, formattedText }) => {
           <a href={resource.fields.link}></a>
         </>
       )}
-      {/* Render each related term as a CTA */}
-      {/* {page === 'Glossary' && terms && (
+      {page === 'Glossary' && term.fields.related_term_names && (
         <>
-          {terms.map((word, index) => {
-            return <CTA text={word} href='#' />;
-          })}
+        {term.fields.related_term_names.map((related, index) => {
+          return (
+            <CTA tertiary text={related} size='24px' href={`#${cleanTerm(related)}`} key={index} />
+          );
+        })}
         </>
-      )} */}
+      )}
     </Article>
   );
 }
