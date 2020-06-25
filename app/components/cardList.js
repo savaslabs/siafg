@@ -32,7 +32,7 @@ const cardList = (props) => {
           glossary.map((term, idx) => {
             return (
               <li key={idx}>
-                <Card term={term} page={props.page} />
+                <Card item={term} page={props.page} />
               </li>
             );
           })}
