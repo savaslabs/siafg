@@ -64,6 +64,7 @@ const Split = ({ page, topic }) => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [tooltip, setTooltip] = useState('');
   const [explanation, setExplanation] = useState('');
   const [resources, setResources] = useState([]);
   const [options, setOptions] = useState([]);
@@ -76,10 +77,11 @@ const Split = ({ page, topic }) => {
    */
   const getActiveQuestion = (id) => {
     getSingleRecord('questions', id).then((record) => {
-      const { question, description, options } = record.fields;
+      const { question, description, options, tooltip } = record.fields;
       setTitle(question);
       setDescription(description);
       setOptions(options);
+      setTooltip(tooltip);
     });
   };
 
@@ -129,7 +131,7 @@ const Split = ({ page, topic }) => {
   return (
     <>
       <SplitScreenWrapper>
-        <TitleArea title={title} description={description} topic={topic} />
+        <TitleArea title={title} description={description} tooltip={tooltip} topic={topic} />
         <MainArea topic={topic}>
           {topic === 'question' && <OptionList options={options} />}
           {topic === 'answer' && (
