@@ -15,7 +15,7 @@ const card = ({ answer, term, formattedText, resource, page }) => {
   };
 
   // Conditionally render id for glossary term articles.
-  const id = () => {
+  const renderId = () => {
     if (page === 'Glossary') {
       return (
         { id: cleanTerm(term.fields.term) }
@@ -24,7 +24,7 @@ const card = ({ answer, term, formattedText, resource, page }) => {
   };
 
   // Conditionally render level one heading.
-  const h1 = () => {
+  const renderH1 = () => {
     if (answer) {
       return title = "And Here's Why...";
     } else if (page === 'Glossary') {
@@ -34,20 +34,25 @@ const card = ({ answer, term, formattedText, resource, page }) => {
     }
   };
 
+  const renderResourceFields = () => {
+    if (page === 'Resources' || page === 'Answer') {
+      return (
+        <>
+          <p>{resource.fields.summary}</p>
+          <p>
+            {resource.fields.source_author} | {resource.fields.date}
+          </p>
+          <a href={resource.fields.link}></a>
+        </>
+      )
+    }
+  }
+
   return (
-    <Article className='shadow card' {...id()}>
-      <h1>{h1()}</h1>
+    <Article className='shadow card' {...renderId()}>
+      <h1>{renderH1()}</h1>
       {formattedText}
-      {page === 'Resources' ||
-        (page === 'Answer' && (
-          <>
-            <p>{resource.fields.summary}</p>
-            <p>
-              {resource.fields.source_author} | {resource.fields.date}
-            </p>
-            <a href={resource.fields.link}></a>
-          </>
-        ))}
+      {renderResourceFields()}
       {page === 'Glossary' && (
         <>
           {term.fields.definition && (<p>{term.fields.definition}</p>)}
