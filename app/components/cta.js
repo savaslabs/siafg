@@ -9,12 +9,12 @@ const CTA = styled.a`
   text-size: ${(props) => (props.size)};
   background: ${(props) => (props.tertiary ? gradient1 : 'white')};
   border-radius: 3px;
-  border: ${(props) => (props.secondary ? '5px' : 'none')};
   padding: 15px 40px;
-  position: ${(props) => (props.secondary ? 'relative' : null)};
   ${(props) =>
-    props.secondary &&
-    `
+    (props.secondary &&
+      `  border: 5px;
+      position: relative;
+
       &:before {
         content: '';
         position: absolute;
@@ -23,7 +23,8 @@ const CTA = styled.a`
         margin: -5px;
         border-radius: inherit;
         background: ${gradient1};
-    `}
+      }`
+    )}
 `;
 
 const cta = (props) => {
