@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlight from 'react-highlighter'
 import styled from 'styled-components'
 
 const gradient1 = 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)';
@@ -29,11 +30,12 @@ const CTA = styled.a`
 
 const cta = (props) => {
   return (
-    <CTA
-      {...props}
-      {...(props.primary && { className: 'shadow' })}
-    >
-      {props.text}
+    <CTA {...props} {...(props.primary && { className: 'shadow' })}>
+      {props.search ? (
+        <Highlight search={props.search}>{props.text}</Highlight>
+      ) : (
+        props.text
+      )}
     </CTA>
   );
 }

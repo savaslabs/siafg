@@ -3,32 +3,35 @@ import Fuse from 'fuse.js';
 import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
 
-const searchBar = (props) => {
-  const { glossary, resources, searchResults, setSearchResults } = useContext(
+const searchBar = () => {
+  const { glossary, resources, setSearchResults, searchTerm, setSearchTerm } = useContext(
     ArchiveContext
   );
 
   const [searchable, setSearchable] = useState([]);
   const [options, setOptions] = useState({});
 
-  // Add glossary or resources to state, along with fuse options.
+  // Add resources to state, along with fuse options.
   useEffect(() => {
-    if (props.resourses) {
+    if (resources !== undefined) {
       searchOptions['keys'] = [
         'fields.source_author',
         'fields.summary',
         'fields.title',
       ];
       setOptions(searchOptions);
-      setSearchable(props.resources);
-    } else if (props.glossary) {
+      setSearchable(resources);
+    }
+  }, [resources]);
+
+  // Add glossary to state, along with fuse options.
+  useEffect(() => {
+    if (glossary !== undefined) {
       searchOptions['keys'] = ['fields.definition', 'fields.term', 'fields.related_term_names'];
       setOptions(searchOptions);
-      setSearchable(props.glossary);
+      setSearchable(glossary);
     }
-  }, [props]);
-
-  const [searchTerm, setSearchTerm] = useState('');
+  }, [glossary]);
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -45,7 +48,6 @@ const searchBar = (props) => {
   }
 
   return (
-    <>
       <input
         type='search'
         placeholder='search'
@@ -53,12 +55,6 @@ const searchBar = (props) => {
         onChange={handleChange}
         onKeyDown={handleEnter}
       />
-      {/* @todo: create context for these results to pass data to cardList */}
-      {searchResults && searchResults.map((result, i) => {
-        console.log('result.matches', result.matches);
-        console.log('result.item', result.item);
-      })}
-    </>
   )
 };
 

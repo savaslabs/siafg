@@ -1,12 +1,13 @@
 import React from 'react'
 import CTA from './cta';
 import styled from 'styled-components';
+import Highlight from 'react-highlighter';
 
 const Article = styled.article`
   color: black;
 `;
 
-const card = ({ answer, term, formattedText, resource, page }) => {
+const card = ({ answer, term, formattedText, resource, page, search }) => {
   let title;
 
   // Process glossary term name for id or href.
@@ -38,24 +39,37 @@ const card = ({ answer, term, formattedText, resource, page }) => {
     if (page === 'Resources' || page === 'Answer') {
       return (
         <>
-          <p>{resource.fields.summary}</p>
           <p>
-            {resource.fields.source_author} | {resource.fields.date}
+            {search ? (
+              <Highlight search={search}>{resource.fields.summary}</Highlight>
+            ) : (
+              resource.fields.summary
+            )}
+          </p>
+          <p>
+            {search ? (
+              <Highlight search={search}>
+                {resource.fields.source_author}
+              </Highlight>
+            ) : (
+              resource.fields.source_author
+            )}
+            | {resource.fields.date}
           </p>
           <a href={resource.fields.link}></a>
         </>
-      )
+      );
     }
   }
 
   return (
     <Article className='shadow card' {...renderId()}>
-      <h1>{renderH1()}</h1>
+      <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
       {formattedText}
       {renderResourceFields()}
       {page === 'Glossary' && (
         <>
-          {term.fields.definition && (<p>{term.fields.definition}</p>)}
+          {term.fields.definition && (<p>{search ? <Highlight search={search}>{term.fields.definition}</Highlight> : term.fields.definition}</p>)}
           {term.fields.related_term_names && term.fields.related_term_names.map(
             (related, index) => {
               return (
@@ -65,6 +79,7 @@ const card = ({ answer, term, formattedText, resource, page }) => {
                   size='24px'
                   href={`#${cleanTerm(related)}`}
                   key={index}
+                  search={search}
                 />
               );
             }
