@@ -13,7 +13,7 @@ const optionList = ({ options }) => {
   return (
     <>
       <Legend>Select Your Best Response</Legend>
-      {options &&
+      {options?.length > 0 &&
         options.map((option, index) => {
           return <Option option={option} key={index} />;
         })

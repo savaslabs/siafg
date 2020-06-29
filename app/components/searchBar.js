@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { ArchiveContext } from '../context/archiveContext';
 
-const searchBar = () => {
-  return (
-    <input
-      type='search'
-      placeholder='search'>
-    </input>
+const searchBar = (props) => {
+  const { glossary, resources, searchResults, setSearchResults } = useContext(
+    ArchiveContext
   );
-}
 
-export default searchBar
+  return <input type="search" placeholder="search"></input>;
+};
+
+export default searchBar;
