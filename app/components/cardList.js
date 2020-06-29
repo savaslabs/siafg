@@ -1,21 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import Card from './card';
-import { getRecordsList } from '../services/airtable-service';
 
 const cardList = (props) => {
-  const [glossary, setGlossary] = useState([]);
-  const [resources, setResources] = useState([]);
-  useEffect(() => {
-    if (props.page === 'Glossary') {
-      getRecordsList('glossary').then((recordList) => {
-        setGlossary(recordList);
-      });
-    } else if (props.page === 'Resources') {
-      getRecordsList('resources').then((recordList) => {
-        setResources(recordList);
-      });
-    }
-  }, []);
+  const glossary = props.glossary;
+  const resources = props.resources;
 
   return (
     <>
