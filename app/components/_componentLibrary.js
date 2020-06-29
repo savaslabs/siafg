@@ -13,7 +13,6 @@ const componentLibrary = () => {
       <CTA secondary href='#' text='Click Me!' />
       {/* Gradient */}
       <CTA tertiary href='#' text='Click Me!' />
-      <SearchBar />
       <Share />
     </>
   );

@@ -9,7 +9,7 @@ const Article = styled.article`
 const card = ({ answer, term, formattedText, resource, page }) => {
   let title;
 
-  // Process glossay term name for id or href.
+  // Process glossary term name for id or href.
   const cleanTerm = name => {
     return name.toLowerCase().replace(/ /g, '_');
   };

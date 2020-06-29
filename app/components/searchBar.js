@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Fuse from 'fuse.js';
+import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
 
 const searchBar = (props) => {
+  const { glossary, resources, searchResults, setSearchResults } = useContext(
+    ArchiveContext
+  );
+
   const [searchable, setSearchable] = useState([]);
   const [options, setOptions] = useState({});
 
@@ -24,7 +29,6 @@ const searchBar = (props) => {
   }, [props]);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
@@ -55,7 +59,7 @@ const searchBar = (props) => {
         console.log('result.item', result.item);
       })}
     </>
-  );
-}
+  )
+};
 
-export default searchBar
+export default searchBar;
