@@ -1,10 +1,9 @@
 import React, { useState, createContext } from 'react';
 export const ArchiveContext = createContext();
 
-export const ArchiveProvider = props => {
+export const ArchiveProvider = ({ glossary, resources, children }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const { glossary, resources } = props
+  const [searchResults, setSearchResults] = useState('');
 
   return (
     <ArchiveContext.Provider
@@ -17,7 +16,7 @@ export const ArchiveProvider = props => {
         resources
       }}
     >
-      {props.children}
+      {children}
     </ArchiveContext.Provider>
   )
 }
