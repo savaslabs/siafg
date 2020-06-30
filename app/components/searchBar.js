@@ -3,6 +3,17 @@ import { useLocation } from 'react-router-dom';
 import Fuse from 'fuse.js';
 import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
+import styled from 'styled-components';
+
+const SearchBar = styled.input`
+  border-radius: 100px;
+  border: 3px solid #181818;
+  padding: 11px 25px;
+
+  &::-webkit-input-placeholder {
+    font-style: italic;
+  }
+`;
 
 const searchBar = () => {
   const { glossary, resources, setSearchResults, searchTerm, setSearchTerm } = useContext(
@@ -51,9 +62,9 @@ const searchBar = () => {
   }
 
   return (
-      <input
+      <SearchBar
         type='search'
-        placeholder='search'
+        placeholder='Search...'
         value={searchTerm}
         onChange={handleChange}
         onKeyDown={handleEnter}
