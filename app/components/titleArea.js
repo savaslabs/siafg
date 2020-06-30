@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import SearchBar from './searchBar';
 import Share from './share';
 import CTA from './cta';

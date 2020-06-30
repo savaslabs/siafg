@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Fuse from 'fuse.js';
 import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
@@ -7,13 +8,15 @@ const searchBar = () => {
   const { glossary, resources, setSearchResults, searchTerm, setSearchTerm } = useContext(
     ArchiveContext
   );
+  const location = useLocation();
+  const path = location.pathname.split('/')[1];
 
   const [searchable, setSearchable] = useState([]);
   const [options, setOptions] = useState({});
 
   // Add resources to state, along with fuse options.
   useEffect(() => {
-    if (resources !== undefined) {
+    if (resources !== undefined && path === 'resources') {
       searchOptions['keys'] = [
         'fields.source_author',
         'fields.summary',
@@ -26,7 +29,7 @@ const searchBar = () => {
 
   // Add glossary to state, along with fuse options.
   useEffect(() => {
-    if (glossary !== undefined) {
+    if (glossary !== undefined && path === 'glossary') {
       searchOptions['keys'] = ['fields.definition', 'fields.term', 'fields.related_term_names'];
       setOptions(searchOptions);
       setSearchable(glossary);
