@@ -1,9 +1,76 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Card from './card';
+import { ArchiveContext } from '../context/archiveContext';
 
 const cardList = (props) => {
   const glossary = props.glossary;
   const resources = props.resources;
+  const { searchResults, searchTerm } = useContext(ArchiveContext);
+
+  const renderResults = () => {
+    if (searchResults !== undefined && searchResults.length > 0) {
+      if (props.page === 'Glossary') {
+        return (
+          <>
+            {searchResults.map((result, idx) => {
+              return (
+                <li key={idx}>
+                  <Card
+                    term={result.item}
+                    search={searchTerm}
+                    page={props.page}
+                  />
+                </li>
+              );
+          })}
+        </>
+        )
+
+      } else if (props.page === 'Resources') {
+        return (
+          <>
+            {searchResults.map((result, idx) => {
+              return (
+                <li key={idx}>
+                  <Card
+                    resource={result.item}
+                    search={searchTerm}
+                    page={props.page}
+                  />
+                </li>
+              );
+            })}
+          </>
+        )
+      }
+    } else {
+      if (props.page === 'Glossary' && glossary) {
+        return (
+          <>
+            {glossary.map((term, idx) => {
+              return (
+                <li key={idx}>
+                  <Card term={term} page={props.page} />
+                </li>
+              );
+            })}
+          </>
+        )
+      } else if (props.page === 'Resources' && resources) {
+        return (
+          <>
+            {resources.map((resource, idx) => {
+              return (
+                <li key={idx}>
+                  <Card resource={resource} page={props.page} />
+                </li>
+              );
+            })}
+          </>
+        )
+      }
+    }
+  }
 
   return (
     <>
@@ -15,24 +82,7 @@ const cardList = (props) => {
               <Card page={props.page} resource={resource} />
             </li>
           ))}
-        {props.page === 'Glossary' &&
-          glossary &&
-          glossary.map((term, idx) => {
-            return (
-              <li key={idx}>
-                <Card term={term} page={props.page} />
-              </li>
-            );
-          })}
-        {props.page === 'Resources' &&
-          resources &&
-          resources.map((resource, idx) => {
-            return (
-              <li key={idx}>
-                <Card resource={resource} page={props.page} />
-              </li>
-            );
-          })}
+        {renderResults()}
       </ul>
     </>
   );
