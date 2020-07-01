@@ -9,6 +9,7 @@ import Full from './components/routes/full';
 import NoMatch from './components/routes/noMatch';
 import styled from 'styled-components';
 import { getRecordsList } from './services/airtable-service';
+import { GlossaryHighlightProvider } from './context/glossaryHighlightContext';
 
 const SiteContainer = styled.div`
   height: 100vh;
@@ -21,10 +22,10 @@ const App = () => {
     tables.forEach((table) => {
       getRecordsList(table)
         .then((res) => {
-          setAppData(prevState => ({
+          setAppData((prevState) => ({
             ...prevState,
-            [table]: res
-          }))
+            [table]: res,
+          }));
         })
         .catch((err) => {
           console.log(err);
@@ -37,7 +38,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <GlossaryHighlightProvider>
       {appData.questions && (
         <SiteContainer className="container">
           <Header />
@@ -76,7 +77,7 @@ const App = () => {
           </main>
         </SiteContainer>
       )}
-    </>
+    </GlossaryHighlightProvider>
   );
 };
 export default App;

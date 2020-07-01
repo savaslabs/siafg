@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TitleArea from '../titleArea';
 import Card from '../card';
 import CardList from '../cardList';
@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { entryQuestion } from '../../constants';
 import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
+import { GlossaryHighlightContext } from '../../context/glossaryHighlightContext';
 
 const SplitScreenWrapper = styled.div`
   display: flex;
@@ -37,7 +38,15 @@ const Split = ({ page, topic, appData }) => {
   const [questionOptions, setQuestionOptions] = useState([]);
   const location = useLocation();
   const history = useHistory();
-  const { questions, answers, options, resources, glossary } = appData;
+  const {
+    questions,
+    answers,
+    options,
+    resources,
+    glossary,
+    glossary_highlighted_terms,
+  } = appData;
+  const Terms = useContext(GlossaryHighlightContext);
 
   /*
    * Get a single record based on ID and store its data
@@ -60,12 +69,15 @@ const Split = ({ page, topic, appData }) => {
 
   const getQuestionOptions = (optionArr) => {
     let optionList = [];
-    optionArr.forEach(opt => {
-      optionList = [...optionList, options?.find((record) => record.id === opt).fields]
-    })
+    optionArr.forEach((opt) => {
+      optionList = [
+        ...optionList,
+        options?.find((record) => record.id === opt).fields,
+      ];
+    });
 
     setQuestionOptions(optionList[0] ? optionList : []);
-  }
+  };
 
   const getActiveAnswer = (id) => {
     const answerRecord = answers?.find((record) => record.id === id).fields;
@@ -75,8 +87,13 @@ const Split = ({ page, topic, appData }) => {
     getRelatedResources(id);
   };
 
+  const setHighlightedTerms = () => {
+    Terms.setHighlightedTerms(glossary_highlighted_terms);
+  }
+
   // Read browser history state to determine what to render.
   useEffect(() => {
+    setHighlightedTerms();
     if (!location.state && topic === 'question') {
       /*
        * If no question is defined in browser history state,
@@ -100,30 +117,22 @@ const Split = ({ page, topic, appData }) => {
 
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
-      <SplitScreenWrapper>
-        <TitleArea
-          title={title}
-          description={description}
-          topic={topic}
-        />
-        <MainArea topic={topic}>
-          {topic === 'question' && <OptionList options={questionOptions} />}
-          {topic === 'answer' && (
-            <>
-              <Card answer formattedText={explanation} />
-              {/* Render related articles */}
-              <CardList page="Answer" items={relatedResources} />
-            </>
-          )}
-          {topic === 'archive' && (
-            <CardList
-              page={page}
-              resources={appData.resources}
-              glossary={appData.glossary}
-            />
-          )}
-        </MainArea>
-      </SplitScreenWrapper>
+        <SplitScreenWrapper>
+          <TitleArea title={title} description={description} topic={topic} />
+          <MainArea topic={topic}>
+            {topic === 'question' && <OptionList options={questionOptions} />}
+            {topic === 'answer' && (
+              <>
+                <Card answer formattedText={explanation} />
+                {/* Render related articles */}
+                <CardList page="Answer" items={relatedResources} />
+              </>
+            )}
+            {topic === 'archive' && (
+              <CardList page={page} resources={resources} glossary={glossary} />
+            )}
+          </MainArea>
+        </SplitScreenWrapper>
     </ArchiveProvider>
   );
 };
