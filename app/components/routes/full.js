@@ -3,10 +3,11 @@ import ComponentLibrary from '../_componentLibrary';
 import CTA from '../cta'
 import styled from 'styled-components';
 
+const FullPageWrapper = styled.div`
+  padding-top: 100px;
+`;
+
 const Full = () => {
-  const FullPageWrapper = styled.div`
-    padding-top: 100px;
-  `;
   return (
     <FullPageWrapper>
       <h1>Should I Ask For Gender?</h1>

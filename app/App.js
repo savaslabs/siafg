@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './index.scss';
 import '@babel/polyfill';
-import { routes } from './constants';
+import { routes, tables } from './constants';
 import Header from './components/header';
 import Split from './components/routes/split';
 import Full from './components/routes/full';
@@ -18,7 +18,6 @@ const SiteContainer = styled.div`
 const App = () => {
   const [appData, setAppData] = useState({});
   const getAllData = () => {
-    const tables = ['questions', 'resources', 'glossary', 'answers', 'options'];
     tables.forEach((table) => {
       getRecordsList(table)
         .then((res) => {
