@@ -7,4 +7,4 @@ export const searchOptions = {
   threshold: 0.1,
   location: 0,
 };
-const tables = ['questions', 'resources', 'glossary', 'answers', 'options'];
+export const tables = ['questions', 'resources', 'glossary', 'answers', 'options'];

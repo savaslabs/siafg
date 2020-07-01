@@ -36,29 +36,30 @@ const card = ({ answer, term, formattedText, resource, page, search }) => {
   };
 
   const renderResourceFields = () => {
-    if (page === 'Resources' || page === 'Answer') {
-      return (
-        <>
-          <p>
-            {search ? (
-              <Highlight search={search}>{resource.fields.summary}</Highlight>
-            ) : (
-              resource.fields.summary
-            )}
-          </p>
-          <p>
-            {search ? (
-              <Highlight search={search}>
-                {resource.fields.source_author}
-              </Highlight>
-            ) : (
-              resource.fields.source_author
-            )}
-            | {resource.fields.date}
-          </p>
-          <a href={resource.fields.link}></a>
-        </>
-      );
+    switch (page) {
+      case 'Resources' || 'Answer':
+        return (
+          <>
+            <p>
+              {search ? (
+                <Highlight search={search}>{resource.fields.summary}</Highlight>
+              ) : (
+                resource.fields.summary
+              )}
+            </p>
+            <p>
+              {search ? (
+                <Highlight search={search}>
+                  {resource.fields.source_author}
+                </Highlight>
+              ) : (
+                resource.fields.source_author
+              )}
+              | {resource.fields.date}
+            </p>
+            <a href={resource.fields.link}></a>
+          </>
+        );
     }
   }
 
