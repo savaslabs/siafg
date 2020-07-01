@@ -5,6 +5,6 @@ export const searchOptions = {
   includeMatches: true,
   distance: 100,
   threshold: 0.1,
-  location: 0,
+  ignoreLocation: true,
 };
 export const tables = ['questions', 'resources', 'glossary', 'answers', 'options'];

@@ -16,9 +16,13 @@ const SearchBar = styled.input`
 `;
 
 const searchBar = () => {
-  const { glossary, resources, setSearchResults, searchTerm, setSearchTerm } = useContext(
-    ArchiveContext
-  );
+  const {
+    glossary,
+    resources,
+    setSearchResults,
+    searchTerm,
+    setSearchTerm,
+  } = useContext(ArchiveContext);
   const location = useLocation();
   const path = location.pathname.split('/')[1];
 
@@ -41,35 +45,34 @@ const searchBar = () => {
   // Add glossary to state, along with fuse options.
   useEffect(() => {
     if (glossary !== undefined && path === 'glossary') {
-      searchOptions['keys'] = ['fields.definition', 'fields.term', 'fields.related_term_names'];
+      searchOptions['keys'] = [
+        'fields.definition',
+        'fields.term',
+        'fields.related_term_names',
+      ];
       setOptions(searchOptions);
       setSearchable(glossary);
     }
   }, [glossary]);
 
-  const handleChange = event => {
+  const handleSearch = async (event) => {
     setSearchTerm(event.target.value);
-  }
 
-  const handleEnter = async (event) => {
-    if (event.keyCode === 13) {
-      if (searchable.length > 0) {
-        const fuse = new Fuse(searchable, options);
-        const foundResults = await fuse.search(searchTerm);
-        setSearchResults(foundResults);
-      }
+    if (searchable.length > 0) {
+      const fuse = new Fuse(searchable, options);
+      const foundResults = await fuse.search(searchTerm);
+      setSearchResults(foundResults);
     }
-  }
+  };
 
   return (
-      <SearchBar
-        type='search'
-        placeholder='Search...'
-        value={searchTerm}
-        onChange={handleChange}
-        onKeyDown={handleEnter}
-      />
-  )
+    <SearchBar
+      type="search"
+      placeholder="Search..."
+      value={searchTerm}
+      onChange={handleSearch}
+    />
+  );
 };
 
 export default searchBar;
