@@ -36,6 +36,7 @@ const cardList = (props) => {
                     resource={result.item}
                     search={searchTerm}
                     page={props.page}
+                    index={idx}
                   />
                 </li>
               );
@@ -62,7 +63,7 @@ const cardList = (props) => {
             {resources.map((resource, idx) => {
               return (
                 <li key={idx}>
-                  <Card resource={resource} page={props.page} />
+                  <Card resource={resource} page={props.page} index={idx} />
                 </li>
               );
             })}

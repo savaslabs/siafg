@@ -12,6 +12,7 @@ export const AppDataProvider = (props) => {
   const [answers, setAnswers] = useState([]);
   const [options, setOptions] = useState([]);
   const [highlightedTerms, setHighlightedTerms] = useState('');
+  const [matchedTerms, setMatchedTerms] = useState([]);
 
   const getAllData = async () => {
     await tables.forEach(async (table) => {
@@ -45,7 +46,7 @@ export const AppDataProvider = (props) => {
   };
 
   return (
-    <AppDataContext.Provider value={{ getAllData, questions, resources, glossary, answers, options, highlightedTerms }}>
+    <AppDataContext.Provider value={{ getAllData, questions, resources, glossary, answers, options, highlightedTerms, matchedTerms, setMatchedTerms }}>
       {props.children}
     </AppDataContext.Provider>
   );
