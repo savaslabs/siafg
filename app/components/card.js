@@ -46,14 +46,11 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
         )}
 
         <p>
-          {search && (
-            <Highlight search={search}>
-              {resource?.fields.source_author}
-            </Highlight>
-          )}
+          {search && <Highlight search={search}>{resource?.fields.source_author}</Highlight>}
           {resource && (
             <span>
-              {resource.fields.source_author} { resource.fields.date ? `| ${resource.fields.date}` : ''}
+              {resource.fields.source_author}{' '}
+              {resource.fields.date ? `| ${resource.fields.date}` : ''}
             </span>
           )}
         </p>
@@ -64,13 +61,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
 
   return (
     <Article className="shadow card" {...renderId()}>
-      <h1>
-        {search ? (
-          <Highlight search={search}>{renderH1()}</Highlight>
-        ) : (
-          renderH1()
-        )}
-      </h1>
+      <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
       {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
       {renderResourceFields()}
       {page === 'Glossary' && (
