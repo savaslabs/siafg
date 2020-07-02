@@ -16,7 +16,7 @@ const SplitScreenWrapper = styled.div`
 `;
 
 const MainArea = styled.div`
-  ${(props) =>
+  ${props =>
     (props.topic === 'question' &&
       ` text-align: center;
       width: fit-content;
@@ -39,22 +39,14 @@ const Split = ({ page, topic }) => {
   const location = useLocation();
   const history = useHistory();
   const appData = useContext(AppDataContext);
-  const {
-    questions,
-    answers,
-    options,
-    resources,
-    glossary,
-    highlightedTerms,
-  } = appData;
+  const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
 
   /*
    * Get a single question record based on ID.
    */
-  const getActiveQuestion = (id) => {
+  const getActiveQuestion = id => {
     if (questions.length > 0 && options.length > 0) {
-      const questionRecord = questions.find((record) => record.id === id)
-        .fields;
+      const questionRecord = questions.find(record => record.id === id).fields;
       setTitle(questionRecord?.question);
       setDescription(questionRecord?.description);
       getQuestionOptions(questionRecord?.options);
@@ -64,10 +56,8 @@ const Split = ({ page, topic }) => {
   /*
    * Get related resources for an answer.
    */
-  const getRelatedResources = (id) => {
-    const filteredResources = resources?.filter((record) =>
-      record.fields.answers?.includes(id)
-    );
+  const getRelatedResources = id => {
+    const filteredResources = resources?.filter(record => record.fields.answers?.includes(id));
 
     setRelatedResources(filteredResources ? filteredResources : []);
   };
@@ -75,13 +65,10 @@ const Split = ({ page, topic }) => {
   /*
    * Get options for a specific question.
    */
-  const getQuestionOptions = (optionArr) => {
+  const getQuestionOptions = optionArr => {
     let optionList = [];
-    optionArr.forEach((opt) => {
-      optionList = [
-        ...optionList,
-        options?.find((record) => record.id === opt).fields,
-      ];
+    optionArr.forEach(opt => {
+      optionList = [...optionList, options?.find(record => record.id === opt).fields];
     });
 
     setQuestionOptions(optionList[0] ? optionList : []);
@@ -90,9 +77,9 @@ const Split = ({ page, topic }) => {
   /*
    * Get a single answer record.
    */
-  const getActiveAnswer = (id) => {
+  const getActiveAnswer = id => {
     if (answers.length > 0 && resources.length > 0) {
-      const answerRecord = answers?.find((record) => record.id === id).fields;
+      const answerRecord = answers?.find(record => record.id === id).fields;
       setTitle(answerRecord?.title);
       setDescription('');
       setExplanation(answerRecord?.explanation);

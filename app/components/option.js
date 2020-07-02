@@ -5,11 +5,11 @@ import { useLocation, useHistory } from 'react-router-dom';
 const option = ({ option }) => {
   const location = useLocation();
   const history = useHistory();
-  const { value, display_text, next_question, answer } = option
+  const { value, display_text, next_question, answer } = option;
   const displayText = display_text;
   const nextQuestion = next_question;
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     const nextPage = e.target.dataset.nextPage;
     const answer = e.target.dataset.answer;
     Object.assign(location, {

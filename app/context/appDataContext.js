@@ -4,7 +4,7 @@ import { getRecordsList } from '../services/airtable-service';
 
 export const AppDataContext = createContext();
 
-export const AppDataProvider = (props) => {
+export const AppDataProvider = props => {
   const [appData, setAppData] = useState({});
   const [questions, setQuestions] = useState([]);
   const [resources, setResources] = useState([]);
@@ -15,7 +15,7 @@ export const AppDataProvider = (props) => {
   const [matchedTerms, setMatchedTerms] = useState([]);
 
   const getAllData = async () => {
-    await tables.forEach(async (table) => {
+    await tables.forEach(async table => {
       const res = await getRecordsList(table);
       switch (table) {
         case 'questions':
@@ -46,7 +46,19 @@ export const AppDataProvider = (props) => {
   };
 
   return (
-    <AppDataContext.Provider value={{ getAllData, questions, resources, glossary, answers, options, highlightedTerms, matchedTerms, setMatchedTerms }}>
+    <AppDataContext.Provider
+      value={{
+        getAllData,
+        questions,
+        resources,
+        glossary,
+        answers,
+        options,
+        highlightedTerms,
+        matchedTerms,
+        setMatchedTerms,
+      }}
+    >
       {props.children}
     </AppDataContext.Provider>
   );

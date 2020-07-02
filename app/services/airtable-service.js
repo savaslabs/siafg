@@ -28,10 +28,10 @@ export const getRecordsList = (tableName, params) => {
   return new Promise((resolve, reject) => {
     api
       .get(`/${tableName}`, params ? params : {})
-      .then((res) => {
+      .then(res => {
         resolve(res.data.records);
       })
-      .catch((err) => {
+      .catch(err => {
         reject(err);
       });
   });
@@ -41,10 +41,10 @@ export const getSingleRecord = (tableName, recordId) => {
   return new Promise((resolve, reject) => {
     api
       .get(`/${tableName}/${recordId}`)
-      .then((res) => {
+      .then(res => {
         resolve(res.data);
       })
-      .catch((err) => {
+      .catch(err => {
         reject(err);
       });
   });

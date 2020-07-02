@@ -12,7 +12,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
   let title;
 
   // Process glossary term name for id or href.
-  const cleanTerm = (name) => {
+  const cleanTerm = name => {
     return name.toLowerCase().replace(/ /g, '_');
   };
 

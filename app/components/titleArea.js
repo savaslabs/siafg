@@ -11,17 +11,17 @@ const TitleArea = styled.div`
   padding-top: 100px;
 `;
 
-const titleArea = (props) => {
+const titleArea = props => {
   return (
     <>
       <TitleArea>
         <h1 className="sr-only">Quiz</h1>
         <h2>{props.title}</h2>
-        <div><GlossaryTooltip textToReplace={props.description} /></div>
+        <div>
+          <GlossaryTooltip textToReplace={props.description} />
+        </div>
         {props.topic === 'archive' && <SearchBar />}
-        {props.topic === 'answer' && (
-          <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />
-        )}
+        {props.topic === 'answer' && <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />}
         {props.topic === 'answer' && <Share />}
       </TitleArea>
     </>

@@ -16,8 +16,7 @@ const optionList = ({ options }) => {
       {options?.length > 0 &&
         options.map((option, index) => {
           return <Option option={option} key={index} />;
-        })
-      }
+        })}
     </>
   );
 };

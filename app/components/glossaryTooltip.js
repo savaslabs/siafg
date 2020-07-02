@@ -31,7 +31,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
             >
               <span key={i}>
                 {
-                  glossary.filter((term) => {
+                  glossary.filter(term => {
                     return term?.fields.terms_to_highlight?.includes(match);
                   })[0].fields.definition
                 }

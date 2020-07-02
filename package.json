@@ -19,8 +19,7 @@
   },
   "lint-staged": {
     "*.{js,json,scss}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "resolutions": {

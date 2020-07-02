@@ -3,7 +3,7 @@ import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
 
-const cardList = (props) => {
+const cardList = props => {
   const { glossary, resources } = useContext(AppDataContext);
   const { searchResults, searchTerm } = useContext(ArchiveContext);
 
@@ -15,34 +15,24 @@ const cardList = (props) => {
             {searchResults.map((result, idx) => {
               return (
                 <li key={idx}>
-                  <Card
-                    term={result.item}
-                    search={searchTerm}
-                    page={props.page}
-                  />
+                  <Card term={result.item} search={searchTerm} page={props.page} />
                 </li>
               );
-          })}
-        </>
-        )
-
+            })}
+          </>
+        );
       } else if (props.page === 'Resources') {
         return (
           <>
             {searchResults.map((result, idx) => {
               return (
                 <li key={idx}>
-                  <Card
-                    resource={result.item}
-                    search={searchTerm}
-                    page={props.page}
-                    index={idx}
-                  />
+                  <Card resource={result.item} search={searchTerm} page={props.page} index={idx} />
                 </li>
               );
             })}
           </>
-        )
+        );
       }
     } else {
       if (props.page === 'Glossary' && glossary) {
@@ -56,7 +46,7 @@ const cardList = (props) => {
               );
             })}
           </>
-        )
+        );
       } else if (props.page === 'Resources' && resources) {
         return (
           <>
@@ -68,10 +58,10 @@ const cardList = (props) => {
               );
             })}
           </>
-        )
+        );
       }
     }
-  }
+  };
 
   return (
     <>

@@ -15,6 +15,6 @@ const noMatch = () => {
       <h1>No match for {location.pathname}</h1>
     </NoMatchWrapper>
   );
-}
+};
 
 export default noMatch;

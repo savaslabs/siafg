@@ -37,10 +37,7 @@ const App = () => {
                 </Route>
               ) : (
                 <Route exact path={`/${path}`} key={index} route={route}>
-                  <Split
-                    page={route}
-                    topic={route === 'Quiz' ? 'question' : 'archive'}
-                  />
+                  <Split page={route} topic={route === 'Quiz' ? 'question' : 'archive'} />
                 </Route>
               );
             })}
