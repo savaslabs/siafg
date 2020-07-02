@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 import CTA from './cta';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
-import reactStringReplace from 'react-string-replace';
-import { AppDataContext } from '../context/appDataContext';
-import ReactTooltip from 'react-tooltip';
 import GlossaryTooltip from './glossaryTooltip';
 
 const Article = styled.article`
@@ -37,10 +34,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
     }
   };
 
-  const { glossary, highlightedTerms } = useContext(AppDataContext);
-  let replacedSummary;
   const renderResourceFields = () => {
-
     return (
       <>
         {search ? (
@@ -48,7 +42,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
             <Highlight search={search}>{resource?.fields.summary}</Highlight>
           </p>
         ) : (
-          <GlossaryTooltip textToReplace={resource?.fields.summary} cardIndex={index} />
+          <GlossaryTooltip textToReplace={resource?.fields.summary} />
         )}
 
         <p>
@@ -59,7 +53,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
           )}
           {resource && (
             <span>
-              {resource.fields.source_author} | {resource.fields.date}
+              {resource.fields.source_author} { resource.fields.date ? `| ${resource.fields.date}` : ''}
             </span>
           )}
         </p>
@@ -77,7 +71,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
           renderH1()
         )}
       </h1>
-      {explanation}
+      {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
       {renderResourceFields()}
       {page === 'Glossary' && (
         <>

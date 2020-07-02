@@ -113,6 +113,12 @@ a {
   background: white;
   border-radius: 10px;
   position: relative;
+  line-height: 1.5;
+}
+
+.glossary-tooltip {
+  max-width: 300px;
+  text-align: center;
 }
 
 input[type="radio" i] {

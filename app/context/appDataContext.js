@@ -34,8 +34,8 @@ export const AppDataProvider = (props) => {
           setOptions(res);
           break;
         case 'glossary_highlighted_terms':
-          const termsRegexString = res[0]?.fields.glossary_regex_terms.replace(/\s/g, '\\s');
-          const termsRegex = new RegExp(`(\\b${termsRegexString}\\b)`, 'g');
+          const termsRegexString = res[0]?.fields.glossary_regex_terms?.replace(/\s/g, '\\s');
+          const termsRegex = new RegExp(`\\b(${termsRegexString})\\b`, 'g');
           setHighlightedTerms(termsRegex);
           break;
 
