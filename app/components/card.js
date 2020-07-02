@@ -3,13 +3,14 @@ import CTA from './cta';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import reactStringReplace from 'react-string-replace';
-import { GlossaryHighlightContext } from '../context/glossaryHighlightContext';
+import { AppDataContext } from '../context/appDataContext';
+import ReactTooltip from 'react-tooltip';
 
 const Article = styled.article`
   color: black;
 `;
 
-const card = ({ answer, term, formattedText, resource, page, search }) => {
+const card = ({ answer, term, explanation, resource, page, search }) => {
   let title;
 
   // Process glossary term name for id or href.
@@ -35,56 +36,63 @@ const card = ({ answer, term, formattedText, resource, page, search }) => {
     }
   };
 
+  const { glossary, highlightedTerms } = useContext(AppDataContext);
+  let replacedSummary;
   const renderResourceFields = () => {
-    let replacedSummary;
-    const Terms = useContext(GlossaryHighlightContext);
-    const { highlightedTerms } = Terms;
     if (highlightedTerms) {
-      const regexVal = highlightedTerms[0]?.fields.glossary_regex_terms.replace(
-        /\s/g,
-        '\\s'
-      );
-
-      if (regexVal) {
-        const regex = new RegExp(`(\\b${regexVal}\\b)`, 'g');
-        console.log(regex);
-        console.log(resource.fields.summary);
-        replacedSummary = reactStringReplace(
-          resource.fields.summary,
-          regex,
-          (match, i) => (
-            <span key={match + i} style={{ color: 'red' }} title="Some title">
+      replacedSummary = reactStringReplace(
+        resource?.fields.summary,
+        highlightedTerms,
+        (match, i) => (
+          <div key={match + i} style={{ display: 'inline-block' }}>
+            <span
+              style={{ borderBottom: '2px solid #D1C6F3' }}
+              data-tip
+              data-for={`${match}-tooltip`}
+            >
               {match}
             </span>
-          )
-        );
-      }
+            <ReactTooltip id={`${match}-tooltip`}>
+              <p>
+                {glossary
+                  .filter((term) => {
+                    return term.fields.terms_to_highlight?.includes(match);
+                  })
+                  .map((termVal, i) => {
+                    return <span key={i}>{termVal.fields.definition}</span>;
+                  })}
+              </p>
+            </ReactTooltip>
+          </div>
+        )
+      );
     }
-    switch (page) {
-      case 'Resources' || 'Answer':
-        return (
-          <>
-            <p>
-              {search ? (
-                <Highlight search={search}>{resource.fields.summary}</Highlight>
-              ) : (
-                replacedSummary
-              )}
-            </p>
-            <p>
-              {search ? (
-                <Highlight search={search}>
-                  {resource.fields.source_author}
-                </Highlight>
-              ) : (
-                resource.fields.source_author
-              )}
-              | {resource.fields.date}
-            </p>
-            <a href={resource.fields.link}></a>
-          </>
-        );
-    }
+
+    return (
+      <>
+        {search ? (
+          <p>
+            <Highlight search={search}>{resource?.fields.summary}</Highlight>
+          </p>
+        ) : (
+          replacedSummary
+        )}
+
+        <p>
+          {search && (
+            <Highlight search={search}>
+              {resource?.fields.source_author}
+            </Highlight>
+          )}
+          {resource && (
+            <span>
+              {resource.fields.source_author} | {resource.fields.date}
+            </span>
+          )}
+        </p>
+        <a href={resource?.fields.link}></a>
+      </>
+    );
   };
 
   return (
@@ -96,7 +104,7 @@ const card = ({ answer, term, formattedText, resource, page, search }) => {
           renderH1()
         )}
       </h1>
-      {formattedText}
+      {explanation}
       {renderResourceFields()}
       {page === 'Glossary' && (
         <>

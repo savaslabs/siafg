@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
+import { AppDataContext } from '../context/appDataContext';
 
 const cardList = (props) => {
-  const glossary = props.glossary;
-  const resources = props.resources;
+  const { glossary, resources } = useContext(AppDataContext);
   const { searchResults, searchTerm } = useContext(ArchiveContext);
 
   const renderResults = () => {
