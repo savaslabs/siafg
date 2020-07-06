@@ -33,7 +33,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
                 {
                   glossary.filter(term => {
                     return term?.fields.terms_to_highlight?.includes(match);
-                  })[0].fields.definition
+                  })[0]?.fields.definition
                 }
               </span>
             </ReactTooltip>

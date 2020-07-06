@@ -8,7 +8,7 @@ import GlossaryTooltip from './glossaryTooltip';
 const TitleArea = styled.div`
   width: 25%;
   background-color: white;
-  padding-top: 100px;
+  padding: 100px 125px 0;
 `;
 
 const titleArea = props => {
@@ -21,7 +21,9 @@ const titleArea = props => {
           <GlossaryTooltip textToReplace={props.description} />
         </div>
         {props.topic === 'archive' && <SearchBar />}
-        {props.topic === 'answer' && <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />}
+        {props.topic === 'answer' && (
+          <CTA tertiary inlineBlock text="Retake Quiz" href="/quiz" size="24px" />
+        )}
         {props.topic === 'answer' && <Share />}
       </TitleArea>
     </>

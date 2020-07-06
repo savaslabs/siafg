@@ -18,7 +18,7 @@ const Full = () => {
         <h1>Should I Ask For Gender?</h1>
         <GlossaryTooltip textToReplace={welcomeText} paragraph />
       </div>
-      <CTA size="33px" primary href="/quiz" text="Take Quiz" style={{ display: 'inline-block' }} />
+      <CTA size="33px" primary href="/quiz" text="Take Quiz" inlineBlock />
       {/* For development only */}
       <ComponentLibrary />
     </FullPageWrapper>

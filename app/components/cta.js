@@ -1,30 +1,37 @@
 import React from 'react';
 import Highlight from 'react-highlighter';
 import styled from 'styled-components';
+import shareIcon from '../assets/share.svg';
 
 const gradient1 = 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)';
+const gradientBorderBackground =
+  'linear-gradient(#fff, #fff) padding-box, ${gradient1} border-box;';
 
 const CTA = styled.a`
   color: #593ebf;
   font-weight: 600;
-  text-size: ${props => props.size};
-  background: ${props => (props.tertiary ? gradient1 : 'white')};
+  font-size: ${props => props.size};
+  background: ${props =>
+    props.tertiary ? gradient1 : props.secondary ? gradientBorderBackground : 'white'};
+  display: ${props => (props.inlineBlock ? 'inline-block' : 'inline')};
   border-radius: 3px;
   padding: 15px 40px;
+  z-index: 2;
   ${props =>
     props.secondary &&
-    `  border: 5px;
-      position: relative;
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        z-index: -1;
-        margin: -5px;
-        border-radius: inherit;
-        background: ${gradient1};
-      }`}
+    `border: 5px solid transparent;
+       position: relative;
+       background:
+       linear-gradient(#fff, #fff) padding-box,
+       ${gradient1} border-box;
+    `}
+  ${props =>
+    props.share &&
+    `&:before {
+        content: url(${shareIcon});
+        margin-right: 5px;
+      }
+    `}
 `;
 
 const cta = props => {
