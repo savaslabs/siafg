@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AppDataContext } from '../context/appDataContext';
-import { position, max, g, tangerines, ghosts, lavenders } from '../constants';
+import { g, tangerines, ghosts, lavenders } from '../constants';
 
 const hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
-  const appData = useContext(AppDataContext);
+  let position = 0;
+  let max = 6;
 
   const updatePosition = n => {
     position += n;

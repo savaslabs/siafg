@@ -15,8 +15,6 @@ export const tables = [
   'options',
   'glossary_highlighted_terms',
 ];
-export let position = 0;
-export let max = 6;
 export const g = [
   ['tangerines', 'url(#sunnytangerine)', 0.3],
   ['ghosts', '#F9F8FF', 0.4],
