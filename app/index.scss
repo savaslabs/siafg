@@ -116,7 +116,6 @@ body {
   font-weight: $raleway-normal;
   font-size: 20px;
   margin: 0;
-  background: #f9f8ff;
   overflow-x: hidden;
 }
 
@@ -185,4 +184,39 @@ ul {
 
 .active {
   text-decoration: underline;
+}
+
+// Background shapes + form transitions.
+svg.background {
+  position: absolute;
+  background: #f9f8ff;
+  top: 0;
+  right: 0;
+  width: 70vw;
+  transition: width 1s;
+  z-index: -1;
+  g {
+    transition: transform 1s;
+    transform: translateY(0);
+  }
+  &[dataposition='0'] {
+    width: 100vw;
+  }
+
+  $base: -300px;
+  $offset: 100;
+
+  @each $position in 1, 2, 3, 4, 5, 6 {
+    &[dataposition='#{$position + 1}'] {
+      g.tangerines {
+        transform: translateY(#{($base - (0 * $offset)) * $position});
+      }
+      g.ghosts {
+        transform: translateY(#{($base - (1 * $offset)) * $position});
+      }
+      g.lavenders {
+        transform: translateY(#{($base - (2 * $offset)) * $position});
+      }
+    }
+  }
 }

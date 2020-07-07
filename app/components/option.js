@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { getSingleRecord } from '../services/airtable-service';
 
 const option = ({ option }) => {
   const location = useLocation();
@@ -8,13 +7,17 @@ const option = ({ option }) => {
   const { value, display_text, next_question, answer } = option;
   const displayText = display_text;
   const nextQuestion = next_question;
+  let position = location.state.position || 0;
 
   const handleClick = e => {
     if (!event.code || event.code === 'Enter') {
       const { nextPage } = e.target.dataset;
       const { answer } = e.target.dataset;
       Object.assign(location, {
-        state: { activeId: nextPage || answer },
+        state: {
+          activeId: nextPage || answer,
+          position: (position += 1),
+        },
         pathname: answer ? `/quiz/${answer}` : location.pathname,
       });
       history.push(location);

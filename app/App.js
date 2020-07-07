@@ -4,17 +4,16 @@ import './index.scss';
 import '@babel/polyfill';
 import styled from 'styled-components';
 import { routes } from './constants';
+import Hexes from './components/hexes';
 import Split from './components/routes/split';
 import Full from './components/routes/full';
 import NoMatch from './components/routes/noMatch';
 import { ArchiveProvider } from './context/archiveContext';
 import { AppDataContext } from './context/appDataContext';
 
-const splitGradient = 'linear-gradient(90deg, #fff 0%, #fff 33%, #f9f8ff 33%, #f9f8ff 100%)';
 const SiteContainer = styled.div`
   height: 100vh;
   position: relative;
-  background: ${props => (props.page === '/welcome' ? '#f9f8ff' : splitGradient)};
   overflow: hidden;
 `;
 
@@ -29,6 +28,7 @@ const App = () => {
   return (
     <ArchiveProvider>
       <SiteContainer page={location.pathname} className="container">
+        <Hexes />
         <Switch>
           {routes.map((route, index) => {
             const path = route.toLowerCase();
