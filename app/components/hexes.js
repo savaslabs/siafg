@@ -36,7 +36,7 @@ const hexes = () => {
   }, [location]);
 
   // Hex constructor.
-  const createHex = (r, m, y, x, index) => {
+  const createHex = (r, m, x, y, index) => {
     return (
       <use
         key={index}
@@ -50,7 +50,7 @@ const hexes = () => {
     <svg
       className="background"
       viewBox="0 0 500 500"
-      preserveAspectRatio="xMidYMin meet"
+      preserveAspectRatio="xMidYMin slice"
       xmlns="http://www.w3.org/2000/svg"
       dataposition={dataPosition}
     >
