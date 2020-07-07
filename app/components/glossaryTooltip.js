@@ -20,12 +20,10 @@ const GlossaryTooltip = ({ textToReplace }) => {
             {match}
             <ReactTooltip
               id={`${match}-tooltip`}
-              data-effect="solid"
-              data-place="top"
-              backgroundColor="#fff"
-              textColor="#593EBF"
-              border
-              borderColor="#593EBF"
+              effect="solid"
+              place="top"
+              backgroundColor="#181818"
+              textColor="#fff"
               multiline
               className="glossary-tooltip"
             >
@@ -51,7 +49,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
     }
   }, [highlightedTerms, textToReplace]);
 
-  return <>{replacedText}</>;
+  return <div style={{ lineHeight: 1.4 }}>{replacedText}</div>;
 };
 
 export default GlossaryTooltip;

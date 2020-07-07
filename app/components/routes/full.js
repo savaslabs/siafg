@@ -1,11 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 import ComponentLibrary from '../_componentLibrary';
 import CTA from '../cta';
-import styled from 'styled-components';
+import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
 
 const FullPageWrapper = styled.div`
-  padding-top: 100px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #f9f8ff;
+  height: 100vh;
 `;
 
 const Full = () => {
@@ -14,13 +18,18 @@ const Full = () => {
 
   return (
     <FullPageWrapper>
-      <div>
-        <h1>Should I Ask For Gender?</h1>
-        <GlossaryTooltip textToReplace={welcomeText} paragraph />
+      <div className="container">
+        <Header home />
+        <main>
+          <div>
+            <h1>Should I Ask For Gender?</h1>
+            <GlossaryTooltip textToReplace={welcomeText} paragraph />
+          </div>
+          <CTA size="24px" primary href="/quiz" text="Take Quiz" inlineBlock />
+          {/* For development only */}
+          <ComponentLibrary />
+        </main>
       </div>
-      <CTA size="33px" primary href="/quiz" text="Take Quiz" inlineBlock />
-      {/* For development only */}
-      <ComponentLibrary />
     </FullPageWrapper>
   );
 };

@@ -27,7 +27,7 @@ export const api = axios.create({
 export const getRecordsList = (tableName, params) => {
   return new Promise((resolve, reject) => {
     api
-      .get(`/${tableName}`, params ? params : {})
+      .get(`/${tableName}`, params || {})
       .then(res => {
         resolve(res.data.records);
       })

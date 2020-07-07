@@ -25,7 +25,7 @@ const share = () => {
       <CTA
         text="Share Results"
         as="button"
-        size="24px"
+        size="20px"
         secondary
         share
         inlineBlock
@@ -40,11 +40,11 @@ const share = () => {
         animateOnMount={false}
       >
         <div className="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#593EBF">
-          <a className="a2a_button_facebook"></a>
-          <a className="a2a_button_twitter"></a>
-          <a className="a2a_button_linkedin"></a>
-          <a className="a2a_button_email"></a>
-          <a className="a2a_button_copy_link"></a>
+          <a className="a2a_button_facebook" />
+          <a className="a2a_button_twitter" />
+          <a className="a2a_button_linkedin" />
+          <a className="a2a_button_email" />
+          <a className="a2a_button_copy_link" />
         </div>
       </Animated>
     </div>

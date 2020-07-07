@@ -81,7 +81,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
                 <CTA
                   tertiary
                   text={related}
-                  size="24px"
+                  size="20px"
                   href={`#${cleanTerm(related)}`}
                   key={index}
                   search={search}

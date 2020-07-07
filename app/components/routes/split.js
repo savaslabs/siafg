@@ -3,16 +3,17 @@ import TitleArea from '../titleArea';
 import Card from '../card';
 import CardList from '../cardList';
 import OptionList from '../optionList';
+import Header from '../header';
 import styled from 'styled-components';
 import { entryQuestion } from '../../constants';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 
-const SplitScreenWrapper = styled.div`
+const SplitScreenWrapper = styled.main`
   display: flex;
-  flex-direction: flex-row;
-  height: 100vh;
+  flex-wrap: wrap;
+  padding-top: 5%;
 `;
 
 const MainArea = styled.div`
@@ -24,10 +25,12 @@ const MainArea = styled.div`
       margin-right: auto;
     `) ||
     `
-      width: 75%;
+      width: calc(66% - 75px);
     `};
   background-color: transparent;
-  padding-top: 100px;
+  padding-left: 75px;
+  max-height: 100vh;
+  overflow: scroll;
 `;
 
 const Split = ({ page, topic }) => {
@@ -123,6 +126,7 @@ const Split = ({ page, topic }) => {
 
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
+      <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic}>

@@ -62,11 +62,24 @@ $screen-max: 1280px;
 .container {
   padding: 0 30px;
 
+  // @include md {
+  //   max-width: #{$screen-md};
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
+
   @include lg {
-    max-width: 1160px;
-    margin-left: auto;
-    margin-right: auto;
+    // max-width: #{$screen-lg};
+    // margin-left: auto;
+    // margin-right: auto;
+    padding: 0 60px;
   }
+
+  // @include max {
+  //   max-width: #{$screen-max};
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
 }
 
 // Accessibility.
@@ -95,14 +108,16 @@ h4 {
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 28px;
 }
 
 body {
   font-family: $raleway;
   font-weight: $raleway-normal;
-  font-size: 24px;
+  font-size: 20px;
   margin: 0;
+  background: #f9f8ff;
+  overflow-x: hidden;
 }
 
 a {
@@ -113,17 +128,44 @@ a {
   box-shadow: 0px 4px 4px rgba(89, 62, 191, 0.3);
 }
 
+ul.card-list {
+  li {
+    &:not(:first-child) {
+      margin-top: 25px;
+    }
+
+    &:last-child {
+      margin-bottom: 250px;
+    }
+  }
+}
+
 .card {
   padding: 30px 70px;
   background: white;
   border-radius: 10px;
   position: relative;
   line-height: 1.5;
+  font-size: 20px;
+
+  input {
+    cursor: pointer;
+  }
+
+  &:not(:first-child) {
+    margin-top: 18px;
+  }
 }
 
 .glossary-tooltip {
-  max-width: 300px;
-  text-align: center;
+  max-width: 400px;
+  font-size: 16px !important;
+  line-height: 1.25;
+  box-shadow: 0px 2px 12px 0px rgba(253, 229, 229, 0.1);
+
+  &.show {
+    opacity: 0.95 !important;
+  }
 }
 
 input[type='radio' i] {

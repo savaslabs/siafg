@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Fuse from 'fuse.js';
+import styled from 'styled-components';
 import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
-import styled from 'styled-components';
 
 const SearchBar = styled.input`
   border-radius: 100px;
   border: 3px solid #181818;
   padding: 11px 25px;
+  width: 100%;
 
   &::-webkit-input-placeholder {
     font-style: italic;
@@ -28,7 +29,7 @@ const searchBar = () => {
   // Add resources to state, along with fuse options.
   useEffect(() => {
     if (resources !== undefined && path === 'resources') {
-      searchOptions['keys'] = ['fields.source_author', 'fields.summary', 'fields.title'];
+      searchOptions.keys = ['fields.source_author', 'fields.summary', 'fields.title'];
       setOptions(searchOptions);
       setSearchable(resources);
     }
@@ -37,7 +38,7 @@ const searchBar = () => {
   // Add glossary to state, along with fuse options.
   useEffect(() => {
     if (glossary !== undefined && path === 'glossary') {
-      searchOptions['keys'] = ['fields.definition', 'fields.term', 'fields.related_term_names'];
+      searchOptions.keys = ['fields.definition', 'fields.term', 'fields.related_term_names'];
       setOptions(searchOptions);
       setSearchable(glossary);
     }
@@ -54,7 +55,9 @@ const searchBar = () => {
   };
 
   return (
-    <SearchBar type="search" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
+    <div style={{ padding: '0 60px 0 84px' }}>
+      <SearchBar type="search" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
+    </div>
   );
 };
 
