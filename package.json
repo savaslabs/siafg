@@ -81,6 +81,7 @@
     "postcss-url": "^8.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-animated-css": "^1.2.1",
     "react-dom": "^16.12.0",
     "react-highlighter": "^0.4.3",
     "react-router-dom": "^5.1.2",

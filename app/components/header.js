@@ -1,46 +1,40 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { routes } from '../constants';
 import logo from '../assets/logo.svg';
-import styled from 'styled-components';
+import darkLogo from '../assets/logo-dark.svg';
 
 const Header = styled.header`
   z-index: 100;
-  position: absolute;
   width: 100%;
-  padding: 0;
-  top: 0;
-  background: transparent;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-`;
-
-const Nav = styled.nav`
-  width: 40%;
+  align-items: center;
+  padding-top: 20px;
 `;
 
 const Menu = styled.ul`
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
 `;
 
 const MenuItem = styled.li`
   font-weight: 700;
-  font-size: 27px;
+  font-size: 24px;
   line-height: 1.2;
+  padding-left: 65px;
 `;
 
-const header = () => {
+const header = ({ home }) => {
   return (
-    <Header className="container">
+    <Header>
       {/* Logo */}
       <Link to="/welcome">
-        <img src={logo} alt="Home" />
+        <img src={home ? darkLogo : logo} alt="Home" />
       </Link>
       {/* Menu */}
-      <Nav>
+      <nav>
         <Menu>
           {routes.slice(1).map((menuItem, idx) => {
             return (
@@ -50,7 +44,7 @@ const header = () => {
             );
           })}
         </Menu>
-      </Nav>
+      </nav>
     </Header>
   );
 };

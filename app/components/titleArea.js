@@ -1,14 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 import SearchBar from './searchBar';
 import Share from './share';
 import CTA from './cta';
-import styled from 'styled-components';
 import GlossaryTooltip from './glossaryTooltip';
 
 const TitleArea = styled.div`
-  width: 25%;
-  background-color: white;
-  padding-top: 100px;
+  width: 33%;
+`;
+
+const TitleAreaContent = styled.div`
+  padding: 0 100px 0 84px;
+  margin-top: 0;
 `;
 
 const titleArea = props => {
@@ -16,13 +19,15 @@ const titleArea = props => {
     <>
       <TitleArea>
         <h1 className="sr-only">Quiz</h1>
-        <h2>{props.title}</h2>
-        <div>
-          <GlossaryTooltip textToReplace={props.description} />
-        </div>
+        <TitleAreaContent as="h2">{props.title}</TitleAreaContent>
         {props.topic === 'archive' && <SearchBar />}
-        {props.topic === 'answer' && <CTA tertiary text="Retake Quiz" href="/quiz" size="24px" />}
-        {props.topic === 'answer' && <Share />}
+        <TitleAreaContent>
+          <GlossaryTooltip textToReplace={props.description} />
+          {props.topic === 'answer' && (
+            <CTA tertiary inlineBlock text="Retake Quiz" href="/quiz" size="20px" />
+          )}
+          {props.topic === 'answer' && <Share />}
+        </TitleAreaContent>
       </TitleArea>
     </>
   );

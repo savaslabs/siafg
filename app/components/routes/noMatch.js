@@ -8,7 +8,7 @@ const NoMatchWrapper = styled.div`
 `;
 
 const noMatch = () => {
-  let location = useLocation();
+  const location = useLocation();
 
   return (
     <NoMatchWrapper>

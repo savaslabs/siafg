@@ -21,7 +21,8 @@ const cardList = props => {
             })}
           </>
         );
-      } else if (props.page === 'Resources') {
+      }
+      if (props.page === 'Resources') {
         return (
           <>
             {searchResults.map((result, idx) => {
@@ -47,7 +48,8 @@ const cardList = props => {
             })}
           </>
         );
-      } else if (props.page === 'Resources' && resources) {
+      }
+      if (props.page === 'Resources' && resources) {
         return (
           <>
             {resources.map((resource, idx) => {
@@ -66,7 +68,7 @@ const cardList = props => {
   return (
     <>
       {props.page === 'Answer' ? <h2>Related Articles</h2> : null}
-      <ul>
+      <ul className="card-list">
         {props.items &&
           props.items.map((resource, idx) => (
             <li key={idx}>
