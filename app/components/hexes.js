@@ -49,7 +49,7 @@ const hexes = () => {
   return (
     <svg
       className="background"
-      viewBox="0 0 500 2300"
+      viewBox="0 0 500 500"
       preserveAspectRatio="xMidYMin meet"
       xmlns="http://www.w3.org/2000/svg"
       dataposition={dataPosition}

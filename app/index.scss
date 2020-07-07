@@ -193,6 +193,7 @@ svg.background {
   top: 0;
   right: 0;
   width: 70vw;
+  height: 100vh;
   transition: width 1s;
   z-index: -1;
   g {
@@ -206,7 +207,7 @@ svg.background {
   $base: -300px;
   $offset: 100;
 
-  @each $position in 1, 2, 3, 4, 5, 6 {
+  @each $position in 1, 2, 3, 4, 5 {
     &[dataposition='#{$position + 1}'] {
       g.tangerines {
         transform: translateY(#{($base - (0 * $offset)) * $position});
