@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
+import { AppDataContext } from '../context/appDataContext';
 
-const cardList = (props) => {
-  const glossary = props.glossary;
-  const resources = props.resources;
+const cardList = props => {
+  const { glossary, resources } = useContext(AppDataContext);
   const { searchResults, searchTerm } = useContext(ArchiveContext);
 
   const renderResults = () => {
@@ -15,33 +15,24 @@ const cardList = (props) => {
             {searchResults.map((result, idx) => {
               return (
                 <li key={idx}>
-                  <Card
-                    term={result.item}
-                    search={searchTerm}
-                    page={props.page}
-                  />
+                  <Card term={result.item} search={searchTerm} page={props.page} />
                 </li>
               );
-          })}
-        </>
-        )
-
+            })}
+          </>
+        );
       } else if (props.page === 'Resources') {
         return (
           <>
             {searchResults.map((result, idx) => {
               return (
                 <li key={idx}>
-                  <Card
-                    resource={result.item}
-                    search={searchTerm}
-                    page={props.page}
-                  />
+                  <Card resource={result.item} search={searchTerm} page={props.page} index={idx} />
                 </li>
               );
             })}
           </>
-        )
+        );
       }
     } else {
       if (props.page === 'Glossary' && glossary) {
@@ -55,22 +46,22 @@ const cardList = (props) => {
               );
             })}
           </>
-        )
+        );
       } else if (props.page === 'Resources' && resources) {
         return (
           <>
             {resources.map((resource, idx) => {
               return (
                 <li key={idx}>
-                  <Card resource={resource} page={props.page} />
+                  <Card resource={resource} page={props.page} index={idx} />
                 </li>
               );
             })}
           </>
-        )
+        );
       }
     }
-  }
+  };
 
   return (
     <>

@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TitleArea from '../titleArea';
 import Card from '../card';
 import CardList from '../cardList';
 import OptionList from '../optionList';
 import styled from 'styled-components';
 import { entryQuestion } from '../../constants';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
+import { AppDataContext } from '../../context/appDataContext';
 
 const SplitScreenWrapper = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const SplitScreenWrapper = styled.div`
 `;
 
 const MainArea = styled.div`
-  ${(props) =>
+  ${props =>
     (props.topic === 'question' &&
       ` text-align: center;
       width: fit-content;
@@ -29,7 +30,7 @@ const MainArea = styled.div`
   padding-top: 100px;
 `;
 
-const Split = ({ page, topic, appData }) => {
+const Split = ({ page, topic }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [explanation, setExplanation] = useState('');
@@ -37,90 +38,104 @@ const Split = ({ page, topic, appData }) => {
   const [questionOptions, setQuestionOptions] = useState([]);
   const location = useLocation();
   const history = useHistory();
-  const { questions, answers, options, resources, glossary } = appData;
+  const appData = useContext(AppDataContext);
+  const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
 
   /*
-   * Get a single record based on ID and store its data
-   * in state to pass to child components.
+   * Get a single question record based on ID.
    */
-  const getActiveQuestion = (id) => {
-    const questionRecord = questions?.find((record) => record.id === id).fields;
-    setTitle(questionRecord?.question);
-    setDescription(questionRecord?.description);
-    getQuestionOptions(questionRecord?.options);
+  const getActiveQuestion = id => {
+    if (questions.length > 0 && options.length > 0) {
+      const questionRecord = questions.find(record => record.id === id).fields;
+      setTitle(questionRecord?.question);
+      setDescription(questionRecord?.description);
+      getQuestionOptions(questionRecord?.options);
+    }
   };
 
-  const getRelatedResources = (id) => {
-    const filteredResources = resources?.filter((record) =>
-      record.fields.answers?.includes(id)
-    );
+  /*
+   * Get related resources for an answer.
+   */
+  const getRelatedResources = id => {
+    const filteredResources = resources?.filter(record => record.fields.answers?.includes(id));
 
     setRelatedResources(filteredResources ? filteredResources : []);
   };
 
-  const getQuestionOptions = (optionArr) => {
+  /*
+   * Get options for a specific question.
+   */
+  const getQuestionOptions = optionArr => {
     let optionList = [];
     optionArr.forEach(opt => {
-      optionList = [...optionList, options?.find((record) => record.id === opt).fields]
-    })
+      optionList = [...optionList, options?.find(record => record.id === opt).fields];
+    });
 
     setQuestionOptions(optionList[0] ? optionList : []);
-  }
+  };
 
-  const getActiveAnswer = (id) => {
-    const answerRecord = answers?.find((record) => record.id === id).fields;
-    setTitle(answerRecord?.title);
-    setDescription('');
-    setExplanation(answerRecord?.explanation);
-    getRelatedResources(id);
+  /*
+   * Get a single answer record.
+   */
+  const getActiveAnswer = id => {
+    if (answers.length > 0 && resources.length > 0) {
+      const answerRecord = answers?.find(record => record.id === id).fields;
+      setTitle(answerRecord?.title);
+      setDescription('');
+      setExplanation(answerRecord?.explanation);
+      getRelatedResources(id);
+    }
   };
 
   // Read browser history state to determine what to render.
   useEffect(() => {
-    if (!location.state && topic === 'question') {
-      /*
-       * If no question is defined in browser history state,
-       * use the default entry question.
-       */
-      getActiveQuestion(entryQuestion);
-      Object.assign(location, {
-        state: { activeId: entryQuestion },
-      });
-      // Replace instead of push so they don't have to hit back twice.
-      history.replace(location);
-    } else if (location.state && topic === 'question') {
-      getActiveQuestion(location.state.activeId);
-    } else if (topic === 'archive') {
-      setTitle(page);
-      setDescription('');
-    } else if (topic === 'answer') {
-      getActiveAnswer(location.pathname.replace('/quiz/', ''));
+    switch (topic) {
+      case 'question':
+        /*
+         * If no question is defined in browser history state,
+         * use the default entry question.
+         */
+        if (!location.state) {
+          getActiveQuestion(entryQuestion);
+          Object.assign(location, {
+            state: { activeId: entryQuestion },
+          });
+          // Replace instead of push so they don't have to hit back twice.
+          history.replace(location);
+        } else {
+          getActiveQuestion(location.state.activeId);
+        }
+        break;
+
+      case 'archive':
+        setTitle(page);
+        setDescription('');
+        break;
+
+      case 'answer':
+        getActiveAnswer(location.pathname.replace('/quiz/', ''));
+        break;
+
+      default:
+        break;
     }
   }, [location, appData]);
 
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
       <SplitScreenWrapper>
-        <TitleArea
-          title={title}
-          description={description}
-          topic={topic}
-        />
+        <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic}>
           {topic === 'question' && <OptionList options={questionOptions} />}
           {topic === 'answer' && (
             <>
-              <Card answer formattedText={explanation} />
+              <Card answer explanation={explanation} />
               {/* Render related articles */}
               <CardList page="Answer" items={relatedResources} />
             </>
           )}
           {topic === 'archive' && (
-            <CardList
-              page={page}
-              resources={appData.resources}
-              glossary={appData.glossary}
-            />
+            <CardList page={page} resources={resources} glossary={glossary} />
           )}
         </MainArea>
       </SplitScreenWrapper>

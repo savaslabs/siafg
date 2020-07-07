@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const share = () => {
-  return (
-    <p>Share me</p>
-  );
-}
+  return <p>Share me</p>;
+};
 
-export default share
+export default share;

@@ -34,10 +34,10 @@ const MenuItem = styled.li`
 
 const header = () => {
   return (
-    <Header className='container'>
+    <Header className="container">
       {/* Logo */}
-      <Link to='/welcome'>
-        <img src={logo} alt='Home' />
+      <Link to="/welcome">
+        <img src={logo} alt="Home" />
       </Link>
       {/* Menu */}
       <Nav>
@@ -53,6 +53,6 @@ const header = () => {
       </Nav>
     </Header>
   );
-}
+};
 
 export default header;

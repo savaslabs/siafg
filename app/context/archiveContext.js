@@ -13,10 +13,10 @@ export const ArchiveProvider = ({ glossary, resources, children }) => {
         searchResults,
         setSearchResults,
         glossary,
-        resources
+        resources,
       }}
     >
       {children}
     </ArchiveContext.Provider>
-  )
-}
+  );
+};

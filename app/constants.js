@@ -7,4 +7,11 @@ export const searchOptions = {
   threshold: 0.1,
   ignoreLocation: true,
 };
-export const tables = ['questions', 'resources', 'glossary', 'answers', 'options'];
+export const tables = [
+  'questions',
+  'resources',
+  'glossary',
+  'answers',
+  'options',
+  'glossary_highlighted_terms',
+];

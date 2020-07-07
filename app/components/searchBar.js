@@ -16,13 +16,9 @@ const SearchBar = styled.input`
 `;
 
 const searchBar = () => {
-  const {
-    glossary,
-    resources,
-    setSearchResults,
-    searchTerm,
-    setSearchTerm,
-  } = useContext(ArchiveContext);
+  const { glossary, resources, setSearchResults, searchTerm, setSearchTerm } = useContext(
+    ArchiveContext
+  );
   const location = useLocation();
   const path = location.pathname.split('/')[1];
 
@@ -32,11 +28,7 @@ const searchBar = () => {
   // Add resources to state, along with fuse options.
   useEffect(() => {
     if (resources !== undefined && path === 'resources') {
-      searchOptions['keys'] = [
-        'fields.source_author',
-        'fields.summary',
-        'fields.title',
-      ];
+      searchOptions['keys'] = ['fields.source_author', 'fields.summary', 'fields.title'];
       setOptions(searchOptions);
       setSearchable(resources);
     }
@@ -45,17 +37,13 @@ const searchBar = () => {
   // Add glossary to state, along with fuse options.
   useEffect(() => {
     if (glossary !== undefined && path === 'glossary') {
-      searchOptions['keys'] = [
-        'fields.definition',
-        'fields.term',
-        'fields.related_term_names',
-      ];
+      searchOptions['keys'] = ['fields.definition', 'fields.term', 'fields.related_term_names'];
       setOptions(searchOptions);
       setSearchable(glossary);
     }
   }, [glossary]);
 
-  const handleSearch = async (event) => {
+  const handleSearch = async event => {
     setSearchTerm(event.target.value);
 
     if (searchable.length > 0) {
@@ -66,12 +54,7 @@ const searchBar = () => {
   };
 
   return (
-    <SearchBar
-      type="search"
-      placeholder="Search..."
-      value={searchTerm}
-      onChange={handleSearch}
-    />
+    <SearchBar type="search" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
   );
 };
 
