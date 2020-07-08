@@ -1,2 +1,6 @@
 /node_modules
-build
+build/*
+!build/_redirects
+.env
+app/services/secrets.js
+.DS_Store
