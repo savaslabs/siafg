@@ -27,9 +27,17 @@ const CTA = styled.a`
     `}
   ${props =>
     props.share &&
-    `&:before {
+    `display: flex;
+     cursor: pointer;
+     align-items: center;
+     white-space: nowrap;
+     padding: 15px;
+     font: inherit;
+     font-weight: 600;
+     &:before {
         content: url(${shareIcon});
-        margin-right: 5px;
+        position: absolute;
+        top: 15px;
       }
     `}
 `;
@@ -37,7 +45,13 @@ const CTA = styled.a`
 const cta = props => {
   return (
     <CTA {...props} {...(props.primary && { className: 'shadow' })}>
-      {props.search ? <Highlight search={props.search}>{props.text}</Highlight> : props.text}
+      {props.share ? (
+        <span style={{ paddingLeft: 40 }}>{props.text}</span>
+      ) : props.search ? (
+        <Highlight search={props.search}>{props.text}</Highlight>
+      ) : (
+        props.text
+      )}
     </CTA>
   );
 };
