@@ -15,24 +15,16 @@ const hexes = () => {
   };
 
   useEffect(() => {
-    return () => {
-      if (location.pathname === '/' || location.pathname === '/welcome') {
-        // Landing page.
-        setDataPosition(0);
-      } else if (
-        location.pathname === '/quiz' &&
-        (location.state !== undefined || location.state !== null)
-      ) {
-        if (location.state.position !== undefined) {
-          updatePosition(location.state.position);
-        } else {
-          setDataPosition(1);
-        }
-      } else {
-        // Glossary and Resources route.
-        setDataPosition(1);
-      }
-    };
+    if (location.pathname === '/' || location.pathname === '/welcome') {
+      // Landing page.
+      setDataPosition(0);
+    } else if (location.state?.position) {
+      // Pull position from location state.
+      updatePosition(location.state.position);
+    } else {
+      // Glossary, Resources, initial quiz question.
+      setDataPosition(1);
+    }
   }, [location]);
 
   // Hex constructor.

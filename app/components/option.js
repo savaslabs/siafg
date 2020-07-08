@@ -13,10 +13,11 @@ const option = ({ option }) => {
     if (!event.code || event.code === 'Enter') {
       const { nextPage } = e.target.dataset;
       const { answer } = e.target.dataset;
+
       Object.assign(location, {
         state: {
           activeId: nextPage || answer,
-          position: (position += 1),
+          position: answer ? position : (position += 1),
         },
         pathname: answer ? `/quiz/${answer}` : location.pathname,
       });
