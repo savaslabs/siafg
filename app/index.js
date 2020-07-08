@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppDataProvider } from './context/appDataContext';
 import App from './App';
-import * as serviceWorker from './services/serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
 render(
   <BrowserRouter>
@@ -14,4 +14,15 @@ render(
   document.getElementById('app')
 );
 
-serviceWorker.register();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(registration => {
+        console.log('SW registered: ', registration);
+      })
+      .catch(registrationError => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}

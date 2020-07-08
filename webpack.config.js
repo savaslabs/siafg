@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, arg) => {
   const isProduction = arg.mode === 'production' ? true : false;
@@ -39,10 +41,7 @@ module.exports = (env, arg) => {
                   ],
                 ],
                 plugins: [
-                  [
-                    '@babel/plugin-proposal-decorators',
-                    { decoratorsBeforeExport: true },
-                  ],
+                  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
                   ['@babel/proposal-class-properties', { loose: true }],
                   '@babel/proposal-object-rest-spread',
                 ],
@@ -101,6 +100,13 @@ module.exports = (env, arg) => {
       }),
       new FixStyleOnlyEntriesPlugin(),
       new FriendlyErrorsWebpackPlugin(),
+      new WorkboxPlugin.GenerateSW({
+        // these options encourage the ServiceWorkers to get in there fast
+        // and not allow any straggling "old" SWs to hang around
+        clientsClaim: true,
+        skipWaiting: true,
+      }),
+      new CopyWebpackPlugin({ patterns: [{ from: 'public' }] }),
     ],
     stats: 'errors-only',
   };
