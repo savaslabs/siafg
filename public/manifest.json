@@ -1,0 +1,15 @@
+{
+  "short_name": "Should I Ask About Gender",
+  "name": "Should I Ask About Gender",
+  "icons": [
+    {
+      "src": "../favicon.ico",
+      "sizes": "48x48",
+      "type": "image/gif"
+    }
+  ],
+  "start_url": "/app",
+  "display": "standalone",
+  "theme_color": "#000",
+  "background_color": "#f9f8ff"
+}
