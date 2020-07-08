@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { getSingleRecord } from '../services/airtable-service';
+import { getSingleRecord } from '../services/airtable';
 
 const option = ({ option }) => {
   const location = useLocation();

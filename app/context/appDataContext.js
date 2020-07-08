@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { tables } from '../constants';
-import { getRecordsList } from '../services/airtable-service';
+import { getRecordsList } from '../services/airtable';
 
 export const AppDataContext = createContext();
 
