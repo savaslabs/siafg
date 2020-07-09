@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 const option = ({ option }) => {
   const location = useLocation();
@@ -28,8 +29,8 @@ const option = ({ option }) => {
   return (
     <>
       {displayText && value && (
-        <div htmlFor={value} className="shadow card">
-          {displayText}
+        <div htmlFor={value} className="shadow card option">
+          <span style={{ position: 'relative', zIndex: 2 }}>{displayText}</span>
           <input
             type="radio"
             id={`option-${value}`}
