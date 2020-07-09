@@ -11,6 +11,16 @@ const FullPageWrapper = styled.div`
   height: 100vh;
 `;
 
+const MainPageContent = styled.main`
+  padding-left: 84px;
+  max-width: 500px;
+`;
+
+const SiteTitle = styled.h1`
+  font-size: 64px;
+  margin: 80px 0 35px;
+`;
+
 const Full = () => {
   const welcomeText =
     'Lorem ipsum dolor sit gender, consectetur adipiscing elit, sed do sex tempor incididunt ut labore et dolore magna aliqua';
@@ -19,15 +29,18 @@ const Full = () => {
     <FullPageWrapper>
       <div className="container">
         <Header home />
-        <main>
+        <MainPageContent>
           <div>
-            <h1>Should I Ask For Gender?</h1>
+            <SiteTitle>Should I Ask For Gender?</SiteTitle>
             <GlossaryTooltip textToReplace={welcomeText} paragraph />
           </div>
-          <CTA size="24px" primary href="/quiz" text="Take Quiz" inlineBlock />
-          {/* For development only */}
-          <ComponentLibrary />
-        </main>
+          <div style={{ marginTop: 35 }}>
+            <CTA size="24px" primary href="/quiz" text="Take Quiz" inlineBlock />
+          </div>
+
+          {/* For development only
+          <ComponentLibrary /> */}
+        </MainPageContent>
       </div>
     </FullPageWrapper>
   );
