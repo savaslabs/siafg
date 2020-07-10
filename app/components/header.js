@@ -30,7 +30,14 @@ const header = ({ home }) => {
   return (
     <Header>
       {/* Logo */}
-      <Link to="/welcome">
+      <Link
+        to={{
+          state: {
+            position: 0,
+          },
+          pathname: '/welcome',
+        }}
+      >
         <img src={home ? darkLogo : logo} alt="Home" />
       </Link>
       {/* Menu */}

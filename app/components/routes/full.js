@@ -8,7 +8,6 @@ import GlossaryTooltip from '../glossaryTooltip';
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  background: #f9f8ff;
   height: 100vh;
 `;
 
