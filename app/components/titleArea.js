@@ -16,12 +16,12 @@ const TitleAreaContent = styled.div`
   margin-top: 0;
   padding-left: 84px;
   ${props =>
-    props.title &&
+    props.isTitle &&
     `position: relative;
      &:after {
       content: url(${triangle});
       position: absolute;
-      right: -70px;
+      right: -55px;
       top: 5px;
     }
   `};
@@ -48,7 +48,7 @@ const titleArea = props => {
     <>
       <TitleArea>
         <h1 className="sr-only">Quiz</h1>
-        <TitleAreaContent as="h2" title>
+        <TitleAreaContent as="h2" isTitle>
           {props.title}
         </TitleAreaContent>
         {props.topic === 'archive' && <SearchBar />}
@@ -59,7 +59,7 @@ const titleArea = props => {
               as="button"
               onClick={restartQuiz}
               onKeyUp={restartQuiz}
-              tertiary
+              primary
               inlineBlock
               text="Retake Quiz"
               size="20px"
