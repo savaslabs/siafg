@@ -18,19 +18,19 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   ${props =>
-    (props.topic === 'question' &&
-      ` text-align: center;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    `) ||
-    `
-      width: calc(66% - 75px);
+    props.topic === 'question' &&
+    ` text-align: center;
     `};
   background-color: transparent;
-  padding-left: 75px;
   max-height: 100vh;
   overflow: scroll;
+  padding-left: 75px;
+  padding-right: 60px;
+  position: absolute;
+  left: 33vw;
+  width: calc(66vw - 135px);
+  margin-right: 0;
+  margin-left: auto;
 `;
 
 const Split = ({ page, topic }) => {

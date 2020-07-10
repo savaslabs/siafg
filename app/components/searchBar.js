@@ -55,7 +55,7 @@ const searchBar = () => {
   };
 
   return (
-    <div style={{ padding: '0 60px 0 84px' }}>
+    <div style={{ paddingLeft: 84 }}>
       <SearchBar type="search" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
     </div>
   );

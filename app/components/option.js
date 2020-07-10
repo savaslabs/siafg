@@ -30,7 +30,7 @@ const option = ({ option }) => {
     <>
       {displayText && value && (
         <div htmlFor={value} className="shadow card option">
-          <span style={{ position: 'relative', zIndex: 2 }}>{displayText}</span>
+          <label style={{ position: 'relative', zIndex: 2 }}>{displayText}</label>
           <input
             type="radio"
             id={`option-${value}`}

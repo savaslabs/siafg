@@ -8,12 +8,12 @@ import GlossaryTooltip from './glossaryTooltip';
 import { entryQuestion } from '../constants';
 
 const TitleArea = styled.div`
-  width: 33%;
+  width: calc(33vw - 84px);
 `;
 
 const TitleAreaContent = styled.div`
-  padding: 0 100px 0 84px;
   margin-top: 0;
+  padding-left: 84px;
 `;
 
 const titleArea = props => {
