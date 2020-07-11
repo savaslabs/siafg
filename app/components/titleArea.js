@@ -28,22 +28,6 @@ const TitleAreaContent = styled.div`
 `;
 
 const titleArea = props => {
-  const location = useLocation();
-  const history = useHistory();
-
-  const restartQuiz = event => {
-    if (!event.code || event.code === 'Enter') {
-      Object.assign(location, {
-        state: {
-          activeId: entryQuestion,
-          position: 1,
-        },
-        pathname: '/quiz',
-      });
-      history.push(location);
-    }
-  };
-
   return (
     <>
       <TitleArea>
@@ -56,13 +40,17 @@ const titleArea = props => {
           <GlossaryTooltip textToReplace={props.description} />
           {props.topic === 'answer' && (
             <CTA
-              as="button"
-              onClick={restartQuiz}
-              onKeyUp={restartQuiz}
-              primary
-              inlineBlock
+              to={{
+                state: {
+                  activeId: entryQuestion,
+                  position: 1,
+                },
+                pathname: '/quiz',
+              }}
+              display="inline-block"
               text="Retake Quiz"
               size="20px"
+              styletype="secondary"
             />
           )}
           {props.topic === 'answer' && <Share />}

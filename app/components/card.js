@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import CTA from './cta';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';

@@ -4,6 +4,7 @@ import ComponentLibrary from '../_componentLibrary';
 import CTA from '../cta';
 import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
+import { entryQuestion } from '../../constants';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -35,7 +36,19 @@ const Full = () => {
             <GlossaryTooltip textToReplace={welcomeText} paragraph />
           </div>
           <div style={{ marginTop: 35 }}>
-            <CTA size="24px" primary href="/quiz" text="Take Quiz" inlineBlock />
+            <CTA
+              size="24px"
+              styletype="primary"
+              to={{
+                state: {
+                  activeId: entryQuestion,
+                  position: 1,
+                },
+                pathname: '/quiz',
+              }}
+              text="Take Quiz"
+              display="inline-block"
+            />
           </div>
 
           {/* For development only

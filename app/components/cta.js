@@ -2,6 +2,7 @@ import React from 'react';
 import Highlight from 'react-highlighter';
 import styled from 'styled-components';
 import shareIcon from '../assets/share.svg';
+import { Link } from 'react-router-dom';
 
 const gradient1 = 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)';
 const hoverGradient = 'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%)';
@@ -9,13 +10,17 @@ const gradientBorderBackground =
   'linear-gradient(#fff, #fff) padding-box, ${gradient1} border-box;';
 const gradientBorderBackgroundHover = `${hoverGradient} padding-box, ${hoverGradient} border-box;`;
 
-const CTA = styled.a`
+const CTA = styled(Link)`
   color: #593ebf;
   font-weight: 600;
   font-size: ${props => props.size};
   background: ${props =>
-    props.tertiary ? gradient1 : props.secondary ? gradientBorderBackground : 'white'};
-  display: ${props => (props.inlineBlock ? 'inline-block' : 'inline')};
+    props.styletype === 'tertiary'
+      ? gradient1
+      : props.styletype === 'secondary'
+      ? gradientBorderBackground
+      : 'white'};
+  display: ${props => (props.display ? props.display : 'inline')};
   border-radius: 3px;
   padding: 15px 40px;
   z-index: 2;
@@ -41,7 +46,7 @@ const CTA = styled.a`
     }
   }
   ${props =>
-    props.secondary &&
+    props.styletype === 'secondary' &&
     `border: 5px solid transparent;
        background:
        linear-gradient(#fff, #fff) padding-box,
@@ -59,9 +64,11 @@ const CTA = styled.a`
      cursor: pointer;
      align-items: center;
      white-space: nowrap;
-     padding: 15px;
+     padding: 15px 20px;
      font: inherit;
      font-weight: 600;
+     margin-top: 25px;
+     margin-bottom: 5px;
      &:before {
         content: url(${shareIcon});
         position: absolute;
@@ -89,7 +96,7 @@ const ShareText = styled.span`
 
 const cta = props => {
   return (
-    <CTA {...props} {...(props.primary && { className: 'shadow' })}>
+    <CTA {...props} {...(props.styletype === 'primary' && { className: 'shadow' })}>
       {props.share ? (
         <ShareText>{props.text}</ShareText>
       ) : props.search ? (
