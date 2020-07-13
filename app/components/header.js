@@ -28,6 +28,13 @@ const MenuItem = styled.li`
 
 const NavItem = styled(NavLink)`
   color: #593ebf;
+  transition: border-width 0.1s ease-out;
+  border-bottom: 0px solid #593ebf;
+  padding-bottom: 5px;
+  &:hover {
+    border-width: 7px;
+    text-decoration: none;
+  }
 `;
 
 const header = ({ home }) => {

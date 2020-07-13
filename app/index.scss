@@ -82,6 +82,15 @@ $screen-max: 1280px;
   // }
 }
 
+a {
+  text-decoration: none;
+  color: #593ebf;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 // Accessibility.
 .sr-only {
   position: absolute;
@@ -117,10 +126,6 @@ body {
   font-size: 20px;
   margin: 0;
   overflow-x: hidden;
-}
-
-a {
-  text-decoration: none;
 }
 
 .shadow {

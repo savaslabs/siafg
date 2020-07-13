@@ -50,6 +50,14 @@ const ScrollGradient = styled.div`
   margin-right: 60px;
 `;
 
+const Contact = styled.p`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-weight: 600;
+  margin: 0;
+`;
+
 const Split = ({ page, topic }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -153,7 +161,14 @@ const Split = ({ page, topic }) => {
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic} onScroll={handleScroll}>
-          {topic === 'question' && <OptionList options={questionOptions} />}
+          {topic === 'question' && (
+            <>
+              <OptionList options={questionOptions} />{' '}
+              <Contact>
+                Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
+              </Contact>
+            </>
+          )}
           {topic === 'answer' && (
             <>
               <ScrollGradient />
