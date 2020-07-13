@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 
 const Article = styled.article`
   color: black;
+  position: relative;
 `;
 
 const RelatedTerm = styled.a`
@@ -15,6 +16,25 @@ const RelatedTerm = styled.a`
   &:hover,
   &:focus {
     text-decoration: underline;
+  }
+`;
+
+const Separator = styled.span`
+  padding: 0 11px;
+`;
+
+const Attribution = styled.span`
+  font-weight: 600;
+`;
+
+const CardLink = styled.a`
+  :after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 `;
 
@@ -58,13 +78,17 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
         <p>
           {search && <Highlight search={search}>{resource?.fields.source_author}</Highlight>}
           {resource && (
-            <span>
-              {resource.fields.source_author}{' '}
-              {resource.fields.date ? `| ${resource.fields.date}` : ''}
-            </span>
+            <Attribution>
+              {resource.fields.source_author ? resource.fields.source_author : ''}
+              {resource.fields.date && (
+                <>
+                  <Separator>&ndash;</Separator>
+                  {new Date(resource.fields.date).toLocaleString('en-US', { dateStyle: 'short' })}
+                </>
+              )}
+            </Attribution>
           )}
         </p>
-        <a href={resource?.fields.link}></a>
       </>
     );
   };
@@ -99,6 +123,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
           )}
         </>
       )}
+      <CardLink href={resource?.fields.link}></CardLink>
     </Article>
   );
 };

@@ -2,6 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import reactStringReplace from 'react-string-replace';
 import { AppDataContext } from '../context/appDataContext';
 import ReactTooltip from 'react-tooltip';
+import styled from 'styled-components';
+
+const MatchSpan = styled.span`
+  border-bottom: 1px dashed #593EBF;
+  padding-bottom 2px;
+  position: relative;
+  z-index: 10;
+`;
 
 const GlossaryTooltip = ({ textToReplace }) => {
   const { glossary, highlightedTerms } = useContext(AppDataContext);
@@ -11,12 +19,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
     return reactStringReplace(textToReplace, highlightedTerms, (match, i) => {
       if (i === 1) {
         return (
-          <span
-            style={{ borderBottom: '1px dashed #593EBF', paddingBottom: 2 }}
-            data-tip
-            data-for={`${match}-tooltip`}
-            key={match + i}
-          >
+          <MatchSpan data-tip data-for={`${match}-tooltip`} key={match + i}>
             {match}
             <ReactTooltip
               id={`${match}-tooltip`}
@@ -35,7 +38,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
                 }
               </span>
             </ReactTooltip>
-          </span>
+          </MatchSpan>
         );
       } else {
         return match;

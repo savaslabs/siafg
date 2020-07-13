@@ -130,6 +130,11 @@ body {
 
 .shadow {
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
+  transition: all 0.5s ease-out;
+
+  &:hover {
+    box-shadow: 0 8px 10px -4px rgba(89, 62, 191, 0.5);
+  }
 }
 
 ul.card-list {
