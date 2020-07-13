@@ -26,6 +26,10 @@ const MenuItem = styled.li`
   padding-left: 65px;
 `;
 
+const NavItem = styled(NavLink)`
+  color: #593ebf;
+`;
+
 const header = ({ home }) => {
   return (
     <Header>
@@ -46,7 +50,7 @@ const header = ({ home }) => {
           {routes.slice(1).map((menuItem, idx) => {
             return (
               <MenuItem key={idx}>
-                <NavLink to={`/${menuItem.toLowerCase()}`}>{menuItem}</NavLink>
+                <NavItem to={`/${menuItem.toLowerCase()}`}>{menuItem}</NavItem>
               </MenuItem>
             );
           })}

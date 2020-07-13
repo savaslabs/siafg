@@ -222,7 +222,8 @@ ul {
 }
 
 .active {
-  text-decoration: underline;
+  border-bottom: 7px solid #593ebf;
+  padding-bottom: 5px;
 }
 
 // Background shapes + form transitions.
