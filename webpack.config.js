@@ -32,19 +32,11 @@ module.exports = (env, arg) => {
               options: {
                 presets: [
                   [
-                    '@babel/env',
+                    '@babel/preset-env',
                     {
-                      targets: { chrome: '63', ie: '11' },
+                      targets: 'defaults',
                     },
                   ],
-                ],
-                plugins: [
-                  [
-                    '@babel/plugin-proposal-decorators',
-                    { decoratorsBeforeExport: true },
-                  ],
-                  ['@babel/proposal-class-properties', { loose: true }],
-                  '@babel/proposal-object-rest-spread',
                 ],
               },
             },

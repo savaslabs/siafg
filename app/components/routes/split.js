@@ -18,19 +18,36 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   ${props =>
-    (props.topic === 'question' &&
-      ` text-align: center;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    `) ||
-    `
-      width: calc(66% - 75px);
+    props.topic === 'question' &&
+    ` text-align: center;
     `};
   background-color: transparent;
-  padding-left: 75px;
   max-height: 100vh;
   overflow: scroll;
+  padding-left: 75px;
+  padding-right: 60px;
+  position: absolute;
+  left: 33vw;
+  width: calc(66vw - 135px);
+  margin-right: 0;
+  margin-left: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const ScrollGradient = styled.div`
+  background: linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%);
+  pointer-events: none;
+  height: 300px;
+  width: calc(66vw - 135px);
+  position: fixed;
+  z-index: 20;
+  left: 33vw;
+  margin-left 75px;
+  margin-right: 60px;
 `;
 
 const Split = ({ page, topic }) => {
@@ -43,6 +60,7 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
+  const [isScrolling, setIsScrolling] = useState(0);
 
   /*
    * Get a single question record based on ID.
@@ -124,22 +142,31 @@ const Split = ({ page, topic }) => {
     }
   }, [location, appData]);
 
+  const handleScroll = e => {
+    // console.log({ height: e.target.scrollHeight, scrollTop: e.target.scrollTop});
+    setIsScrolling(e.target.scrollTop);
+  };
+
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic}>
+        <MainArea topic={topic} onScroll={handleScroll}>
           {topic === 'question' && <OptionList options={questionOptions} />}
           {topic === 'answer' && (
             <>
-              <Card answer explanation={explanation} />
+              <ScrollGradient />
+              <Card answer explanation={explanation} scroll={isScrolling} />
               {/* Render related articles */}
-              <CardList page="Answer" items={relatedResources} />
+              <CardList page="Answer" items={relatedResources} scroll={isScrolling} />
             </>
           )}
           {topic === 'archive' && (
-            <CardList page={page} resources={resources} glossary={glossary} />
+            <>
+              <ScrollGradient />
+              <CardList page={page} resources={resources} glossary={glossary} />
+            </>
           )}
         </MainArea>
       </SplitScreenWrapper>

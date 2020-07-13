@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-animated-css';
-import styled from 'styled-components';
 import CTA from './cta';
-
-const ShareButton = styled.button``;
 
 const share = () => {
   let shareButton = useRef();
@@ -26,9 +23,9 @@ const share = () => {
         text="Share Results"
         as="button"
         size="20px"
-        secondary
+        styletype="secondary"
         share
-        inlineBlock
+        display="inline-block"
         onClick={handleClick}
       />
       <Animated

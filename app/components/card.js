@@ -1,11 +1,21 @@
 import React, { useContext } from 'react';
-import CTA from './cta';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 
 const Article = styled.article`
   color: black;
+`;
+
+const RelatedTerm = styled.a`
+  margin-left: 10px;
+  color: #593ebf;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 `;
 
 const card = ({ answer, term, explanation, resource, page, search, index }) => {
@@ -75,19 +85,18 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
               )}
             </p>
           )}
-          {term.fields.related_term_names &&
-            term.fields.related_term_names.map((related, index) => {
-              return (
-                <CTA
-                  tertiary
-                  text={related}
-                  size="20px"
-                  href={`#${cleanTerm(related)}`}
-                  key={index}
-                  search={search}
-                />
-              );
-            })}
+          {term.fields.related_term_names && (
+            <div>
+              See also:
+              {term.fields.related_term_names.map((related, index) => {
+                return (
+                  <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
+                    {related}
+                  </RelatedTerm>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
     </Article>

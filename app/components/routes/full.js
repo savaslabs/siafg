@@ -4,11 +4,22 @@ import ComponentLibrary from '../_componentLibrary';
 import CTA from '../cta';
 import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
+import { entryQuestion } from '../../constants';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   height: 100vh;
+`;
+
+const MainPageContent = styled.main`
+  padding-left: 84px;
+  max-width: 500px;
+`;
+
+const SiteTitle = styled.h1`
+  font-size: 64px;
+  margin: 80px 0 35px;
 `;
 
 const Full = () => {
@@ -19,15 +30,30 @@ const Full = () => {
     <FullPageWrapper>
       <div className="container">
         <Header home />
-        <main>
+        <MainPageContent>
           <div>
-            <h1>Should I Ask For Gender?</h1>
+            <SiteTitle>Should I Ask For Gender?</SiteTitle>
             <GlossaryTooltip textToReplace={welcomeText} paragraph />
           </div>
-          <CTA size="24px" primary href="/quiz" text="Take Quiz" inlineBlock />
-          {/* For development only */}
-          <ComponentLibrary />
-        </main>
+          <div style={{ marginTop: 35 }}>
+            <CTA
+              size="24px"
+              styletype="primary"
+              to={{
+                state: {
+                  activeId: entryQuestion,
+                  position: 1,
+                },
+                pathname: '/quiz',
+              }}
+              text="Take Quiz"
+              display="inline-block"
+            />
+          </div>
+
+          {/* For development only
+          <ComponentLibrary /> */}
+        </MainPageContent>
       </div>
     </FullPageWrapper>
   );

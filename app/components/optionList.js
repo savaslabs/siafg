@@ -15,7 +15,7 @@ const OptionsWrapper = styled.fieldset`
 
 const optionList = ({ options }) => {
   return (
-    <>
+    <div style={{ maxWidth: 450, marginLeft: 'auto', marginRight: 'auto' }}>
       <Legend>Select Your Best Response</Legend>
       <OptionsWrapper>
         {options?.length > 0 &&
@@ -23,7 +23,7 @@ const optionList = ({ options }) => {
             return <Option option={option} key={index} />;
           })}
       </OptionsWrapper>
-    </>
+    </div>
   );
 };
 
