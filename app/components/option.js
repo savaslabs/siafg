@@ -11,7 +11,7 @@ const option = ({ option }) => {
   let position = location.state.position || 0;
 
   const handleClick = e => {
-    if (!event.code || event.code === 'Enter') {
+    if (e.type === 'click' || e.code === 'Enter') {
       const { nextPage } = e.target.dataset;
       const { answer } = e.target.dataset;
 
