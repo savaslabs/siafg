@@ -34,9 +34,9 @@ const MenuItem = styled.li`
 `;
 
 const NavItem = styled(NavLink)`
-  color: #593ebf;
+  color: ${props => props.theme.colors.primaryPurple};
   transition: border-width 0.1s ease-out;
-  border-bottom: 0px solid #593ebf;
+  border-bottom: 0px solid ${props => props.theme.colors.primaryPurple};
   padding-bottom: 5px;
   &:hover {
     border-width: 7px;

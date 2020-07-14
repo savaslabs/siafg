@@ -4,13 +4,12 @@ import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 
 const Article = styled.article`
-  color: black;
   position: relative;
 `;
 
 const RelatedTerm = styled.a`
   margin-left: 10px;
-  color: #593ebf;
+  color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
 
   &:hover,
@@ -25,6 +24,7 @@ const Separator = styled.span`
 
 const Attribution = styled.span`
   font-weight: 600;
+  color: ${props => props.theme.colors.charcoal};
 `;
 
 const CardLink = styled.a`

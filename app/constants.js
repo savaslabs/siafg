@@ -23,6 +23,18 @@ export const theme = {
     lg: 1024,
     max: 1280,
   },
+  colors: {
+    primaryPurple: '#593ebf',
+    charcoal: '#181818',
+    darkGray: '#4F4F4F',
+    scrollGradient: 'linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%)',
+    primaryGradient: 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)',
+    hoverGradient: 'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%)',
+    gradientBorder:
+      'linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%) border-box;',
+    gradientBorderHover:
+      'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) padding-box, linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) border-box;',
+  },
 };
 export const g = [
   ['tangerines', 'url(#sunnytangerine)', 0.3],

@@ -52,7 +52,7 @@ const MainArea = styled.div`
 `;
 
 const ScrollGradient = styled.div`
-  background: linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%);
+  background: ${props => props.theme.colors.scrollGradient};
   pointer-events: none;
   height: 300px;
   width: calc(66vw - 135px);

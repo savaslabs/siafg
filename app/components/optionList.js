@@ -6,7 +6,7 @@ const Legend = styled.legend`
   margin-bottom: 25px;
   font-weight: 700;
   font-size: 24px;
-  color: #593ebf;
+  color: ${props => props.theme.colors.primaryPurple};
 `;
 
 const OptionsWrapper = styled.fieldset`

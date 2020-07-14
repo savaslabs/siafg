@@ -7,7 +7,7 @@ import { searchOptions } from '../constants';
 
 const SearchBar = styled.input`
   border-radius: 100px;
-  border: 3px solid #181818;
+  border: 3px solid ${props => props.theme.colors.charcoal};
   padding: 11px 25px;
   width: 100%;
 

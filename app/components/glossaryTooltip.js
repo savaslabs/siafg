@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import styled from 'styled-components';
 
 const MatchSpan = styled.span`
-  border-bottom: 1px dashed #593EBF;
+  border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
   padding-bottom 2px;
   position: relative;
   z-index: 10;
