@@ -7,6 +7,7 @@ import CTA from './cta';
 import GlossaryTooltip from './glossaryTooltip';
 import { entryQuestion } from '../constants';
 import triangle from '../assets/triangle--right.svg';
+import { Animated } from 'react-animated-css';
 
 const TitleArea = styled.div`
   ${breakpoint('sm')`
@@ -17,9 +18,9 @@ const TitleArea = styled.div`
   `}
 
   ${breakpoint('lg')`
-    width: calc(33vw - 84px);
-    margin: 0;
-  `}
+  width: calc(33vw - 84px);
+  margin: 0;
+`}
 `;
 
 const TitleAreaContent = styled.div`
@@ -44,7 +45,12 @@ const TitleAreaContent = styled.div`
 
 const titleArea = props => {
   return (
-    <>
+    <Animated
+      animationIn="fadeInLeft"
+      animationOut="fadeOutLeft"
+      animationInDuration={800}
+      animationOutDuration={800}
+    >
       <TitleArea>
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
@@ -71,7 +77,7 @@ const titleArea = props => {
           {props.topic === 'answer' && <Share />}
         </TitleAreaContent>
       </TitleArea>
-    </>
+    </Animated>
   );
 };
 

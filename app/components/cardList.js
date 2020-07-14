@@ -2,13 +2,28 @@ import React, { useContext, useEffect } from 'react';
 import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const generateZIndex = index => {
+  if (index === 0) {
+    return css`
+      z-index: 10;
+    `;
+  } else {
+    return css`
+      z-index: ${10 - index};
+    `;
+  }
+};
 
 const CardListContainer = styled.ul`
   margin-top: 0;
 `;
 
 const CardListItem = styled.li`
+  position: relative;
+  ${props => generateZIndex(props.index)};
+
   &:not(:first-child) {
     margin-top: 25px;
   }
@@ -29,8 +44,14 @@ const cardList = props => {
           <>
             {searchResults.map((result, idx) => {
               return (
-                <CardListItem key={idx}>
-                  <Card term={result.item} search={searchTerm} page={props.page} />
+                <CardListItem key={idx} index={idx} index={idx}>
+                  <Card
+                    term={result.item}
+                    search={searchTerm}
+                    page={props.page}
+                    index={idx}
+                    listLength={searchResults.length}
+                  />
                 </CardListItem>
               );
             })}
@@ -42,8 +63,14 @@ const cardList = props => {
           <>
             {searchResults.map((result, idx) => {
               return (
-                <CardListItem key={idx}>
-                  <Card resource={result.item} search={searchTerm} page={props.page} index={idx} />
+                <CardListItem key={idx} index={idx}>
+                  <Card
+                    resource={result.item}
+                    search={searchTerm}
+                    page={props.page}
+                    index={idx}
+                    listLength={searchResults.length}
+                  />
                 </CardListItem>
               );
             })}
@@ -56,8 +83,8 @@ const cardList = props => {
           <>
             {glossary.map((term, idx) => {
               return (
-                <CardListItem key={idx}>
-                  <Card term={term} page={props.page} />
+                <CardListItem key={idx} index={idx}>
+                  <Card term={term} page={props.page} index={idx} listLength={glossary.length} />
                 </CardListItem>
               );
             })}
@@ -69,8 +96,13 @@ const cardList = props => {
           <>
             {resources.map((resource, idx) => {
               return (
-                <CardListItem key={idx}>
-                  <Card resource={resource} page={props.page} index={idx} />
+                <CardListItem key={idx} index={idx}>
+                  <Card
+                    resource={resource}
+                    page={props.page}
+                    index={idx}
+                    listLength={resources.length}
+                  />
                 </CardListItem>
               );
             })}
@@ -86,8 +118,8 @@ const cardList = props => {
       <CardListContainer>
         {props.items &&
           props.items.map((resource, idx) => (
-            <CardListItem key={idx}>
-              <Card page={props.page} resource={resource} />
+            <CardListItem key={idx} index={idx} listLength={props.items.length}>
+              <Card page={props.page} resource={resource} index={idx} />
             </CardListItem>
           ))}
         {renderResults()}

@@ -4,12 +4,27 @@ import Card from '../card';
 import CardList from '../cardList';
 import OptionList from '../optionList';
 import Header from '../header';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
+import { Animated } from 'react-animated-css';
+
+const GradientOverlayAnimationStyle = createGlobalStyle`
+.gradient-overlay-anim {
+  background: ${props => props.theme.colors.scrollGradient};
+  pointer-events: none !important;
+  height: 300px;
+  width: calc(66vw - 135px);
+  position: fixed;
+  z-index: 20;
+  left: 33vw;
+  margin-left 75px;
+  margin-right: 60px;
+}
+`;
 
 const SplitScreenWrapper = styled.main`
   ${breakpoint('sm')`
@@ -176,15 +191,30 @@ const Split = ({ page, topic }) => {
         <MainArea topic={topic} onScroll={handleScroll}>
           {topic === 'question' && (
             <>
-              <OptionList options={questionOptions} />{' '}
+              <Animated
+                animationIn="fadeInDown"
+                animationOut="fadeOutDown"
+                animationInDuration={800}
+                animationOutDuration={800}
+              >
+                <OptionList options={questionOptions} />{' '}
+              </Animated>
               <Contact>
                 Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>
             </>
           )}
+          <GradientOverlayAnimationStyle />
           {topic === 'answer' && (
             <>
-              <ScrollGradient />
+              <Animated
+                animationIn="fadeIn"
+                animationInDuration={800}
+                animationInDelay={1200}
+                className="gradient-overlay-anim"
+              >
+                <ScrollGradient />
+              </Animated>
               <Card answer explanation={explanation} scroll={isScrolling} />
               {/* Render related articles */}
               <CardList page="Answer" items={relatedResources} scroll={isScrolling} />
@@ -192,7 +222,14 @@ const Split = ({ page, topic }) => {
           )}
           {topic === 'archive' && (
             <>
-              <ScrollGradient />
+              <Animated
+                animationIn="fadeIn"
+                animationInDuration={800}
+                animationInDelay={1500}
+                className="gradient-overlay-anim"
+              >
+                <ScrollGradient />
+              </Animated>
               <CardList page={page} resources={resources} glossary={glossary} />
             </>
           )}

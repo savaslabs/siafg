@@ -35,7 +35,7 @@ const SvgBackground = styled.svg`
   width: 100vw;
   height: 66vh;
   top: 33vh;
-  transition: width 750ms;
+  transition: width 800ms;
   z-index: -1;
 
   ${breakpoint('lg')`

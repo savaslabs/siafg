@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
+import { Animated } from 'react-animated-css';
 
 const Card = styled.article`
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
@@ -54,7 +55,7 @@ const HighlightMark = styled.mark`
   color: inherit;
 `;
 
-const card = ({ answer, term, explanation, resource, page, search, index }) => {
+const card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
   let title;
 
   // Process glossary term name for id or href.
@@ -116,47 +117,55 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
   };
 
   return (
-    <Card {...renderId()}>
-      <h1>
-        {search ? (
-          <Highlight matchElement={HighlightMark} search={search}>
-            {renderH1()}
-          </Highlight>
-        ) : (
-          renderH1()
+    <Animated
+      animationIn={answer ? 'fadeInDown' : 'fadeInUp'}
+      animationOut="fadeOutUp"
+      animationInDuration={index === 0 ? 800 : 500}
+      animationOutDuration={800}
+      animationInDelay={(listLength - index) * 15}
+    >
+      <Card {...renderId()}>
+        <h1>
+          {search ? (
+            <Highlight matchElement={HighlightMark} search={search}>
+              {renderH1()}
+            </Highlight>
+          ) : (
+            renderH1()
+          )}
+        </h1>
+        {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
+        {renderResourceFields()}
+        {page === 'Glossary' && (
+          <>
+            {term.fields.definition && (
+              <p>
+                {search ? (
+                  <Highlight matchElement={HighlightMark} search={search}>
+                    {term.fields.definition}
+                  </Highlight>
+                ) : (
+                  term.fields.definition
+                )}
+              </p>
+            )}
+            {term.fields.related_term_names && (
+              <div>
+                See also:
+                {term.fields.related_term_names.map((related, index) => {
+                  return (
+                    <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
+                      {related}
+                    </RelatedTerm>
+                  );
+                })}
+              </div>
+            )}
+          </>
         )}
-      </h1>
-      {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
-      {renderResourceFields()}
-      {page === 'Glossary' && (
-        <>
-          {term.fields.definition && (
-            <p>
-              {search ? (
-                <Highlight matchElement={HighlightMark} search={search}>
-                  {term.fields.definition}
-                </Highlight>
-              ) : (
-                term.fields.definition
-              )}
-            </p>
-          )}
-          {term.fields.related_term_names && (
-            <div>
-              See also:
-              {term.fields.related_term_names.map((related, index) => {
-                return (
-                  <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
-                    {related}
-                  </RelatedTerm>
-                );
-              })}
-            </div>
-          )}
-        </>
-      )}
-      <CardLink href={resource?.fields.link}></CardLink>
-    </Card>
+        <CardLink href={resource?.fields.link}></CardLink>
+      </Card>
+    </Animated>
   );
 };
 
