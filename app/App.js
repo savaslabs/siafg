@@ -10,6 +10,8 @@ import Full from './components/routes/full';
 import NoMatch from './components/routes/noMatch';
 import { ArchiveProvider } from './context/archiveContext';
 import { AppDataContext } from './context/appDataContext';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './constants';
 
 const SiteContainer = styled.div`
   height: 100vh;
@@ -26,33 +28,35 @@ const App = () => {
   }, []);
 
   return (
-    <ArchiveProvider>
-      <SiteContainer page={location.pathname} className="container">
-        <Hexes />
-        <Switch>
-          {routes.map((route, index) => {
-            const path = route.toLowerCase();
-            return route === 'Welcome' ? (
-              <Route exact path={['/', `/${path}`]} key={index} route={route}>
-                <Full page={route} />
-              </Route>
-            ) : (
-              <Route exact path={`/${path}`} key={index} route={route}>
-                <Split page={route} topic={route === 'Quiz' ? 'question' : 'archive'} />
-              </Route>
-            );
-          })}
-          {/* Quiz Answer routes. */}
-          <Route path="/quiz/:resultId">
-            <Split page="quiz" topic="answer" />
-          </Route>
-          {/* No Match routes */}
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </SiteContainer>
-    </ArchiveProvider>
+    <ThemeProvider theme={theme}>
+      <ArchiveProvider>
+        <SiteContainer page={location.pathname} className="container">
+          <Hexes />
+          <Switch>
+            {routes.map((route, index) => {
+              const path = route.toLowerCase();
+              return route === 'Welcome' ? (
+                <Route exact path={['/', `/${path}`]} key={index} route={route}>
+                  <Full page={route} />
+                </Route>
+              ) : (
+                <Route exact path={`/${path}`} key={index} route={route}>
+                  <Split page={route} topic={route === 'Quiz' ? 'question' : 'archive'} />
+                </Route>
+              );
+            })}
+            {/* Quiz Answer routes. */}
+            <Route path="/quiz/:resultId">
+              <Split page="quiz" topic="answer" />
+            </Route>
+            {/* No Match routes */}
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </SiteContainer>
+      </ArchiveProvider>
+    </ThemeProvider>
   );
 };
 export default App;

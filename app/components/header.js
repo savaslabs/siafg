@@ -1,17 +1,24 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import { routes } from '../constants';
 import logo from '../assets/logo.svg';
 import darkLogo from '../assets/logo-dark.svg';
 
 const Header = styled.header`
-  z-index: 100;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 20px;
+  ${breakpoint('sm')`
+    z-index: 100;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+  `}
+
+  ${breakpoint('lg')`
+    display: flex;
+  `}
 `;
 
 const Menu = styled.ul`
