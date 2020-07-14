@@ -5,37 +5,50 @@ import CardList from '../cardList';
 import OptionList from '../optionList';
 import Header from '../header';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';
 import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 
 const SplitScreenWrapper = styled.main`
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 5%;
+  ${breakpoint('sm')`
+    padding-top: 5%;
+  `}
+  ${breakpoint('lg')`
+    display: flex;
+    flex-wrap: wrap;
+  `}
 `;
 
 const MainArea = styled.div`
-  ${props =>
-    props.topic === 'question' &&
-    ` text-align: center;
-    `};
-  background-color: transparent;
-  max-height: 100vh;
-  overflow: scroll;
-  padding-left: 75px;
-  padding-right: 60px;
-  position: absolute;
-  left: 33vw;
-  width: calc(66vw - 135px);
-  margin-right: 0;
-  margin-left: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${breakpoint('sm')`
+    ${props =>
+      props.topic === 'question' &&
+      ` text-align: center;
+      `};
+    background-color: transparent;
+    max-height: 100vh;
+    overflow: scroll;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `}
+
+  ${breakpoint('lg')`
+    width: calc(66vw - 135px);;
+    left: 33vw;
+    padding: 0 65px 0 75px;
+    margin-right: 0;
+    margin-left: auto;
+  `}
 `;
 
 const ScrollGradient = styled.div`

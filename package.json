@@ -89,6 +89,7 @@
     "react-tooltip": "^4.2.7",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
+    "styled-components-breakpoint": "^3.0.0-preview.20",
     "webpack-fix-style-only-entries": "^0.4.0"
   },
   "bugs": {

@@ -150,9 +150,7 @@ ul.card-list {
     }
   }
 }
-.scrolling-card {
-  background: green !important;
-}
+
 .card {
   padding: 30px 70px;
   background: white;
@@ -245,12 +243,18 @@ ul {
 svg.background {
   position: absolute;
   background: #f9f8ff;
-  top: 0;
   right: 0;
-  width: 66vw;
-  height: 100vh;
+  width: 100vw;
+  height: 66vh;
+  top: 33vh;
   transition: width 750ms;
   z-index: -1;
+
+  @include lg {
+    top: 0;
+    width: 66vw;
+    height: 100vh;
+  }
 
   g {
     transition: transform 1s;

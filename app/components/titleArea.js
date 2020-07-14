@@ -1,6 +1,6 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import SearchBar from './searchBar';
 import Share from './share';
 import CTA from './cta';
@@ -9,21 +9,36 @@ import { entryQuestion } from '../constants';
 import triangle from '../assets/triangle--right.svg';
 
 const TitleArea = styled.div`
-  width: calc(33vw - 84px);
+  ${breakpoint('sm')`
+    width: 100%;
+    left: 0;
+    margin: 0 auto;
+    padding: 0;
+  `}
+
+  ${breakpoint('lg')`
+    width: calc(33vw - 84px);
+    margin: 0;
+  `}
 `;
 
 const TitleAreaContent = styled.div`
-  margin-top: 0;
-  padding-left: 84px;
-  ${props =>
-    props.isTitle &&
-    `position: relative;
-     &:after {
-      content: url(${triangle});
-      position: absolute;
-      right: -55px;
-      top: 5px;
-    }
+  ${breakpoint('sm')`
+    padding-left: 0;
+    margin-top: 0;
+    ${props =>
+      props.isTitle &&
+      `position: relative;
+      &:after {
+        content: url(${triangle});
+        position: absolute;
+        right: -55px;
+        top: 5px;
+      }
+    `};
+  `};
+  ${breakpoint('lg')`
+    padding-left: 84px;
   `};
 `;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ComponentLibrary from '../_componentLibrary';
+import breakpoint from 'styled-components-breakpoint';
 import CTA from '../cta';
 import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
@@ -13,8 +13,10 @@ const FullPageWrapper = styled.div`
 `;
 
 const MainPageContent = styled.main`
-  padding-left: 84px;
-  max-width: 500px;
+  ${breakpoint('lg')`
+      padding-left: 84px;
+      max-width: 500px;
+  `};
 `;
 
 const SiteTitle = styled.h1`

@@ -16,6 +16,14 @@ export const tables = [
   'options',
   'glossary_highlighted_terms',
 ];
+export const theme = {
+  breakpoints: {
+    sm: 0,
+    md: 768,
+    lg: 1024,
+    max: 1280,
+  },
+};
 export const g = [
   ['tangerines', 'url(#sunnytangerine)', 0.3],
   ['ghosts', '#F9F8FF', 0.4],
