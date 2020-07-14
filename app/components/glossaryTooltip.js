@@ -2,7 +2,20 @@ import React, { useContext, useState, useEffect } from 'react';
 import reactStringReplace from 'react-string-replace';
 import { AppDataContext } from '../context/appDataContext';
 import ReactTooltip from 'react-tooltip';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+const ToolTipStyles = createGlobalStyle`
+  .glossary-tooltip {
+    max-width: 400px;
+    font-size: 16px !important;
+    line-height: 1.25;
+    box-shadow: 0px 2px 12px 0px rgba(253, 229, 229, 0.1);
+
+    &.show {
+      opacity: 0.95 !important;
+    }
+  }
+`;
 
 const MatchSpan = styled.span`
   border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
@@ -52,7 +65,12 @@ const GlossaryTooltip = ({ textToReplace }) => {
     }
   }, [highlightedTerms, textToReplace]);
 
-  return <div style={{ lineHeight: 1.4 }}>{replacedText}</div>;
+  return (
+    <>
+      <ToolTipStyles />
+      <div>{replacedText}</div>
+    </>
+  );
 };
 
 export default GlossaryTooltip;

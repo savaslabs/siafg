@@ -2,6 +2,21 @@ import React, { useContext, useEffect } from 'react';
 import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
+import styled from 'styled-components';
+
+const CardListContainer = styled.ul`
+  margin-top: 0;
+`;
+
+const CardListItem = styled.li`
+  &:not(:first-child) {
+    margin-top: 25px;
+  }
+
+  &:last-child {
+    margin-bottom: 250px;
+  }
+`;
 
 const cardList = props => {
   const { glossary, resources } = useContext(AppDataContext);
@@ -14,9 +29,9 @@ const cardList = props => {
           <>
             {searchResults.map((result, idx) => {
               return (
-                <li key={idx}>
+                <CardListItem key={idx}>
                   <Card term={result.item} search={searchTerm} page={props.page} />
-                </li>
+                </CardListItem>
               );
             })}
           </>
@@ -27,9 +42,9 @@ const cardList = props => {
           <>
             {searchResults.map((result, idx) => {
               return (
-                <li key={idx}>
+                <CardListItem key={idx}>
                   <Card resource={result.item} search={searchTerm} page={props.page} index={idx} />
-                </li>
+                </CardListItem>
               );
             })}
           </>
@@ -41,9 +56,9 @@ const cardList = props => {
           <>
             {glossary.map((term, idx) => {
               return (
-                <li key={idx}>
+                <CardListItem key={idx}>
                   <Card term={term} page={props.page} />
-                </li>
+                </CardListItem>
               );
             })}
           </>
@@ -54,9 +69,9 @@ const cardList = props => {
           <>
             {resources.map((resource, idx) => {
               return (
-                <li key={idx}>
+                <CardListItem key={idx}>
                   <Card resource={resource} page={props.page} index={idx} />
-                </li>
+                </CardListItem>
               );
             })}
           </>
@@ -68,15 +83,15 @@ const cardList = props => {
   return (
     <>
       {props.page === 'Answer' ? <h2>Related Articles</h2> : null}
-      <ul className="card-list">
+      <CardListContainer>
         {props.items &&
           props.items.map((resource, idx) => (
-            <li key={idx}>
+            <CardListItem key={idx}>
               <Card page={props.page} resource={resource} />
-            </li>
+            </CardListItem>
           ))}
         {renderResults()}
-      </ul>
+      </CardListContainer>
     </>
   );
 };

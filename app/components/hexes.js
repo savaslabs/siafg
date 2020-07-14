@@ -1,6 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { g, tangerines, ghosts, lavenders } from '../constants';
+import styled, { css } from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+
+const generatePositionStyles = () => {
+  let styles = ``;
+  for (let i = 1; i < 7; i += 1) {
+    const base = -300;
+    const offset = 100;
+    styles += `
+      [data-position='${i}'] & {
+        &.tangerines {
+          transform: translateY(${(base - 0 * offset) * i}px);
+        }
+        &.ghosts {
+          transform: translateY(${(base - 1 * offset) * i}px);
+        }
+        &.lavenders {
+          transform: translateY(${(base - 2 * offset) * i}px);
+        }
+      }
+    `;
+  }
+  return css`
+    ${styles}
+  `;
+};
+
+const SvgBackground = styled.svg`
+  position: absolute;
+  background: #f9f8ff;
+  right: 0;
+  width: 100vw;
+  height: 66vh;
+  top: 33vh;
+  transition: width 750ms;
+  z-index: -1;
+
+  ${breakpoint('lg')`
+    top: 0;
+    width: 66vw;
+    height: 100vh;
+  `}
+
+  &[data-position='0'] {
+    width: 100vw;
+  }
+`;
+
+const Group = styled.g`
+  transition: transform 1s;
+  transform: translateY(0);
+  ${generatePositionStyles()};
+`;
 
 const hexes = () => {
   const location = useLocation();
@@ -39,12 +92,12 @@ const hexes = () => {
   };
 
   return (
-    <svg
+    <SvgBackground
       className="background"
       viewBox="0 0 500 500"
       preserveAspectRatio="xMidYMin slice"
       xmlns="http://www.w3.org/2000/svg"
-      dataposition={dataPosition}
+      data-position={dataPosition}
     >
       <defs>
         <linearGradient id="sunnytangerine" gradientTransform="rotate(70) translate(0,-100)">
@@ -62,17 +115,17 @@ const hexes = () => {
       </defs>
       {g.map((type, i) => {
         return (
-          <g key={i} className={type[0]} fill={type[1]} fillOpacity={type[2]}>
+          <Group key={i} className={type[0]} fill={type[1]} fillOpacity={type[2]}>
             {type[0] === 'tangerines' &&
               tangerines.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
             {type[0] === 'ghosts' &&
               ghosts.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
             {type[0] === 'lavenders' &&
               lavenders.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
-          </g>
+          </Group>
         );
       })}
-    </svg>
+    </SvgBackground>
   );
 };
 

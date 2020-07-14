@@ -3,8 +3,19 @@ import styled from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 
-const Article = styled.article`
+const Card = styled.article`
+  box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
+  transition: box-shadow 0.5s ease-out;
+  padding: 30px 70px;
+  background: white;
+  border-radius: 10px;
   position: relative;
+  line-height: 1.5;
+  font-size: 20px;
+
+  &:hover {
+    box-shadow: 0 8px 10px -4px rgba(89, 62, 191, 0.5);
+  }
 `;
 
 const RelatedTerm = styled.a`
@@ -38,6 +49,11 @@ const CardLink = styled.a`
   }
 `;
 
+const HighlightMark = styled.mark`
+  background-color: ${props => props.theme.colors.highlighter};
+  color: inherit;
+`;
+
 const card = ({ answer, term, explanation, resource, page, search, index }) => {
   let title;
 
@@ -69,14 +85,20 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
       <>
         {search ? (
           <p>
-            <Highlight search={search}>{resource?.fields.summary}</Highlight>
+            <Highlight matchElement={HighlightMark} search={search}>
+              {resource?.fields.summary}
+            </Highlight>
           </p>
         ) : (
           <GlossaryTooltip textToReplace={resource?.fields.summary} />
         )}
 
         <p>
-          {search && <Highlight search={search}>{resource?.fields.source_author}</Highlight>}
+          {search && (
+            <Highlight matchElement={HighlightMark} search={search}>
+              {resource?.fields.source_author}
+            </Highlight>
+          )}
           {resource && (
             <Attribution>
               {resource.fields.source_author ? resource.fields.source_author : ''}
@@ -94,8 +116,16 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
   };
 
   return (
-    <Article className="shadow card" {...renderId()}>
-      <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
+    <Card {...renderId()}>
+      <h1>
+        {search ? (
+          <Highlight matchElement={HighlightMark} search={search}>
+            {renderH1()}
+          </Highlight>
+        ) : (
+          renderH1()
+        )}
+      </h1>
       {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
       {renderResourceFields()}
       {page === 'Glossary' && (
@@ -103,7 +133,9 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
           {term.fields.definition && (
             <p>
               {search ? (
-                <Highlight search={search}>{term.fields.definition}</Highlight>
+                <Highlight matchElement={HighlightMark} search={search}>
+                  {term.fields.definition}
+                </Highlight>
               ) : (
                 term.fields.definition
               )}
@@ -124,7 +156,7 @@ const card = ({ answer, term, explanation, resource, page, search, index }) => {
         </>
       )}
       <CardLink href={resource?.fields.link}></CardLink>
-    </Article>
+    </Card>
   );
 };
 

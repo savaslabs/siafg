@@ -14,6 +14,8 @@ const CTA = styled(Link)`
       : props.styletype === 'secondary'
       ? props.theme.colors.gradientBorder
       : 'white'};
+  box-shadow: ${props =>
+    props.styletype === 'primary' ? '0 8px 4px -4px rgba(89, 62, 191, 0.3)' : ''};
   display: ${props => (props.display ? props.display : 'inline')};
   border-radius: 3px;
   border: ${props => (props.styletype === 'secondary' ? '5px solid transparent' : 0)};
@@ -78,7 +80,7 @@ const ShareText = styled.span`
 
 const cta = props => {
   return (
-    <CTA {...props} {...(props.styletype === 'primary' && { className: 'shadow' })}>
+    <CTA {...props}>
       {props.share ? (
         <ShareText>{props.text}</ShareText>
       ) : props.search ? (

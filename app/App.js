@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
-import './index.scss';
 import '@babel/polyfill';
 import styled from 'styled-components';
 import { routes } from './constants';
@@ -12,6 +11,61 @@ import { ArchiveProvider } from './context/archiveContext';
 import { AppDataContext } from './context/appDataContext';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
+import { createGlobalStyle } from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    font-family: 'Raleway', sans-serif;;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+    overflow-x: hidden;
+    color: #4f4f4f;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${props => props.theme.colors.primaryPurple};
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    padding-inline-start: 0;
+    list-style: none;
+  }
+
+  .container {
+    ${breakpoint('sm')`
+      padding: 0 30px;
+    `}
+    ${breakpoint('lg')`
+      padding: 0 60px;
+    `}
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  h1, h2, h3, h4 {
+    color: ${props => props.theme.colors.primaryPurple};
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+`;
 
 const SiteContainer = styled.div`
   height: 100vh;
@@ -30,6 +84,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <ArchiveProvider>
+        <GlobalStyles />
         <SiteContainer page={location.pathname} className="container">
           <Hexes />
           <Switch>

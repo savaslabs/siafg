@@ -38,6 +38,12 @@ const NavItem = styled(NavLink)`
   transition: border-width 0.1s ease-out;
   border-bottom: 0px solid ${props => props.theme.colors.primaryPurple};
   padding-bottom: 5px;
+
+  &.active {
+    border-bottom: 7px solid ${props => props.theme.colors.primaryPurple};
+    padding-bottom: 5px;
+  }
+
   &:hover {
     border-width: 7px;
     text-decoration: none;
