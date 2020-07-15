@@ -10,23 +10,42 @@ import triangle from '../assets/triangle--right.svg';
 import { Animated } from 'react-animated-css';
 
 const TitleArea = styled.div`
-  ${breakpoint('sm')`
-    width: 100%;
-    left: 0;
-    margin: 0 auto;
-    padding: 0;
+  width: 100vw;
+  margin-left: -30px;
+  margin-top: -40px;
+  padding: 80px 0 50px 0;
+  background: white;
+  text-align: center;
+  line-height: 1.3;
+  box-shadow: 0px 2px 10px rgba(89, 62, 191, 0.3);
+
+  ${breakpoint('md')`
+    margin-left: -60px;
+    margin-top: -50px;
+    text-align: left;
   `}
 
   ${breakpoint('lg')`
-  width: calc(33vw - 84px);
-  margin: 0;
-`}
+    width: calc(33vw - 84px);
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    box-shadow: none;
+  `}
 `;
 
 const TitleAreaContent = styled.div`
-  ${breakpoint('sm')`
-    padding-left: 0;
-    margin-top: 0;
+  padding: 0 30px;
+  margin-top: 0;
+  max-width: 600px;
+
+  ${breakpoint('md')`
+    padding: 0 70px;
+  `}
+
+  ${breakpoint('lg')`
+    padding: 0 0 0 84px;
+    max-width: none;
     ${props =>
       props.isTitle &&
       `position: relative;
@@ -37,9 +56,6 @@ const TitleAreaContent = styled.div`
         top: 5px;
       }
     `};
-  `};
-  ${breakpoint('lg')`
-    padding-left: 84px;
   `};
 `;
 

@@ -1,17 +1,21 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 const OptionWrapper = styled.div`
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
-  padding: 30px 70px;
+  padding: 15px 35px;
   background: white;
   border-radius: 10px;
   position: relative;
   line-height: 1.5;
-  font-size: 20px;
   z-index: 2;
   cursor: pointer;
+
+  ${breakpoint('md')`
+    padding: 30px 70px;
+  `}
 
   &:after {
     content: '';
@@ -33,11 +37,6 @@ const OptionWrapper = styled.div`
     &:after {
       opacity: 1;
     }
-  }
-
-  label {
-    cursor: pointer;
-    pointer-events: none;
   }
 
   &:not(:first-child) {

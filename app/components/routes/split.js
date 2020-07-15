@@ -37,32 +37,28 @@ const SplitScreenWrapper = styled.main`
 `;
 
 const MainArea = styled.div`
-  ${breakpoint('sm')`
-    ${props =>
-      props.topic === 'question' &&
-      ` text-align: center;
+  ${props =>
+    props.topic === 'question' &&
+    ` text-align: center;
       `};
-    background-color: transparent;
-    max-height: 100vh;
-    overflow: scroll;
-    padding: 0;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    margin: 0 auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `}
+  background-color: transparent;
+  max-height: 100vh;
+  overflow: scroll;
+  padding: 0;
+  width: auto;
+  margin: 50px auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ${breakpoint('lg')`
     width: calc(66vw - 135px);;
     left: 33vw;
+    position: absolute;
     padding: 0 65px 0 75px;
-    margin-right: 0;
-    margin-left: auto;
+    margin: 0 0 0 auto;
   `}
 `;
 
@@ -79,11 +75,21 @@ const ScrollGradient = styled.div`
 `;
 
 const Contact = styled.p`
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
   font-weight: 600;
-  margin: 0;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 60px;
+  right: 0;
+  text-align: center;
+  width: 100%;
+
+  ${breakpoint('lg')`
+    right: 30px;
+    text-align: right;
+    width: auto;
+    margin: 0;
+    bottom: 30px;
+  `}
 `;
 
 const Split = ({ page, topic }) => {

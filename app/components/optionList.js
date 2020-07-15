@@ -1,12 +1,18 @@
 import React from 'react';
 import Option from './option';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 const Legend = styled.legend`
+  display: block;
   margin-bottom: 25px;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 21px;
   color: ${props => props.theme.colors.primaryPurple};
+
+  ${breakpoint('lg')`
+    font-size: 21px;
+  `}
 `;
 
 const OptionsWrapper = styled.fieldset`
