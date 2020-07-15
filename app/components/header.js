@@ -11,31 +11,31 @@ const Header = styled.header`
   align-items: center;
   padding-top: 25px;
 
-  .frosted {
-    opacity: 0;
-    width: 100vw;
-    background: white;
-    top: 0;
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    transition: opacity 0.5s;
-    z-index: 100;
-    pointer-events: none;
-
-    &.open {
-      opacity: 0.85;
-    }
-
-    ${breakpoint('lg')`
-      display: none;
-    `}
-  }
-
   ${breakpoint('lg')`
     width: 100%;
     display: flex;
     justify-content: space-between;
+  `}
+`;
+
+const FrostedOverlay = styled.div`
+  opacity: 0;
+  width: 100vw;
+  background: white;
+  top: 0;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  transition: opacity 0.5s;
+  z-index: 100;
+  pointer-events: none;
+
+  &.open {
+    opacity: 0.85;
+  }
+
+  ${breakpoint('lg')`
+    display: none;
   `}
 `;
 
@@ -124,6 +124,7 @@ const Menu = styled.ul`
   top: -20px;
   right: 0;
   width: 66vw;
+  max-width: 250px;
   height: 100vh;
   z-index: 100;
   padding-top: 80px;
@@ -210,7 +211,7 @@ const header = ({ home }) => {
       {/* Menu */}
       <MenuToggle
         onClick={toggleMenu}
-        className={open ? 'open' : ''}
+        className={open ? 'open' : null}
         aria-controls="navigation"
         aria-expanded="false"
       >
@@ -219,7 +220,7 @@ const header = ({ home }) => {
         <span></span>
       </MenuToggle>
       <nav id="navigation">
-        <div className={open ? 'frosted open' : 'frosted'}></div>
+        <FrostedOverlay className={open ? 'open' : null}></FrostedOverlay>
         <Menu className={open ? 'open' : ''}>
           {routes.slice(1).map((menuItem, idx) => {
             return (
