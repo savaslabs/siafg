@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 20px;
     margin: 0;
     overflow-x: hidden;
-    color: #4f4f4f;
+    color: ${props => props.theme.colors.darkGray};
   }
 
   a {

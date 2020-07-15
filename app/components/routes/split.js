@@ -192,8 +192,8 @@ const Split = ({ page, topic }) => {
           {topic === 'question' && (
             <>
               <Animated
-                animationIn="fadeInDown"
-                animationOut="fadeOutDown"
+                animationIn="fadeInUp"
+                animationOut="fadeOutUp"
                 animationInDuration={800}
                 animationOutDuration={800}
               >

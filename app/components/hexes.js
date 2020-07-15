@@ -33,8 +33,8 @@ const SvgBackground = styled.svg`
   background: #f9f8ff;
   right: 0;
   width: 100vw;
-  height: 66vh;
-  top: 33vh;
+  height: 100vh;
+  top: 0;
   transition: width 800ms;
   z-index: -1;
 
