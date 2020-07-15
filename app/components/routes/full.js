@@ -13,15 +13,28 @@ const FullPageWrapper = styled.div`
 `;
 
 const MainPageContent = styled.main`
+  ${breakpoint('md')`
+    max-width: 500px;
+  `}
+
   ${breakpoint('lg')`
       padding-left: 84px;
-      max-width: 500px;
   `};
 `;
 
 const SiteTitle = styled.h1`
-  font-size: 64px;
-  margin: 80px 0 35px;
+  font-size: 33px;
+  margin: 20vh 0 20px;
+
+  ${breakpoint('md')`
+    font-size: 52px;
+    margin: 20vh 0 35px;
+  `}
+
+  ${breakpoint('lg')`
+    font-size: 64px;
+    margin: 80px 0 35px;
+  `}
 `;
 
 const Full = () => {

@@ -18,10 +18,14 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Raleway', sans-serif;;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     overflow-x: hidden;
     color: ${props => props.theme.colors.darkGray};
+
+    ${breakpoint('md')`
+      font-size: 20px;
+    `}
   }
 
   a {
@@ -41,7 +45,7 @@ const GlobalStyles = createGlobalStyle`
     ${breakpoint('sm')`
       padding: 0 30px;
     `}
-    ${breakpoint('lg')`
+    ${breakpoint('md')`
       padding: 0 60px;
     `}
   }

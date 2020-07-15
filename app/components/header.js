@@ -39,6 +39,14 @@ const Header = styled.header`
   `}
 `;
 
+const LogoLink = styled(Link)`
+  display: none;
+
+  ${breakpoint('lg')`
+    display: inline;
+  `}
+`;
+
 const MenuToggle = styled.button`
   appearance: none;
   -webkit-appearance: none;
@@ -53,6 +61,10 @@ const MenuToggle = styled.button`
   width: 25px;
   height: 18px;
   right: 30px;
+
+  ${breakpoint('md')`
+    display: 60px;
+  `}
 
   ${breakpoint('lg')`
     display: none;
@@ -131,7 +143,6 @@ const Menu = styled.ul`
     position: static;
     justify-content: space-evenly;
     height: auto;
-    transform: translateX(0);
     box-shadow: none;
   `}
 `;
@@ -186,7 +197,7 @@ const header = ({ home }) => {
   return (
     <Header>
       {/* Logo */}
-      <Link
+      <LogoLink
         to={{
           state: {
             position: 0,
@@ -195,7 +206,7 @@ const header = ({ home }) => {
         }}
       >
         <img src={home ? darkLogo : logo} alt="Home" />
-      </Link>
+      </LogoLink>
       {/* Menu */}
       <MenuToggle
         onClick={toggleMenu}
