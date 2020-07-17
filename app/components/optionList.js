@@ -2,6 +2,7 @@ import React from 'react';
 import Option from './option';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { Animated } from 'react-animated-css';
 
 const Legend = styled.legend`
   display: block;

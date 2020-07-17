@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 const OptionWrapper = styled.div`
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
-  padding: 15px 35px;
+  padding: 15px 30px;
   background: white;
   border-radius: 10px;
   position: relative;

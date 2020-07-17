@@ -38,6 +38,7 @@ const TitleAreaContent = styled.div`
   padding: 0 30px;
   margin-top: 0;
   max-width: 600px;
+  max-height: 25vh;
 
   ${breakpoint('md')`
     padding: 0 70px;
@@ -46,6 +47,7 @@ const TitleAreaContent = styled.div`
   ${breakpoint('lg')`
     padding: 0 0 0 84px;
     max-width: none;
+    max-height: none;
     ${props =>
       props.isTitle &&
       `position: relative;
@@ -61,12 +63,7 @@ const TitleAreaContent = styled.div`
 
 const titleArea = props => {
   return (
-    <Animated
-      animationIn="fadeInLeft"
-      animationOut="fadeOutLeft"
-      animationInDuration={800}
-      animationOutDuration={800}
-    >
+    <Animated animationIn="fadeInDown" animationInDuration={800}>
       <TitleArea>
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
