@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import '@babel/polyfill';
 import styled from 'styled-components';
 import { routes } from './constants';
@@ -95,7 +95,7 @@ const App = () => {
             {routes.map((route, index) => {
               const path = route.toLowerCase();
               return route === 'Welcome' ? (
-                <Route exact path={['/', `/${path}`]} key={index} route={route}>
+                <Route exact path={'/'} key={index} route={route}>
                   <Full page={route} />
                 </Route>
               ) : (

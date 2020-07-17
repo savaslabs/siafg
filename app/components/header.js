@@ -5,6 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { routes } from '../constants';
 import logo from '../assets/logo.svg';
 import darkLogo from '../assets/logo-dark.svg';
+import home from '../assets/home.svg';
 
 const Header = styled.header`
   z-index: 100;
@@ -118,33 +119,28 @@ const MenuToggle = styled.button`
 
 const Menu = styled.ul`
   display: flex;
-  flex-direction: column;
-  background: ${props => props.theme.colors.backgroundPurple};
-  position: fixed;
   top: -20px;
   right: 0;
-  width: 66vw;
-  max-width: 250px;
-  height: 100vh;
   z-index: 100;
-  padding-top: 80px;
-  transform: translateX(100vw);
-  transition: 0.5s ease-out;
-  box-shadow: -4px 0px 5px rgba(89, 62, 191, 0.1);
 
-  &.open {
-    transform: translateX(0);
-  }
+  ${breakpoint('sm', 'lg')`
+    flex-direction: column;
+    background: ${props => props.theme.colors.backgroundPurple};
+    position: fixed;
+    transform: translateX(100vw);
+    transition: 0.5s ease-out;
+    padding-top: 80px;
+    box-shadow: -4px 0px 5px rgba(89, 62, 191, 0.1);
+    width: 66vw;
+    max-width: 250px;
+    height: 100vh;
+    &.open {
+      transform: translateX(0);
+    }
+  `}
 
   ${breakpoint('lg')`
-    flex-direction: row;
-    background: transparent;
-    width: 100%;
-    padding-top: 0;
-    position: static;
     justify-content: space-evenly;
-    height: auto;
-    box-shadow: none;
   `}
 `;
 
@@ -188,6 +184,14 @@ const NavItem = styled(NavLink)`
   }
 `;
 
+const HomeIcon = styled(NavItem)`
+  ${breakpoint('sm', 'lg')`
+    &:after {
+      content: url(${home});
+    }
+  `}
+`;
+
 const header = ({ home }) => {
   const [open, setOpen] = useState(false);
 
@@ -203,7 +207,7 @@ const header = ({ home }) => {
           state: {
             position: 0,
           },
-          pathname: '/welcome',
+          pathname: '/',
         }}
       >
         <img src={home ? darkLogo : logo} alt="Home" />
@@ -222,6 +226,17 @@ const header = ({ home }) => {
       <nav id="navigation">
         <FrostedOverlay className={open ? 'open' : null}></FrostedOverlay>
         <Menu className={open ? 'open' : ''}>
+          <MenuItem>
+            <HomeIcon
+              to={{
+                state: {
+                  position: 0,
+                },
+                pathname: '/',
+              }}
+              exact={true}
+            />
+          </MenuItem>
           {routes.slice(1).map((menuItem, idx) => {
             return (
               <MenuItem key={idx}>

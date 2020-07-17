@@ -21,7 +21,7 @@ const TitleArea = styled.div`
 
   ${breakpoint('md')`
     margin-left: -60px;
-    margin-top: -50px;
+    margin-top: -70px;
     text-align: left;
   `}
 
