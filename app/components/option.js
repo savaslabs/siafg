@@ -42,12 +42,10 @@ const OptionWrapper = styled.div`
   &:not(:first-child) {
     margin-top: 18px;
   }
-}
 `;
 
 const OptionInput = styled.input`
   appearance: none;
-  -webkit-appearance: none;
   cursor: pointer;
   position: absolute;
   width: 100%;
@@ -57,6 +55,13 @@ const OptionInput = styled.input`
   top: 0;
   bottom: 0;
   margin: 0;
+`;
+
+const OptionLabel = styled.label`
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  pointer-events: none;
 `;
 
 const option = ({ option }) => {
@@ -87,7 +92,7 @@ const option = ({ option }) => {
     <>
       {displayText && value && (
         <OptionWrapper htmlFor={value}>
-          <label style={{ position: 'relative', zIndex: 2 }}>{displayText}</label>
+          <OptionLabel>{displayText}</OptionLabel>
           <OptionInput
             type="radio"
             id={`option-${value}`}

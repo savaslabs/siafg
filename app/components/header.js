@@ -20,6 +20,9 @@ const Header = styled.header`
 `;
 
 const FrostedOverlay = styled.div`
+  ${breakpoint('lg')`
+    display: none;
+  `}
   opacity: 0;
   width: 100vw;
   background: white;
@@ -34,10 +37,6 @@ const FrostedOverlay = styled.div`
   &.open {
     opacity: 0.85;
   }
-
-  ${breakpoint('lg')`
-    display: none;
-  `}
 `;
 
 const LogoLink = styled(Link)`
@@ -50,7 +49,6 @@ const LogoLink = styled(Link)`
 
 const MenuToggle = styled.button`
   appearance: none;
-  -webkit-appearance: none;
   transform: rotate(0deg);
   transition: 0.35s ease;
   position: absolute;
@@ -128,9 +126,9 @@ const Menu = styled.ul`
     background: ${props => props.theme.colors.backgroundPurple};
     position: fixed;
     transform: translateX(100vw);
-    transition: 0.5s ease-out;
+    transition: .5s ease-out;
     padding-top: 80px;
-    box-shadow: -4px 0px 5px rgba(89, 62, 191, 0.1);
+    box-shadow: -4px 0px 5px rgba(89, 62, 191, .1);
     width: 66vw;
     max-width: 250px;
     height: 100vh;
@@ -145,6 +143,10 @@ const Menu = styled.ul`
 `;
 
 const MenuItem = styled.li`
+  ${breakpoint('lg')`
+    padding-left: 65px;
+  `}
+
   font-weight: 700;
   font-size: 24px;
   line-height: 1.2;
@@ -157,10 +159,6 @@ const MenuItem = styled.li`
       margin-top: 0;
     `}
   }
-
-  ${breakpoint('lg')`
-    padding-left: 65px;
-  `}
 `;
 
 const NavItem = styled(NavLink)`

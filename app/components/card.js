@@ -40,7 +40,7 @@ const Attribution = styled.span`
 `;
 
 const CardLink = styled.a`
-  :after {
+  &:after {
     content: '';
     position: absolute;
     top: 0;

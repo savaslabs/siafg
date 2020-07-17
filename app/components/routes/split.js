@@ -13,17 +13,18 @@ import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
 
 const GradientOverlayAnimationStyle = createGlobalStyle`
-.gradient-overlay-anim {
-  background: ${props => props.theme.colors.scrollGradient};
-  pointer-events: none !important;
-  height: 300px;
-  width: calc(66vw - 135px);
-  position: fixed;
-  z-index: 20;
-  left: 33vw;
-  margin-left 75px;
-  margin-right: 60px;
-}
+
+  .gradient-overlay-anim {
+    background: ${props => props.theme.colors.scrollGradient};
+    pointer-events: none !important;
+    height: 300px;
+    width: calc(66vw - 135px);
+    position: fixed;
+    z-index: 20;
+    left: 33vw;
+    margin-left: 75px;
+    margin-right: 60px;
+  }
 `;
 
 const SplitScreenWrapper = styled.main`
@@ -37,6 +38,14 @@ const SplitScreenWrapper = styled.main`
 `;
 
 const MainArea = styled.div`
+  ${breakpoint('lg')`
+    width: calc(66vw - 135px);;
+    left: 33vw;
+    position: absolute;
+    padding: 0 65px 0 75px;
+    margin: 0 0 0 auto;
+  `}
+
   ${props =>
     props.topic === 'question' &&
     ` text-align: center;
@@ -49,17 +58,10 @@ const MainArea = styled.div`
   margin: 50px auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
-
-  ${breakpoint('lg')`
-    width: calc(66vw - 135px);;
-    left: 33vw;
-    position: absolute;
-    padding: 0 65px 0 75px;
-    margin: 0 0 0 auto;
-  `}
 `;
 
 const ScrollGradient = styled.div`
@@ -70,20 +72,18 @@ const ScrollGradient = styled.div`
   position: fixed;
   z-index: 20;
   left: 33vw;
-  margin-left 75px;
+  margin-left: 75px;
   margin-right: 60px;
 `;
 
 const Contact = styled.p`
   font-weight: 600;
   margin: 0 auto;
-  position: fixed;
-  bottom: 60px;
-  right: 0;
   text-align: center;
   width: 100%;
 
   ${breakpoint('lg')`
+    position: fixed;
     right: 30px;
     text-align: right;
     width: auto;

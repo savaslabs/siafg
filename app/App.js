@@ -15,8 +15,9 @@ import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 const GlobalStyles = createGlobalStyle`
+
   body {
-    font-family: 'Raleway', sans-serif;;
+    font-family: 'Raleway', sans-serif;
     font-weight: 500;
     font-size: 18px;
     margin: 0;
@@ -31,6 +32,7 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${props => props.theme.colors.primaryPurple};
+
     &:hover {
       text-decoration: underline;
     }
@@ -62,7 +64,10 @@ const GlobalStyles = createGlobalStyle`
     border-width: 0;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     color: ${props => props.theme.colors.primaryPurple};
   }
 

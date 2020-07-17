@@ -5,6 +5,24 @@ import shareIcon from '../assets/share.svg';
 import { Link } from 'react-router-dom';
 
 const CTA = styled(Link)`
+  ${props =>
+    props.share &&
+    `display: flex;
+    cursor: pointer;
+    align-items: center;
+    white-space: nowrap;
+    padding: 15px 20px;
+    font: inherit;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    &:before {
+        content: url(${shareIcon});
+        position: absolute;
+        top: 15px;
+        z-index: 2;
+      }
+  `}
   color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
   font-size: ${props => props.size};
@@ -22,6 +40,7 @@ const CTA = styled(Link)`
   padding: 15px 40px;
   z-index: 2;
   position: relative;
+
   &:after {
     content: '';
     opacity: 0;
@@ -39,6 +58,7 @@ const CTA = styled(Link)`
     z-index: 1;
     transition: opacity 300ms ease;
   }
+
   &:hover,
   &:focus {
     text-decoration: none;
@@ -47,24 +67,6 @@ const CTA = styled(Link)`
       opacity: 1;
     }
   }
-  ${props =>
-    props.share &&
-    `display: flex;
-     cursor: pointer;
-     align-items: center;
-     white-space: nowrap;
-     padding: 15px 20px;
-     font: inherit;
-     font-weight: 600;
-     margin-top: 25px;
-     margin-bottom: 5px;
-     &:before {
-        content: url(${shareIcon});
-        position: absolute;
-        top: 15px;
-        z-index: 2;
-      }
-    `}
 `;
 
 const Text = styled.span`

@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const ToolTipStyles = createGlobalStyle`
+
   .glossary-tooltip {
     max-width: 400px;
     font-size: 16px !important;
@@ -19,7 +20,7 @@ const ToolTipStyles = createGlobalStyle`
 
 const MatchSpan = styled.span`
   border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
-  padding-bottom 2px;
+  padding-bottom: 2px;
   position: relative;
   z-index: 10;
 `;
