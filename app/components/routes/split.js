@@ -19,13 +19,19 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
   .gradient-overlay-anim {
     background: ${props => props.theme.colors.scrollGradient};
     pointer-events: none !important;
-    height: 300px;
-    width: calc(66vw - 135px);
+    height: 100px;
+    left: 30px;
+    width: calc(100vw - 60px);
     position: fixed;
     z-index: 20;
-    left: 33vw;
-    margin-left: 75px;
-    margin-right: 60px;
+
+    ${breakpoint('lg')`
+      left: 33vw;
+      margin-left: 75px;
+      margin-right: 60px;
+      height: 300px;
+      width: calc(66vw - 135px);
+    `}
   }
 `;
 
@@ -52,9 +58,9 @@ const MainArea = styled.div`
 
   ${props =>
     props.topic === 'question' &&
-    ` 
+    `
       text-align: center;
-  `};
+    `};
   background-color: transparent;
   height: calc(75vh - 125px);
   overflow: scroll;
@@ -72,13 +78,19 @@ const MainArea = styled.div`
 const ScrollGradient = styled.div`
   background: ${props => props.theme.colors.scrollGradient};
   pointer-events: none;
-  height: 300px;
-  width: calc(66vw - 135px);
+  height: 100px;
+  left: 30px;
+  width: calc(100vw - 60px);
   position: fixed;
   z-index: 20;
-  left: 33vw;
-  margin-left: 75px;
-  margin-right: 60px;
+
+  ${breakpoint('lg')`
+    left: 33vw;
+    margin-left: 75px;
+    margin-right: 60px;
+    height: 300px;
+    width: calc(66vw - 135px);
+  `}
 `;
 
 const QuestionWrapper = styled.div`
@@ -217,12 +229,12 @@ const Split = ({ page, topic }) => {
   }, [location, appData]);
 
   useEffect(() => {
-    if (location.state.activeId === entryQuestion) {
+    if (location.state?.activeId === entryQuestion) {
       setBackDisabled(true);
     } else {
       setBackDisabled(false);
     }
-  }, [location.state.activeId]);
+  }, [location.state?.activeId]);
 
   const goBack = e => {
     history.goBack();

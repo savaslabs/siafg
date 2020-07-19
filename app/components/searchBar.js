@@ -4,6 +4,15 @@ import Fuse from 'fuse.js';
 import styled from 'styled-components';
 import { ArchiveContext } from '../context/archiveContext';
 import { searchOptions } from '../constants';
+import breakpoint from 'styled-components-breakpoint';
+
+const SearchContainer = styled.div`
+  padding: 0 30px;
+
+  ${breakpoint('lg')`
+    padding: 0 0 0 84px;
+  `}
+`;
 
 const SearchBar = styled.input`
   border-radius: 100px;
@@ -55,9 +64,9 @@ const searchBar = () => {
   };
 
   return (
-    <div style={{ paddingLeft: 84 }}>
+    <SearchContainer>
       <SearchBar type="search" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
-    </div>
+    </SearchContainer>
   );
 };
 

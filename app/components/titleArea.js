@@ -15,7 +15,7 @@ const TitleArea = styled.div`
   margin-top: -40px;
   padding: 80px 0 50px 0;
   background: white;
-  text-align: center;
+  text-align: ${props => (props.isArchive ? 'left' : 'center')};
   line-height: 1.3;
   box-shadow: 0px 2px 10px rgba(89, 62, 191, 0.3);
 
@@ -36,9 +36,10 @@ const TitleArea = styled.div`
 
 const TitleAreaContent = styled.div`
   padding: 0 30px;
-  margin-top: 0;
+  margin-top: 40px;
   max-width: 600px;
   max-height: 25vh;
+  margin-left: ${props => (props.isTitle ? '0px' : '-15px')};
 
   ${breakpoint('md')`
     padding: 0 70px;
@@ -48,6 +49,7 @@ const TitleAreaContent = styled.div`
     padding: 0 0 0 84px;
     max-width: none;
     max-height: none;
+    margin-left: 0;
     ${props =>
       props.isTitle &&
       `position: relative;
@@ -64,31 +66,33 @@ const TitleAreaContent = styled.div`
 const titleArea = props => {
   return (
     <Animated animationIn="fadeInDown" animationInDuration={800}>
-      <TitleArea>
+      <TitleArea isArchive={props.topic === 'archive'}>
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
           {props.title}
         </TitleAreaContent>
-        {props.topic === 'archive' && <SearchBar />}
-        <TitleAreaContent>
-          <GlossaryTooltip textToReplace={props.description} />
-          {props.topic === 'answer' && (
-            <CTA
-              to={{
-                state: {
-                  activeId: entryQuestion,
-                  position: 1,
-                },
-                pathname: '/quiz',
-              }}
-              display="inline-block"
-              text="Retake Quiz"
-              size="20px"
-              styletype="secondary"
-            />
-          )}
-          {props.topic === 'answer' && <Share />}
-        </TitleAreaContent>
+        {props.topic === 'archive' ? (
+          <SearchBar />
+        ) : (
+          <TitleAreaContent>
+            <GlossaryTooltip textToReplace={props.description} />
+            {props.topic === 'answer' && (
+              <CTA
+                to={{
+                  state: {
+                    activeId: entryQuestion,
+                    position: 1,
+                  },
+                  pathname: '/quiz',
+                }}
+                display="inline-block"
+                text="Retake Quiz"
+                styletype="secondary"
+              />
+            )}
+            {props.topic === 'answer' && <Share />}
+          </TitleAreaContent>
+        )}
       </TitleArea>
     </Animated>
   );

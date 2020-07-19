@@ -52,7 +52,6 @@ const Full = () => {
           </div>
           <div style={{ marginTop: 35 }}>
             <CTA
-              size="24px"
               styletype="primary"
               to={{
                 state: {

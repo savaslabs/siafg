@@ -1,6 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-animated-css';
 import CTA from './cta';
+import shareIcon from '../assets/share.svg';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+
+const ShareCTA = styled(CTA)`
+  ${breakpoint('lg')`
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font: inherit;
+    font-weight: 600;
+    margin: 25px 0 5px;
+    height: auto;
+    top: auto;
+  `}
+
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  top: 5px;
+  left: 25px;
+
+  &:before {
+    content: url(${shareIcon});
+    z-index: 2;
+
+    ${breakpoint('lg')`
+      position: absolute;
+      top: 10px;
+    `}
+  }
+`;
 
 const share = () => {
   let shareButton = useRef();
@@ -18,15 +54,15 @@ const share = () => {
   };
 
   return (
-    <div ref={el => (shareButton = el)}>
-      <CTA
+    <>
+      <ShareCTA
         text="Share Results"
         as="button"
-        size="20px"
         styletype="secondary"
         share
         display="inline-block"
         onClick={handleClick}
+        ref={el => (shareButton = el)}
       />
       <Animated
         animationIn="slideInDown"
@@ -44,7 +80,7 @@ const share = () => {
           <a className="a2a_button_copy_link" />
         </div>
       </Animated>
-    </div>
+    </>
   );
 };
 
