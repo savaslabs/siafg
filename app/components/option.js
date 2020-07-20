@@ -1,17 +1,21 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 const OptionWrapper = styled.div`
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
-  padding: 30px 70px;
+  padding: 15px 30px;
   background: white;
   border-radius: 10px;
   position: relative;
   line-height: 1.5;
-  font-size: 20px;
   z-index: 2;
   cursor: pointer;
+
+  ${breakpoint('md')`
+    padding: 30px 70px;
+  `}
 
   &:after {
     content: '';
@@ -35,20 +39,13 @@ const OptionWrapper = styled.div`
     }
   }
 
-  label {
-    cursor: pointer;
-    pointer-events: none;
-  }
-
   &:not(:first-child) {
     margin-top: 18px;
   }
-}
 `;
 
 const OptionInput = styled.input`
   appearance: none;
-  -webkit-appearance: none;
   cursor: pointer;
   position: absolute;
   width: 100%;
@@ -58,6 +55,13 @@ const OptionInput = styled.input`
   top: 0;
   bottom: 0;
   margin: 0;
+`;
+
+const OptionLabel = styled.label`
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  pointer-events: none;
 `;
 
 const option = ({ option }) => {
@@ -88,7 +92,7 @@ const option = ({ option }) => {
     <>
       {displayText && value && (
         <OptionWrapper htmlFor={value}>
-          <label style={{ position: 'relative', zIndex: 2 }}>{displayText}</label>
+          <OptionLabel>{displayText}</OptionLabel>
           <OptionInput
             type="radio"
             id={`option-${value}`}

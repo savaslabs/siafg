@@ -11,19 +11,28 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
+import forward from '../../assets/forward.svg';
+import back from '../../assets/back.svg';
 
 const GradientOverlayAnimationStyle = createGlobalStyle`
-.gradient-overlay-anim {
-  background: ${props => props.theme.colors.scrollGradient};
-  pointer-events: none !important;
-  height: 300px;
-  width: calc(66vw - 135px);
-  position: fixed;
-  z-index: 20;
-  left: 33vw;
-  margin-left 75px;
-  margin-right: 60px;
-}
+
+  .gradient-overlay-anim {
+    background: ${props => props.theme.colors.scrollGradient};
+    pointer-events: none !important;
+    height: 100px;
+    left: 30px;
+    width: calc(100vw - 60px);
+    position: fixed;
+    z-index: 20;
+
+    ${breakpoint('lg')`
+      left: 33.33vw;
+      margin-left: 75px;
+      margin-right: 60px;
+      height: 300px;
+      width: calc(66.66vw - 135px);
+    `}
+  }
 `;
 
 const SplitScreenWrapper = styled.main`
@@ -37,53 +46,101 @@ const SplitScreenWrapper = styled.main`
 `;
 
 const MainArea = styled.div`
-  ${breakpoint('sm')`
-    ${props =>
-      props.topic === 'question' &&
-      ` text-align: center;
-      `};
-    background-color: transparent;
-    max-height: 100vh;
-    overflow: scroll;
-    padding: 0;
+  ${breakpoint('lg')`
+    width: calc(66.66vw - 140px);
+    left: 33.33vw;
     position: absolute;
-    left: 0;
-    width: 100%;
-    margin: 0 auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    padding: 0 65px 0 75px;
+    margin: 0 0 0 auto;
+    max-height: 100vh;
+    height: auto;
+    right: 0;
   `}
 
-  ${breakpoint('lg')`
-    width: calc(66vw - 135px);;
-    left: 33vw;
-    padding: 0 65px 0 75px;
-    margin-right: 0;
-    margin-left: auto;
-  `}
+  ${props =>
+    props.topic === 'question' &&
+    `
+      text-align: center;
+    `};
+  background-color: transparent;
+  max-height: 100vh;
+  overflow: scroll;
+  padding: 0;
+  width: auto;
+  margin: 50px auto 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ScrollGradient = styled.div`
   background: ${props => props.theme.colors.scrollGradient};
   pointer-events: none;
-  height: 300px;
-  width: calc(66vw - 135px);
+  height: 100px;
+  left: 30px;
+  width: calc(100vw - 60px);
   position: fixed;
   z-index: 20;
-  left: 33vw;
-  margin-left 75px;
-  margin-right: 60px;
+
+  ${breakpoint('lg')`
+    left: 33.33vw;
+    margin-left: 75px;
+    margin-right: 60px;
+    height: 300px;
+    width: calc(66.66vw - 135px);
+  `}
+`;
+
+const QuestionWrapper = styled.div`
+  margin-bottom: 350px;
+
+  ${breakpoint('md')`
+    margin-bottom: 0;
+  `}
 `;
 
 const Contact = styled.p`
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
   font-weight: 600;
-  margin: 0;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+
+  ${breakpoint('lg')`
+    position: fixed;
+    right: 30px;
+    text-align: right;
+    width: auto;
+    margin: 0;
+    bottom: 30px;
+  `}
+`;
+
+const QuizNavigation = styled.div`
+  margin: 40px auto;
+`;
+
+const PrevQuestion = styled.button`
+  ${breakpoint('lg')`
+    display: none;
+  `}
+
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.2;
+
+  &:after {
+    content: url(${back});
+  }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.5;
+  }
 `;
 
 const Split = ({ page, topic }) => {
@@ -96,8 +153,7 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
-  const [isScrolling, setIsScrolling] = useState(0);
-
+  const [backDisabled, setBackDisabled] = useState(true);
   /*
    * Get a single question record based on ID.
    */
@@ -178,9 +234,16 @@ const Split = ({ page, topic }) => {
     }
   }, [location, appData]);
 
-  const handleScroll = e => {
-    // console.log({ height: e.target.scrollHeight, scrollTop: e.target.scrollTop});
-    setIsScrolling(e.target.scrollTop);
+  useEffect(() => {
+    if (location.state?.activeId === entryQuestion) {
+      setBackDisabled(true);
+    } else {
+      setBackDisabled(false);
+    }
+  }, [location.state?.activeId]);
+
+  const goBack = e => {
+    history.goBack();
   };
 
   return (
@@ -188,21 +251,21 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic} onScroll={handleScroll}>
+        <MainArea topic={topic}>
           {topic === 'question' && (
-            <>
-              <Animated
-                animationIn="fadeInDown"
-                animationOut="fadeOutDown"
-                animationInDuration={800}
-                animationOutDuration={800}
-              >
+            <QuestionWrapper>
+              <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
                 <OptionList options={questionOptions} />{' '}
               </Animated>
+              <QuizNavigation>
+                <PrevQuestion showBack={backDisabled} disabled={backDisabled} onClick={goBack}>
+                  <span className="sr-only">Previous Question</span>
+                </PrevQuestion>
+              </QuizNavigation>
               <Contact>
                 Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>
-            </>
+            </QuestionWrapper>
           )}
           <GradientOverlayAnimationStyle />
           {topic === 'answer' && (
@@ -215,9 +278,9 @@ const Split = ({ page, topic }) => {
               >
                 <ScrollGradient />
               </Animated>
-              <Card answer explanation={explanation} scroll={isScrolling} />
+              <Card answer explanation={explanation} />
               {/* Render related articles */}
-              <CardList page="Answer" items={relatedResources} scroll={isScrolling} />
+              <CardList page="Answer" items={relatedResources} />
             </>
           )}
           {topic === 'archive' && (

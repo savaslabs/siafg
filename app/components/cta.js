@@ -1,13 +1,18 @@
 import React from 'react';
 import Highlight from 'react-highlighter';
 import styled from 'styled-components';
-import shareIcon from '../assets/share.svg';
 import { Link } from 'react-router-dom';
+import breakpoint from 'styled-components-breakpoint';
 
 const CTA = styled(Link)`
+  ${breakpoint('lg')`
+    font-size: 24px;
+    padding: 15px 40px;
+  `}
   color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
-  font-size: ${props => props.size};
+  font-size: ${props =>
+    props.styletype === 'tertiary' ? '18px' : props.styletype === 'secondary' ? '18px' : '21px'};
   background: ${props =>
     props.styletype === 'tertiary'
       ? props.theme.colors.primaryGradient
@@ -19,9 +24,10 @@ const CTA = styled(Link)`
   display: ${props => (props.display ? props.display : 'inline')};
   border-radius: 3px;
   border: ${props => (props.styletype === 'secondary' ? '5px solid transparent' : 0)};
-  padding: 15px 40px;
+  padding: 10px 20px;
   z-index: 2;
   position: relative;
+
   &:after {
     content: '';
     opacity: 0;
@@ -39,6 +45,7 @@ const CTA = styled(Link)`
     z-index: 1;
     transition: opacity 300ms ease;
   }
+
   &:hover,
   &:focus {
     text-decoration: none;
@@ -47,24 +54,6 @@ const CTA = styled(Link)`
       opacity: 1;
     }
   }
-  ${props =>
-    props.share &&
-    `display: flex;
-     cursor: pointer;
-     align-items: center;
-     white-space: nowrap;
-     padding: 15px 20px;
-     font: inherit;
-     font-weight: 600;
-     margin-top: 25px;
-     margin-bottom: 5px;
-     &:before {
-        content: url(${shareIcon});
-        position: absolute;
-        top: 15px;
-        z-index: 2;
-      }
-    `}
 `;
 
 const Text = styled.span`
@@ -73,9 +62,11 @@ const Text = styled.span`
 `;
 
 const ShareText = styled.span`
-  padding-left: 40px;
-  position: relative;
-  z-index: 2;
+  ${breakpoint('lg')`
+    padding-left: 40px;
+    position: relative;
+    z-index: 2;
+  `}
 `;
 
 const cta = props => {

@@ -20,14 +20,14 @@ export const theme = {
   breakpoints: {
     sm: 0,
     md: 768,
-    lg: 1024,
-    max: 1280,
+    lg: 1025,
   },
   colors: {
     primaryPurple: '#593ebf',
     charcoal: '#181818',
     darkGray: '#4F4F4F',
     highlighter: '#ffe9d5',
+    backgroundPurple: '#F9F8FF',
     scrollGradient: 'linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%)',
     primaryGradient: 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)',
     hoverGradient: 'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%)',

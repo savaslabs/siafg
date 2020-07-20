@@ -38,6 +38,13 @@ module.exports = (env, arg) => {
                     },
                   ],
                 ],
+                plugins: ['babel-plugin-styled-components'],
+              },
+            },
+            {
+              loader: 'stylelint-custom-processor-loader',
+              options: {
+                configPath: path.resolve(__dirname, '.stylelintrc'),
               },
             },
           ],

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import '@babel/polyfill';
 import styled from 'styled-components';
 import { routes } from './constants';
@@ -13,20 +13,27 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import triangle from './assets/triangle--right.svg';
 
 const GlobalStyles = createGlobalStyle`
+
   body {
-    font-family: 'Raleway', sans-serif;;
+    font-family: 'Raleway', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     overflow-x: hidden;
-    color: #4f4f4f;
+    color: ${props => props.theme.colors.darkGray};
+
+    ${breakpoint('md')`
+      font-size: 20px;
+    `}
   }
 
   a {
     text-decoration: none;
     color: ${props => props.theme.colors.primaryPurple};
+
     &:hover {
       text-decoration: underline;
     }
@@ -41,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
     ${breakpoint('sm')`
       padding: 0 30px;
     `}
-    ${breakpoint('lg')`
+    ${breakpoint('md')`
       padding: 0 60px;
     `}
   }
@@ -58,12 +65,19 @@ const GlobalStyles = createGlobalStyle`
     border-width: 0;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     color: ${props => props.theme.colors.primaryPurple};
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 21px;
+
+    ${breakpoint('lg')`
+      font-size; 28px;
+    `}
   }
 `;
 
@@ -91,7 +105,7 @@ const App = () => {
             {routes.map((route, index) => {
               const path = route.toLowerCase();
               return route === 'Welcome' ? (
-                <Route exact path={['/', `/${path}`]} key={index} route={route}>
+                <Route exact path={'/'} key={index} route={route}>
                   <Full page={route} />
                 </Route>
               ) : (
