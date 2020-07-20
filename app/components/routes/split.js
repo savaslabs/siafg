@@ -36,9 +36,6 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
 `;
 
 const SplitScreenWrapper = styled.main`
-  ${breakpoint('sm')`
-    padding-top: 5%;
-  `}
   ${breakpoint('lg')`
     display: flex;
     flex-wrap: wrap;
@@ -52,8 +49,6 @@ const MainArea = styled.div`
     position: absolute;
     padding: 0 65px 0 75px;
     margin: 0 0 0 auto;
-    max-height: 100vh;
-    height: auto;
     right: 0;
   `}
 
@@ -63,7 +58,7 @@ const MainArea = styled.div`
       text-align: center;
     `};
   background-color: transparent;
-  max-height: 100vh;
+  height: calc(100vh - 250px);
   overflow: scroll;
   padding: 0;
   width: auto;
@@ -95,8 +90,6 @@ const ScrollGradient = styled.div`
 `;
 
 const QuestionWrapper = styled.div`
-  margin-bottom: 350px;
-
   ${breakpoint('md')`
     margin-bottom: 0;
   `}
@@ -108,12 +101,17 @@ const Contact = styled.p`
   width: 100%;
   margin-bottom: 50px;
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     position: fixed;
-    right: 30px;
+    right: 70px;
     text-align: right;
     width: auto;
     margin: 0;
+    bottom: 70px;
+  `}
+
+  ${breakpoint('lg')`
+    right: 30px;
     bottom: 30px;
   `}
 `;

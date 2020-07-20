@@ -11,6 +11,7 @@ const Header = styled.header`
   z-index: 100;
   align-items: center;
   padding-top: 25px;
+  margin-bottom: 5%;
 
   ${breakpoint('lg')`
     width: 100%;

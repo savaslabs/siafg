@@ -3,7 +3,6 @@ import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
 import styled, { css } from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
 
 const generateZIndex = index => {
   if (index === 0) {
@@ -12,13 +11,14 @@ const generateZIndex = index => {
     `;
   } else {
     return css`
-      z-index: ${10 - index};
+      z-index: ${10 - index > 0 ? 10 - index : 0};
     `;
   }
 };
 
 const CardListContainer = styled.ul`
   margin-top: 0;
+  padding-bottom: 30px;
 `;
 
 const CardListItem = styled.li`
@@ -27,10 +27,6 @@ const CardListItem = styled.li`
 
   &:not(:first-child) {
     margin-top: 25px;
-  }
-
-  &:last-child {
-    margin-bottom: 250px;
   }
 `;
 

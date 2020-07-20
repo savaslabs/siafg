@@ -57,9 +57,11 @@ const TitleAreaContent = styled.div`
   max-width: 600px;
   max-height: 25vh;
 
-  ${breakpoint('sm', 'lg')`
+  ${breakpoint('sm', 'md')`
     position: relative;
     z-index: 1;
+    width: fit-content;
+    margin: 0 auto 15px;
   `};
 
   ${breakpoint('md')`

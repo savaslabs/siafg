@@ -16,7 +16,7 @@ export const AppDataProvider = props => {
 
   const getAllData = async () => {
     await tables.forEach(async table => {
-      const res = await getRecordsList(table);
+      const res = await getRecordsList(table, { params: { view: 'Grid view' } });
       switch (table) {
         case 'questions':
           setQuestions(res);
@@ -25,6 +25,7 @@ export const AppDataProvider = props => {
           setResources(res);
           break;
         case 'glossary':
+          console.log(res);
           setGlossary(res);
           break;
         case 'answers':
