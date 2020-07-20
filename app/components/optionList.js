@@ -2,7 +2,11 @@ import React from 'react';
 import Option from './option';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { Animated } from 'react-animated-css';
+
+const OptionListContainer = styled.div`
+  max-width: 450px;
+  margin: 0 auto;
+`;
 
 const Legend = styled.legend`
   display: block;
@@ -18,11 +22,12 @@ const Legend = styled.legend`
 
 const OptionsWrapper = styled.fieldset`
   border-width: 0;
+  padding: 0;
 `;
 
 const optionList = ({ options }) => {
   return (
-    <div style={{ maxWidth: 450, marginLeft: 'auto', marginRight: 'auto' }}>
+    <OptionListContainer>
       <Legend>Select Your Best Response</Legend>
       <OptionsWrapper>
         {options?.length > 0 &&
@@ -30,7 +35,7 @@ const optionList = ({ options }) => {
             return <Option option={option} key={index} />;
           })}
       </OptionsWrapper>
-    </div>
+    </OptionListContainer>
   );
 };
 

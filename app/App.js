@@ -13,6 +13,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import triangle from './assets/triangle--right.svg';
 
 const GlobalStyles = createGlobalStyle`
 

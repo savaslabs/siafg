@@ -44,6 +44,7 @@ const LogoLink = styled(Link)`
 
   ${breakpoint('lg')`
     display: inline;
+    position; relative;
   `}
 `;
 
@@ -129,7 +130,7 @@ const Menu = styled.ul`
     transition: .5s ease-out;
     padding-top: 80px;
     box-shadow: -4px 0px 5px rgba(89, 62, 191, .1);
-    width: 66vw;
+    width: 66.66vw;
     max-width: 250px;
     height: 100vh;
     &.open {

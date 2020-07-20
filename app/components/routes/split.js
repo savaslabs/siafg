@@ -26,11 +26,11 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
     z-index: 20;
 
     ${breakpoint('lg')`
-      left: 33vw;
+      left: 33.33vw;
       margin-left: 75px;
       margin-right: 60px;
       height: 300px;
-      width: calc(66vw - 135px);
+      width: calc(66.66vw - 135px);
     `}
   }
 `;
@@ -47,13 +47,14 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   ${breakpoint('lg')`
-    width: calc(66vw - 135px);;
-    left: 33vw;
+    width: calc(66.66vw - 140px);
+    left: 33.33vw;
     position: absolute;
     padding: 0 65px 0 75px;
     margin: 0 0 0 auto;
     max-height: 100vh;
     height: auto;
+    right: 0;
   `}
 
   ${props =>
@@ -62,7 +63,7 @@ const MainArea = styled.div`
       text-align: center;
     `};
   background-color: transparent;
-  height: calc(75vh - 125px);
+  max-height: 100vh;
   overflow: scroll;
   padding: 0;
   width: auto;
@@ -85,22 +86,27 @@ const ScrollGradient = styled.div`
   z-index: 20;
 
   ${breakpoint('lg')`
-    left: 33vw;
+    left: 33.33vw;
     margin-left: 75px;
     margin-right: 60px;
     height: 300px;
-    width: calc(66vw - 135px);
+    width: calc(66.66vw - 135px);
   `}
 `;
 
 const QuestionWrapper = styled.div`
-  margin-bottom: 0;
+  margin-bottom: 350px;
+
+  ${breakpoint('md')`
+    margin-bottom: 0;
+  `}
 `;
 
 const Contact = styled.p`
   font-weight: 600;
   text-align: center;
   width: 100%;
+  margin-bottom: 50px;
 
   ${breakpoint('lg')`
     position: fixed;
@@ -248,12 +254,7 @@ const Split = ({ page, topic }) => {
         <MainArea topic={topic}>
           {topic === 'question' && (
             <QuestionWrapper>
-              <Animated
-                animationIn="fadeInUp"
-                animationOut="fadeOutUp"
-                animationInDuration={800}
-                animationOutDuration={800}
-              >
+              <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
                 <OptionList options={questionOptions} />{' '}
               </Animated>
               <QuizNavigation>

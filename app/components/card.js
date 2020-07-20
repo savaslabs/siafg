@@ -30,7 +30,7 @@ const Card = styled.article`
       margin-bottom: 0;
     }
 
-    & > div {
+    & > div:not(.answer) {
       display: none;
     }
   `}
@@ -163,7 +163,11 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
             renderH1()
           )}
         </h1>
-        {explanation && <GlossaryTooltip textToReplace={explanation} cardIndex={index} />}
+        {explanation && (
+          <div className="answer">
+            <GlossaryTooltip textToReplace={explanation} className="answer" />
+          </div>
+        )}
         {renderResourceFields()}
         {page === 'Glossary' && (
           <>

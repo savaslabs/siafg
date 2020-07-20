@@ -3,6 +3,7 @@ import Card from './card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
 import styled, { css } from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 const generateZIndex = index => {
   if (index === 0) {

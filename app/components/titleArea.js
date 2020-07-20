@@ -6,18 +6,29 @@ import Share from './share';
 import CTA from './cta';
 import GlossaryTooltip from './glossaryTooltip';
 import { entryQuestion } from '../constants';
-import triangle from '../assets/triangle--right.svg';
 import { Animated } from 'react-animated-css';
+import triangleDown from '../assets/triangle--down.svg';
 
 const TitleArea = styled.div`
   width: 100vw;
   margin-left: -30px;
   margin-top: -40px;
-  padding: 80px 0 50px 0;
+  padding: 65px 0 40px 0;
   background: white;
   text-align: ${props => (props.isArchive ? 'left' : 'center')};
   line-height: 1.3;
   box-shadow: 0px 2px 10px rgba(89, 62, 191, 0.3);
+  position: relative;
+
+  ${breakpoint('sm', 'lg')`
+    &:after {
+      content: url(${triangleDown});
+      position: absolute;
+      bottom: -35px;
+      left: calc(50% - 45px);
+      filter: drop-shadow(0px 7px 3px rgba(89, 62, 191, 0.125));
+    }
+  `}
 
   ${breakpoint('md')`
     margin-left: -60px;
@@ -26,20 +37,30 @@ const TitleArea = styled.div`
   `}
 
   ${breakpoint('lg')`
-    width: calc(33vw - 84px);
+    width: calc(33.33vw - 84px);
     margin: 0;
+    background: transparent;
     padding: 0;
     line-height: inherit;
     box-shadow: none;
   `}
+
+  h2,
+  p {
+    margin-top: 0;
+  }
 `;
 
 const TitleAreaContent = styled.div`
   padding: 0 30px;
-  margin-top: 40px;
+  margin-top: 15px;
   max-width: 600px;
   max-height: 25vh;
-  margin-left: ${props => (props.isTitle ? '0px' : '-15px')};
+
+  ${breakpoint('sm', 'lg')`
+    position: relative;
+    z-index: 1;
+  `};
 
   ${breakpoint('md')`
     padding: 0 70px;
@@ -50,22 +71,13 @@ const TitleAreaContent = styled.div`
     max-width: none;
     max-height: none;
     margin-left: 0;
-    ${props =>
-      props.isTitle &&
-      `position: relative;
-      &:after {
-        content: url(${triangle});
-        position: absolute;
-        right: -55px;
-        top: 5px;
-      }
-    `};
+    margin-top: 40px;
   `};
 `;
 
 const titleArea = props => {
   return (
-    <Animated animationIn="fadeInDown" animationInDuration={800}>
+    <Animated animationIn="fadeInDown" animationInDuration={300} animationInDelay={600}>
       <TitleArea isArchive={props.topic === 'archive'}>
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
