@@ -36,7 +36,6 @@ const GlossaryTooltip = ({ textToReplace }) => {
   const renderReplacementText = () => {
     let matchesFound = [];
     return reactStringReplace(textToReplace, highlightedTerms, (match, i) => {
-      console.log(matchesFound);
       if (!matchesFound.includes(match)) {
         matchesFound = [...matchesFound, match];
         return (

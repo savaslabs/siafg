@@ -1,6 +1,7 @@
 /node_modules
 build/*
 !build/_redirects
+!build/logo.svg
 .env
 app/services/secrets.js
 .DS_Store

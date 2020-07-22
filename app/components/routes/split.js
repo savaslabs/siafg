@@ -11,7 +11,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
-import forward from '../../assets/forward.svg';
+import { Helmet } from 'react-helmet';
 import back from '../../assets/back.svg';
 
 const GradientOverlayAnimationStyle = createGlobalStyle`
@@ -152,6 +152,7 @@ const Split = ({ page, topic }) => {
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
   const [backDisabled, setBackDisabled] = useState(true);
+
   /*
    * Get a single question record based on ID.
    */
@@ -244,8 +245,32 @@ const Split = ({ page, topic }) => {
     history.goBack();
   };
 
+  const metaDescription =
+    topic === 'answer'
+      ? `${explanation.split('.')[0]}.`
+      : topic === 'archive'
+      ? `${page} related to asking for gender on forms.`
+      : `Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out.`;
+
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
+      <Helmet>
+        <title>
+          {topic === 'question' || topic === 'answer'
+            ? `Quiz | Should I Ask For Gender`
+            : `${title} | Should I Ask For Gender`}
+        </title>
+        <meta
+          property="og:title"
+          content={
+            topic === 'question' || topic === 'answer'
+              ? `Quiz | Should I Ask For Gender`
+              : `${title} | Should I Ask For Gender`
+          }
+        />
+        <meta name="description" content={metaDescription} />
+        <meta property="og:description" content={metaDescription} />
+      </Helmet>
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />

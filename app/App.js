@@ -13,7 +13,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import triangle from './assets/triangle--right.svg';
+import { Helmet } from 'react-helmet';
+import logo from './assets/logo.svg';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -101,6 +102,20 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ArchiveProvider>
         <GlobalStyles />
+        <Helmet>
+          <meta property="og:image" content={logo} />
+          <link rel="logo" type="image/svg" href={logo} />
+          <meta property="og:title" content="Should I Ask For Gender" />
+          <meta
+            name="description"
+            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+          />
+          <meta
+            property="og:description"
+            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+          />
+          <title>Should I Ask For Gender</title>
+        </Helmet>
         <SiteContainer page={location.pathname} className="container">
           <Hexes />
           <Switch>
