@@ -1,9 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-animated-css';
-import styled from 'styled-components';
 import CTA from './cta';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+import { createGlobalStyle } from 'styled-components';
 
-const ShareButton = styled.button``;
+const ShareStyles = createGlobalStyle`
+  .a2a_desktop {
+    display: none;
+
+    ${breakpoint('md', 'lg')`
+      margin: 5px 0 0 25px;
+    `}
+
+    ${breakpoint('md')`
+      display: block;
+    `}
+  }
+
+  .a2a_mobile {
+    position: absolute;
+    background: white;
+    display: flex;
+    top: -15px;
+    right: 0;
+    padding: 12px;
+
+    ${breakpoint('md')`
+      display: none;
+    `}
+  }
+`;
+
+const ShareRef = styled.div`
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+`;
 
 const share = () => {
   let shareButton = useRef();
@@ -21,16 +54,16 @@ const share = () => {
   };
 
   return (
-    <div ref={el => (shareButton = el)}>
+    <ShareRef ref={el => (shareButton = el)}>
       <CTA
         text="Share Results"
         as="button"
-        size="20px"
-        secondary
+        styletype="secondary"
         share
-        inlineBlock
+        display="inline-block"
         onClick={handleClick}
       />
+      <ShareStyles />
       <Animated
         animationIn="slideInDown"
         animationOut="slideOutUp"
@@ -39,15 +72,35 @@ const share = () => {
         isVisible={showButtons}
         animateOnMount={false}
       >
-        <div className="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#593EBF">
+        <div
+          className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_desktop"
+          data-a2a-icon-color="#593EBF"
+        >
           <a className="a2a_button_facebook" />
           <a className="a2a_button_twitter" />
           <a className="a2a_button_linkedin" />
           <a className="a2a_button_email" />
-          <a className="a2a_button_copy_link" />
         </div>
       </Animated>
-    </div>
+      <Animated
+        animationIn="fadeIn"
+        animationInDuration={250}
+        animationOut="fadeOut"
+        animationOutDuration={250}
+        isVisible={showButtons}
+        animateOnMount={false}
+      >
+        <div
+          className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_mobile"
+          data-a2a-icon-color="#593EBF"
+        >
+          <a className="a2a_button_facebook" />
+          <a className="a2a_button_twitter" />
+          <a className="a2a_button_linkedin" />
+          <a className="a2a_button_email" />
+        </div>
+      </Animated>
+    </ShareRef>
   );
 };
 

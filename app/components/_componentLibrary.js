@@ -8,11 +8,11 @@ const componentLibrary = () => {
     <>
       <h2>Components</h2>
       {/* White with purple border */}
-      <CTA primary href="#" text="Click Me!" />
+      <CTA styletype="primary" to="#" text="Click Me!" />
       {/* White with gradient border */}
-      <CTA secondary href="#" text="Click Me!" />
+      <CTA secondary to="#" text="Click Me!" />
       {/* Gradient */}
-      <CTA tertiary href="#" text="Click Me!" />
+      <CTA styletype="primary" to="#" text="Click Me!" />
       <Share />
     </>
   );

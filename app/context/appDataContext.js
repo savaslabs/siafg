@@ -16,7 +16,7 @@ export const AppDataProvider = props => {
 
   const getAllData = async () => {
     await tables.forEach(async table => {
-      const res = await getRecordsList(table);
+      const res = await getRecordsList(table, { params: { view: 'Grid view' } });
       switch (table) {
         case 'questions':
           setQuestions(res);
@@ -35,7 +35,7 @@ export const AppDataProvider = props => {
           break;
         case 'glossary_highlighted_terms':
           const termsRegexString = res[0]?.fields.glossary_regex_terms?.replace(/\s/g, '\\s');
-          const termsRegex = new RegExp(`\\b(${termsRegexString})\\b`, 'g');
+          const termsRegex = new RegExp(`\\b(${termsRegexString})\\b`, 'gi');
           setHighlightedTerms(termsRegex);
           break;
 
