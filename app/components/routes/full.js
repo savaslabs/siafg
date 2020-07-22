@@ -14,7 +14,15 @@ const FullPageWrapper = styled.div`
 
 const MainPageContent = styled.main`
   ${breakpoint('md')`
-    max-width: 500px;
+    max-width: 75%;
+
+    h1 {
+      max-width: 500px;
+    }
+  `}
+
+  ${breakpoint('lg')`
+    max-width: 50%;
   `}
 
   ${breakpoint('lg')`
@@ -38,8 +46,7 @@ const SiteTitle = styled.h1`
 `;
 
 const Full = () => {
-  const welcomeText =
-    'Lorem ipsum dolor sit gender, consectetur adipiscing elit, sed do sex tempor incididunt ut labore et dolore magna aliqua';
+  const welcomeText = `Before working to design more inclusive gender form fields, ask yourself, "Should I be asking for gender at all?" We're here to help with that. Click below to take the quiz and we'll provide some feedback and resources to help you out.`;
 
   return (
     <FullPageWrapper>

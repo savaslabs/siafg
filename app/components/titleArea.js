@@ -79,7 +79,11 @@ const TitleAreaContent = styled.div`
 
 const titleArea = props => {
   return (
-    <Animated animationIn="fadeInDown" animationInDuration={300} animationInDelay={600}>
+    <Animated
+      animationIn={props.topic === 'archive' ? 'fadeInUp' : 'fadeInDown'}
+      animationInDuration={props.topic === 'answer' ? 0 : 300}
+      animationInDelay={props.topic === 'answer' ? 0 : 600}
+    >
       <TitleArea isArchive={props.topic === 'archive'}>
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>

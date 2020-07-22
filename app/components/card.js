@@ -196,7 +196,7 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
             )}
           </>
         )}
-        <CardLink href={resource?.fields.link}></CardLink>
+        {resource?.fields.link && <CardLink href={resource?.fields.link}></CardLink>}
       </Card>
     </Animated>
   );

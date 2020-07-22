@@ -21,6 +21,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     font-size: 18px;
+    line-height: 1.45;
     margin: 0;
     overflow-x: hidden;
     color: ${props => props.theme.colors.darkGray};
@@ -70,13 +71,14 @@ const GlobalStyles = createGlobalStyle`
   h3,
   h4 {
     color: ${props => props.theme.colors.primaryPurple};
+    line-height: initial;
   }
 
   h2 {
     font-size: 21px;
 
     ${breakpoint('lg')`
-      font-size; 28px;
+      font-size: 28px;
     `}
   }
 `;
