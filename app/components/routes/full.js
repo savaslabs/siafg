@@ -5,6 +5,7 @@ import CTA from '../cta';
 import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
 import { entryQuestion } from '../../constants';
+import Footer from '../footer';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -75,6 +76,7 @@ const Full = () => {
           {/* For development only
           <ComponentLibrary /> */}
         </MainPageContent>
+        <Footer />
       </div>
     </FullPageWrapper>
   );
