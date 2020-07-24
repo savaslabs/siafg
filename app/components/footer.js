@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { routes } from '../constants';
@@ -10,14 +11,23 @@ const footer = () => {
       <FooterContainer>
         <div class="container">
           <FooterMenu>
-            <a href="https://savaslabs.com" target="_blank">
+            <a href="https://savaslabs.com" target="_blank" rel="noreferrer">
               Savas Labs
               <span className="sr-only">Opens in new window</span>
             </a>
             <img src={footerPolygon} alt="" />
-            <a href="/about">About</a>
+            <Link
+              to={{
+                state: {
+                  position: 0,
+                },
+                pathname: '/about',
+              }}
+            >
+              About
+            </Link>
             <img src={footerPolygon} alt="" />
-            <a href="mailto:info@savaslabs.com">
+            <a href="mailto:info@savaslabs.com" rel="noreferrer">
               Share Feedback
               <span className="sr-only">Opens an email to info@savaslabs.com</span>
             </a>
