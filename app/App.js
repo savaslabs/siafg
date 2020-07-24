@@ -103,18 +103,19 @@ const App = () => {
       <ArchiveProvider>
         <GlobalStyles />
         <Helmet>
-          <meta property="og:image" content={logo} />
-          <link rel="logo" type="image/svg" href={logo} />
-          <meta property="og:title" content="Should I Ask For Gender" />
+          <meta property="og:title" content="Should I Ask For Gender?" data-react-helmet="true" />
           <meta
             name="description"
             content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+            data-react-helmet="true"
           />
           <meta
             property="og:description"
             content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+            data-react-helmet="true"
           />
-          <title>Should I Ask For Gender</title>
+          <link rel="logo" type="image/svg" href={logo} />
+          <meta property="og:image" content={logo} />
         </Helmet>
         <SiteContainer page={location.pathname} className="container">
           <Hexes />

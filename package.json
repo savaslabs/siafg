@@ -1,7 +1,7 @@
 {
   "name": "siafg",
   "version": "1.0.0",
-  "description": "Should I Ask For Gender Web App",
+  "description": "Should I Ask For Gender? Web App",
   "main": "index.js",
   "repository": "https://github.com/savaslabs/siafg.git",
   "author": "Madeline Streilein <mcstreilein@gmail.com>",

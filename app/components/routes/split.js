@@ -257,18 +257,18 @@ const Split = ({ page, topic }) => {
       <Helmet>
         <title>
           {topic === 'question' || topic === 'answer'
-            ? `Quiz | Should I Ask For Gender`
-            : `${title} | Should I Ask For Gender`}
+            ? `Quiz | Should I Ask For Gender?`
+            : `${title} | Should I Ask For Gender?`}
         </title>
         <meta
           property="og:title"
           content={
             topic === 'question' || topic === 'answer'
-              ? `Quiz | Should I Ask For Gender`
-              : `${title} | Should I Ask For Gender`
+              ? `Quiz | Should I Ask For Gender?`
+              : `${title} | Should I Ask For Gender?`
           }
         />
-        <meta name="description" content={metaDescription} />
+        <meta property="description" content={metaDescription} />
         <meta property="og:description" content={metaDescription} />
       </Helmet>
       <Header />
