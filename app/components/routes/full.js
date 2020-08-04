@@ -24,25 +24,22 @@ const MainPageContent = styled.main`
 
   ${breakpoint('lg')`
     max-width: 50%;
+    padding-left: 84px;
+    margin-bottom: 50px;
   `}
-
-  ${breakpoint('lg')`
-      padding-left: 84px;
-  `};
 `;
 
 const SiteTitle = styled.h1`
   font-size: 33px;
-  margin: 20vh 0 20px;
+  margin-bottom: 20px;
 
   ${breakpoint('md')`
     font-size: 52px;
-    margin: 20vh 0 35px;
+    margin-bottom: 35px;
   `}
 
   ${breakpoint('lg')`
     font-size: 64px;
-    margin: 80px 0 35px;
   `}
 `;
 

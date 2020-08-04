@@ -1,36 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { routes } from '../constants';
 import footerPolygon from '../assets/footer-polygon.svg';
 
 const footer = () => {
   return (
     <Footer>
       <FooterContainer>
-        <div class="container">
+        <div className="container">
           <FooterMenu>
-            <a href="https://savaslabs.com" target="_blank" rel="noreferrer">
+            <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
               Savas Labs
               <span className="sr-only">Opens in new window</span>
-            </a>
-            <img src={footerPolygon} alt="" />
-            <Link
-              to={{
-                state: {
-                  position: 0,
-                },
-                pathname: '/about',
-              }}
-            >
-              About
-            </Link>
-            <img src={footerPolygon} alt="" />
-            <a href="mailto:info@savaslabs.com" rel="noreferrer">
+            </FooterLink>
+            <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
               Share Feedback
               <span className="sr-only">Opens an email to info@savaslabs.com</span>
-            </a>
+            </FooterLink>
           </FooterMenu>
         </div>
       </FooterContainer>
@@ -66,7 +52,15 @@ const FooterMenu = styled.div`
   width: 100%;
   min-width: 450px;
   display: flex;
-  justify-content: space-between;
+`;
+
+const FooterLink = styled.a`
+  &:not(:last-child) {
+    &:after {
+      content: url(${footerPolygon});
+      margin: 0 25px;
+    }
+  }
 `;
 
 export default footer;
