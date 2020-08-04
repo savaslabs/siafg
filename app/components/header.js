@@ -10,8 +10,9 @@ import home from '../assets/home.svg';
 const Header = styled.header`
   z-index: 100;
   align-items: center;
-  padding-top: 25px;
   margin-bottom: 5%;
+  top: 25px;
+  position: relative;
 
   ${breakpoint('lg')`
     width: 100%;
@@ -200,7 +201,7 @@ const header = ({ home }) => {
   };
 
   return (
-    <Header>
+    <Header id="site-header">
       {/* Logo */}
       <LogoLink
         to={{

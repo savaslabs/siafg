@@ -29,7 +29,6 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
     ${breakpoint('md')`
       left: 60px;
       width: calc(100vw - 120px);
-      margin-top: 0;
     `}
 
     ${breakpoint('lg')`
@@ -37,6 +36,7 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
       margin-left: 75px;
       margin-right: 65px;
       height: 300px;
+      margin-top: 0;
       width: calc(66.66vw - 140px);
       display: ${props => (props.topic === 'question' ? 'none' : 'block')};
     `}

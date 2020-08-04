@@ -71,7 +71,7 @@ const SidebarBackground = styled.div`
   &:after {
     content: url(${triangle});
     position: absolute;
-    top: 20vh;
+    top: ${props => props.arrowPosition};
     left: calc(33.33vw - 10px);
     transition: left 800ms;
   }
@@ -88,6 +88,7 @@ const SidebarBackground = styled.div`
 const hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
+  const [arrowPosition, setArrowPosition] = useState('140px');
   let position = 0;
   let max = 6;
 
@@ -110,6 +111,11 @@ const hexes = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    const headerHeight = document.getElementById('site-header')?.offsetHeight;
+    setArrowPosition(`${headerHeight + 50}px`);
+  });
+
   // Hex constructor.
   const createHex = (r, m, x, y, index) => {
     return (
@@ -123,7 +129,7 @@ const hexes = () => {
 
   return (
     <>
-      <SidebarBackground data-position={dataPosition} />
+      <SidebarBackground data-position={dataPosition} arrowPosition={arrowPosition} />
       <SvgBackground
         className="background"
         viewBox="0 0 500 500"
