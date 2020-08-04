@@ -18,17 +18,18 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
 
   .gradient-overlay-anim {
     background: ${props => props.theme.colors.scrollGradient};
-    pointer-events: none !important;
     height: 200px;
     left: 0;
     width: 100vw;
     position: fixed;
-    z-index: 20;
+    z-index: 15;
     margin-top: -15px;
+    pointer-events: none !important;
 
     ${breakpoint('md')`
       left: 60px;
       width: calc(100vw - 120px);
+      margin-top: 0;
     `}
 
     ${breakpoint('lg')`
@@ -37,6 +38,7 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
       margin-right: 65px;
       height: 300px;
       width: calc(66.66vw - 140px);
+      display: ${props => (props.topic === 'question' ? 'none' : 'block')};
     `}
   }
 `;
@@ -275,7 +277,7 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <GradientOverlayAnimationStyle />
+        <GradientOverlayAnimationStyle topic={topic} />
         <Animated
           animationIn="fadeIn"
           animationInDuration={800}

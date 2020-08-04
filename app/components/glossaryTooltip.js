@@ -44,7 +44,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
             <ReactTooltip
               id={`${match}-tooltip`}
               effect="solid"
-              place="top"
+              place="bottom"
               backgroundColor="#181818"
               textColor="#fff"
               multiline
