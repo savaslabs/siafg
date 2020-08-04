@@ -235,7 +235,9 @@ const header = ({ home }) => {
                 pathname: '/',
               }}
               exact={true}
-            />
+            >
+              <span className="sr-only">Home</span>
+            </HomeIcon>
           </MenuItem>
           {routes.slice(1).map((menuItem, idx) => {
             return (

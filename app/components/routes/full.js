@@ -14,6 +14,8 @@ const FullPageWrapper = styled.div`
 `;
 
 const MainPageContent = styled.main`
+  padding: 25% 0;
+
   ${breakpoint('md')`
     max-width: 75%;
 
@@ -24,7 +26,7 @@ const MainPageContent = styled.main`
 
   ${breakpoint('lg')`
     max-width: 50%;
-    padding-left: 84px;
+    padding: 0 0 0 84px;
     margin-bottom: 50px;
   `}
 `;
