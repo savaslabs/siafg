@@ -19,7 +19,6 @@ const TitleArea = styled.div`
   line-height: 1.3;
   box-shadow: 0px 2px 10px rgba(89, 62, 191, 0.3);
   position: relative;
-  z-index: 25;
 
   ${breakpoint('sm', 'lg')`
     &:after {
@@ -28,7 +27,6 @@ const TitleArea = styled.div`
       bottom: -35px;
       left: calc(50% - 45px);
       filter: drop-shadow(0px 7px 3px rgba(89, 62, 191, 0.125));
-      z-index: 25;
     }
   `}
 
@@ -63,11 +61,10 @@ const TitleAreaContent = styled.div`
     position: relative;
     z-index: 1;
     width: fit-content;
-    margin: 0 auto 15px;
   `};
 
   ${breakpoint('md')`
-    padding: 0 70px;
+    padding: 0 60px;
   `}
 
   ${breakpoint('lg')`

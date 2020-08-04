@@ -10,7 +10,7 @@ import home from '../assets/home.svg';
 const Header = styled.header`
   z-index: 100;
   align-items: center;
-  margin-bottom: 5%;
+  margin-bottom: 40px;
   top: 25px;
   position: relative;
 
@@ -62,11 +62,7 @@ const MenuToggle = styled.button`
   background: transparent;
   width: 25px;
   height: 18px;
-  right: 30px;
-
-  ${breakpoint('md')`
-    display: 60px;
-  `}
+  right: 0;
 
   ${breakpoint('lg')`
     display: none;
