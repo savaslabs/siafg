@@ -101,18 +101,13 @@ const Contact = styled.p`
   width: 100%;
   margin-bottom: 50px;
 
-  ${breakpoint('md')`
-    position: fixed;
-    right: 70px;
-    text-align: right;
-    width: auto;
-    margin: 0;
-    bottom: 70px;
-  `}
-
   ${breakpoint('lg')`
     right: 30px;
     bottom: 30px;
+    text-align: right;
+    width: auto;
+    margin: 0;
+    position: fixed;
   `}
 `;
 

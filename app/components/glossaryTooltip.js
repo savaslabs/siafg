@@ -26,7 +26,7 @@ const ToolTipStyles = createGlobalStyle`
 const MatchSpan = styled.span`
   border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
   position: relative;
-  z-index: 10;
+  z-index: 100;
 `;
 
 const GlossaryTooltip = ({ textToReplace }) => {
