@@ -19,6 +19,7 @@ const TitleArea = styled.div`
   line-height: 1.3;
   box-shadow: 0px 2px 10px rgba(89, 62, 191, 0.3);
   position: relative;
+  z-index: 50;
 
   ${breakpoint('sm', 'lg')`
     &:after {
@@ -27,6 +28,7 @@ const TitleArea = styled.div`
       bottom: -35px;
       left: calc(50% - 45px);
       filter: drop-shadow(0px 7px 3px rgba(89, 62, 191, 0.125));
+      z-index: 50;
     }
   `}
 
@@ -84,7 +86,7 @@ const titleArea = props => {
       animationInDuration={props.topic === 'answer' ? 0 : 300}
       animationInDelay={props.topic === 'answer' ? 0 : 600}
     >
-      <TitleArea isArchive={props.topic === 'archive'}>
+      <TitleArea isArchive={props.topic === 'archive'} id="title-area">
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
           {props.title}

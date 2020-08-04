@@ -19,18 +19,24 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
   .gradient-overlay-anim {
     background: ${props => props.theme.colors.scrollGradient};
     pointer-events: none !important;
-    height: 100px;
-    left: 30px;
-    width: calc(100vw - 60px);
+    height: 200px;
+    left: 0;
+    width: 100vw;
     position: fixed;
     z-index: 20;
+    margin-top: -15px;
+
+    ${breakpoint('md')`
+      left: 60px;
+      width: calc(100vw - 120px);
+    `}
 
     ${breakpoint('lg')`
       left: 33.33vw;
       margin-left: 75px;
-      margin-right: 60px;
+      margin-right: 65px;
       height: 300px;
-      width: calc(66.66vw - 135px);
+      width: calc(66.66vw - 140px);
     `}
   }
 `;
@@ -40,6 +46,11 @@ const SplitScreenWrapper = styled.main`
     display: flex;
     flex-wrap: wrap;
   `}
+
+  & > div.animated:first-child {
+    position: relative;
+    z-index: 50;
+  }
 `;
 
 const MainArea = styled.div`
@@ -48,8 +59,8 @@ const MainArea = styled.div`
     left: 33.33vw;
     position: absolute;
     padding: 0 65px 0 75px;
-    margin: 0 0 0 auto;
     right: 0;
+    height: 100%;
   `}
 
   ${props =>
@@ -57,14 +68,14 @@ const MainArea = styled.div`
     `
       text-align: center;
     `};
+
   background-color: transparent;
-  height: calc(100vh - 250px);
   overflow: scroll;
-  padding: 0;
+  padding: 50px 0 0 0;
   width: auto;
-  margin: 50px auto 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  height: ${props => props.elementHeight};
 
   &::-webkit-scrollbar {
     display: none;
@@ -72,24 +83,13 @@ const MainArea = styled.div`
 `;
 
 const ScrollGradient = styled.div`
-  background: ${props => props.theme.colors.scrollGradient};
-  pointer-events: none;
-  height: 100px;
-  left: 30px;
-  width: calc(100vw - 60px);
-  position: fixed;
-  z-index: 20;
-
-  ${breakpoint('lg')`
-    left: 33.33vw;
-    margin-left: 75px;
-    margin-right: 60px;
-    height: 300px;
-    width: calc(66.66vw - 135px);
-  `}
+  width: 100%;
+  height: 100%;
 `;
 
 const QuestionWrapper = styled.div`
+  position: relative;
+
   ${breakpoint('md')`
     margin-bottom: 0;
   `}
@@ -150,8 +150,9 @@ const Split = ({ page, topic }) => {
   const location = useLocation();
   const history = useHistory();
   const appData = useContext(AppDataContext);
-  const { questions, answers, options, resources, glossary, highlightedTerms } = appData;
+  const { questions, answers, options, resources, glossary } = appData;
   const [backDisabled, setBackDisabled] = useState(true);
+  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
 
   /*
    * Get a single question record based on ID.
@@ -241,6 +242,11 @@ const Split = ({ page, topic }) => {
     }
   }, [location.state?.activeId]);
 
+  useEffect(() => {
+    const titleHeight = document.getElementById('title-area')?.clientHeight;
+    setMainAreaHeight(`calc(100vh - ${titleHeight + 50}px)`);
+  });
+
   const goBack = e => {
     history.goBack();
   };
@@ -274,7 +280,16 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic}>
+        <GradientOverlayAnimationStyle />
+        <Animated
+          animationIn="fadeIn"
+          animationInDuration={800}
+          animationInDelay={1200}
+          className="gradient-overlay-anim"
+        >
+          <ScrollGradient />
+        </Animated>
+        <MainArea topic={topic} elementHeight={mainAreaHeight}>
           {topic === 'question' && (
             <QuestionWrapper>
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
@@ -290,17 +305,8 @@ const Split = ({ page, topic }) => {
               </Contact>
             </QuestionWrapper>
           )}
-          <GradientOverlayAnimationStyle />
           {topic === 'answer' && (
             <>
-              <Animated
-                animationIn="fadeIn"
-                animationInDuration={800}
-                animationInDelay={1200}
-                className="gradient-overlay-anim"
-              >
-                <ScrollGradient />
-              </Animated>
               <Card answer explanation={explanation} />
               {/* Render related articles */}
               <CardList page="Answer" items={relatedResources} />
@@ -308,14 +314,6 @@ const Split = ({ page, topic }) => {
           )}
           {topic === 'archive' && (
             <>
-              <Animated
-                animationIn="fadeIn"
-                animationInDuration={800}
-                animationInDelay={1500}
-                className="gradient-overlay-anim"
-              >
-                <ScrollGradient />
-              </Animated>
               <CardList page={page} resources={resources} glossary={glossary} />
             </>
           )}
