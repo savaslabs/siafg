@@ -76,6 +76,13 @@ const TitleAreaContent = styled.div`
   `};
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+`;
+
 const titleArea = props => {
   return (
     <Animated
@@ -93,21 +100,24 @@ const titleArea = props => {
         ) : (
           <TitleAreaContent>
             <GlossaryTooltip textToReplace={props.description} />
+
             {props.topic === 'answer' && (
-              <CTA
-                to={{
-                  state: {
-                    activeId: entryQuestion,
-                    position: 1,
-                  },
-                  pathname: '/quiz',
-                }}
-                display="inline-block"
-                text="Retake Quiz"
-                styletype="secondary"
-              />
+              <ButtonContainer>
+                <CTA
+                  to={{
+                    state: {
+                      activeId: entryQuestion,
+                      position: 1,
+                    },
+                    pathname: '/quiz',
+                  }}
+                  display="inline-block"
+                  text="Retake Quiz"
+                  styletype="secondary"
+                />
+                <Share />
+              </ButtonContainer>
             )}
-            {props.topic === 'answer' && <Share />}
           </TitleAreaContent>
         )}
       </TitleArea>
