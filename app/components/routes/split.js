@@ -72,7 +72,7 @@ const MainArea = styled.div`
     `};
 
   background-color: transparent;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 50px 0 0 0;
   width: auto;
   scrollbar-width: none;
