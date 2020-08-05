@@ -9,12 +9,21 @@ const ShareStyles = createGlobalStyle`
   .a2a_desktop {
     display: none;
 
-    ${breakpoint('md', 'lg')`
-      margin: 5px 0 0 25px;
-    `}
-
-    ${breakpoint('md')`
+    ${breakpoint('lg')`
       display: block;
+    `}
+  }
+
+  .a2a_tablet {
+    display: none;
+
+    ${breakpoint('md', 'lg')`
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: -170px;
+      padding: 10px 0;
+      margin-left: 25px;
     `}
   }
 
@@ -74,6 +83,24 @@ const share = () => {
       >
         <div
           className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_desktop"
+          data-a2a-icon-color="#593EBF"
+        >
+          <a className="a2a_button_facebook" />
+          <a className="a2a_button_twitter" />
+          <a className="a2a_button_linkedin" />
+          <a className="a2a_button_email" />
+        </div>
+      </Animated>
+      <Animated
+        animationIn="slideInLeft"
+        animationOut="slideOutLeft"
+        animationInDuration={400}
+        animationOutDuration={400}
+        isVisible={showButtons}
+        animateOnMount={false}
+      >
+        <div
+          className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_tablet"
           data-a2a-icon-color="#593EBF"
         >
           <a className="a2a_button_facebook" />
