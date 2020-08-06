@@ -13,6 +13,8 @@ const Legend = styled.legend`
   margin-bottom: 25px;
   font-weight: 700;
   font-size: 21px;
+  text-align: center;
+  width: 100%;
   color: ${props => props.theme.colors.primaryPurple};
 
   ${breakpoint('lg')`
@@ -23,6 +25,7 @@ const Legend = styled.legend`
 const OptionsWrapper = styled.fieldset`
   border-width: 0;
   padding: 0;
+  margin: 0;
 `;
 
 const optionList = ({ options }) => {

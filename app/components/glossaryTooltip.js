@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
-import reactStringReplace from 'react-string-replace';
 import { AppDataContext } from '../context/appDataContext';
+import reactStringReplace from 'react-string-replace';
 import ReactTooltip from 'react-tooltip';
 import styled, { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import ReactMarkdown from 'react-markdown/with-html';
+import htmlParser from 'react-markdown/plugins/html-parser';
 
 const ToolTipStyles = createGlobalStyle`
 
@@ -14,7 +16,7 @@ const ToolTipStyles = createGlobalStyle`
     box-shadow: 0px 2px 12px 0px rgba(253, 229, 229, 0.1);
 
     ${breakpoint('lg')`
-      max-width: 400px;
+      width: 400px;
     `}
 
     &.show {
@@ -26,17 +28,16 @@ const ToolTipStyles = createGlobalStyle`
 const MatchSpan = styled.span`
   border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
   position: relative;
-  z-index: 10;
+  z-index: 100;
 `;
 
 const GlossaryTooltip = ({ textToReplace }) => {
   const { glossary, highlightedTerms } = useContext(AppDataContext);
-  const [replacedText, setReplacedText] = useState('');
+  const [showTooltip, setShowTooltip] = useState(false);
 
-  const renderReplacementText = () => {
+  const renderReplacementText = text => {
     let matchesFound = [];
-    return reactStringReplace(textToReplace, highlightedTerms, (match, i) => {
-      console.log(matchesFound);
+    return reactStringReplace(text, highlightedTerms, (match, i) => {
       if (!matchesFound.includes(match)) {
         matchesFound = [...matchesFound, match];
         return (
@@ -45,11 +46,12 @@ const GlossaryTooltip = ({ textToReplace }) => {
             <ReactTooltip
               id={`${match}-tooltip`}
               effect="solid"
-              place="top"
+              place="bottom"
               backgroundColor="#181818"
               textColor="#fff"
               multiline
               className="glossary-tooltip"
+              wrapper="span"
             >
               <span key={i}>
                 {
@@ -67,16 +69,13 @@ const GlossaryTooltip = ({ textToReplace }) => {
     });
   };
 
-  useEffect(() => {
-    if (highlightedTerms) {
-      setReplacedText(renderReplacementText());
-    }
-  }, [highlightedTerms, textToReplace]);
-
   return (
     <>
       <ToolTipStyles />
-      <div>{replacedText}</div>
+      <ReactMarkdown
+        source={textToReplace}
+        renderers={{ text: text => renderReplacementText(text.value) }}
+      />
     </>
   );
 };

@@ -45,8 +45,9 @@ const OptionWrapper = styled.div`
 `;
 
 const OptionInput = styled.input`
-  appearance: none;
   cursor: pointer;
+  appearance: none;
+  border: 0;
   position: absolute;
   width: 100%;
   height: 100%;

@@ -1,7 +1,7 @@
 {
   "name": "siafg",
   "version": "1.0.0",
-  "description": "Should I Ask For Gender Web App",
+  "description": "Should I Ask For Gender? Web App",
   "main": "index.js",
   "repository": "https://github.com/savaslabs/siafg.git",
   "author": "Madeline Streilein <mcstreilein@gmail.com>",
@@ -28,7 +28,9 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack -p --config webpack.config.js --mode production",
-    "watch": "webpack -p --config webpack.config.js --mode development --watch"
+    "watch": "webpack -p --config webpack.config.js --mode development --watch",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
@@ -48,6 +50,7 @@
     "eslint-plugin-react": "^7.20.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fuse.js": "^6.3.1",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.0.3",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
@@ -85,7 +88,9 @@
     "react": "^16.12.0",
     "react-animated-css": "^1.2.1",
     "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
     "react-highlighter": "^0.4.3",
+    "react-markdown": "^4.3.1",
     "react-router-dom": "^5.1.2",
     "react-string-replace": "^0.4.4",
     "react-tooltip": "^4.2.7",
@@ -104,5 +109,5 @@
   "bugs": {
     "url": "https://github.com/savaslabs/siafg/issues"
   },
-  "homepage": "https://github.com/savaslabs/siafg#readme"
+  "homepage": "http://savaslabs.github.io/siafg"
 }

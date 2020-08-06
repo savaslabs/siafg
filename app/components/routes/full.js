@@ -5,6 +5,7 @@ import CTA from '../cta';
 import Header from '../header';
 import GlossaryTooltip from '../glossaryTooltip';
 import { entryQuestion } from '../../constants';
+import Footer from '../footer';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -13,6 +14,8 @@ const FullPageWrapper = styled.div`
 `;
 
 const MainPageContent = styled.main`
+  padding: 25% 0;
+
   ${breakpoint('md')`
     max-width: 75%;
 
@@ -23,25 +26,22 @@ const MainPageContent = styled.main`
 
   ${breakpoint('lg')`
     max-width: 50%;
+    padding: 0 0 0 84px;
+    margin-bottom: 50px;
   `}
-
-  ${breakpoint('lg')`
-      padding-left: 84px;
-  `};
 `;
 
 const SiteTitle = styled.h1`
   font-size: 33px;
-  margin: 20vh 0 20px;
+  margin-bottom: 20px;
 
   ${breakpoint('md')`
     font-size: 52px;
-    margin: 20vh 0 35px;
+    margin-bottom: 35px;
   `}
 
   ${breakpoint('lg')`
     font-size: 64px;
-    margin: 80px 0 35px;
   `}
 `;
 
@@ -75,6 +75,7 @@ const Full = () => {
           {/* For development only
           <ComponentLibrary /> */}
         </MainPageContent>
+        <Footer />
       </div>
     </FullPageWrapper>
   );

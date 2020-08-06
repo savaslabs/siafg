@@ -10,8 +10,9 @@ import home from '../assets/home.svg';
 const Header = styled.header`
   z-index: 100;
   align-items: center;
-  padding-top: 25px;
-  margin-bottom: 5%;
+  margin-bottom: 40px;
+  top: 25px;
+  position: relative;
 
   ${breakpoint('lg')`
     width: 100%;
@@ -61,11 +62,7 @@ const MenuToggle = styled.button`
   background: transparent;
   width: 25px;
   height: 18px;
-  right: 30px;
-
-  ${breakpoint('md')`
-    display: 60px;
-  `}
+  right: 0;
 
   ${breakpoint('lg')`
     display: none;
@@ -200,7 +197,7 @@ const header = ({ home }) => {
   };
 
   return (
-    <Header>
+    <Header id="site-header">
       {/* Logo */}
       <LogoLink
         to={{
@@ -235,7 +232,9 @@ const header = ({ home }) => {
                 pathname: '/',
               }}
               exact={true}
-            />
+            >
+              <span className="sr-only">Home</span>
+            </HomeIcon>
           </MenuItem>
           {routes.slice(1).map((menuItem, idx) => {
             return (

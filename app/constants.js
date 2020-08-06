@@ -35,6 +35,7 @@ export const theme = {
       'linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%) border-box;',
     gradientBorderHover:
       'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) padding-box, linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) border-box;',
+    footerGradient: 'linear-gradient(173deg, #FFF4DC 0%, #D4C7FF 181.95%)',
   },
 };
 export const g = [

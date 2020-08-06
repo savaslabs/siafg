@@ -4,6 +4,7 @@ import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 import { Animated } from 'react-animated-css';
 import breakpoint from 'styled-components-breakpoint';
+import ReactMarkdown from 'react-markdown';
 
 const Card = styled.article`
   box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
@@ -175,10 +176,11 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
               <p>
                 {search ? (
                   <Highlight matchElement={HighlightMark} search={search}>
+                    <ReactMarkdown source={term.fields.definition} />
                     {term.fields.definition}
                   </Highlight>
                 ) : (
-                  term.fields.definition
+                  <ReactMarkdown source={term.fields.definition} />
                 )}
               </p>
             )}

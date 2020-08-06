@@ -13,7 +13,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import triangle from './assets/triangle--right.svg';
+import { Helmet } from 'react-helmet';
+import logo from './assets/logo.svg';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -23,8 +24,9 @@ const GlobalStyles = createGlobalStyle`
     font-size: 18px;
     line-height: 1.45;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     color: ${props => props.theme.colors.darkGray};
+    max-height: 100vh;
 
     ${breakpoint('md')`
       font-size: 20px;
@@ -101,6 +103,21 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ArchiveProvider>
         <GlobalStyles />
+        <Helmet>
+          <meta property="og:title" content="Should I Ask For Gender?" data-react-helmet="true" />
+          <meta
+            name="description"
+            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+            data-react-helmet="true"
+          />
+          <meta
+            property="og:description"
+            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
+            data-react-helmet="true"
+          />
+          <link rel="logo" type="image/svg" href={logo} />
+          <meta property="og:image" content={logo} />
+        </Helmet>
         <SiteContainer page={location.pathname} className="container">
           <Hexes />
           <Switch>

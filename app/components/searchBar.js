@@ -9,6 +9,10 @@ import breakpoint from 'styled-components-breakpoint';
 const SearchContainer = styled.div`
   padding: 0 30px;
 
+  ${breakpoint('md')`
+    padding: 0 60px;
+  `}
+
   ${breakpoint('lg')`
     padding: 0 0 0 84px;
   `}
@@ -19,6 +23,8 @@ const SearchBar = styled.input`
   border: 3px solid ${props => props.theme.colors.charcoal};
   padding: 11px 25px;
   width: 100%;
+  max-width: 375px;
+  font-size: 16px;
 
   &::-webkit-input-placeholder {
     font-style: italic;

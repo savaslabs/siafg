@@ -61,11 +61,10 @@ const TitleAreaContent = styled.div`
     position: relative;
     z-index: 1;
     width: fit-content;
-    margin: 0 auto 15px;
   `};
 
   ${breakpoint('md')`
-    padding: 0 70px;
+    padding: 0 60px;
   `}
 
   ${breakpoint('lg')`
@@ -77,6 +76,13 @@ const TitleAreaContent = styled.div`
   `};
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+`;
+
 const titleArea = props => {
   return (
     <Animated
@@ -84,7 +90,7 @@ const titleArea = props => {
       animationInDuration={props.topic === 'answer' ? 0 : 300}
       animationInDelay={props.topic === 'answer' ? 0 : 600}
     >
-      <TitleArea isArchive={props.topic === 'archive'}>
+      <TitleArea isArchive={props.topic === 'archive'} id="title-area">
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
           {props.title}
@@ -94,21 +100,24 @@ const titleArea = props => {
         ) : (
           <TitleAreaContent>
             <GlossaryTooltip textToReplace={props.description} />
+
             {props.topic === 'answer' && (
-              <CTA
-                to={{
-                  state: {
-                    activeId: entryQuestion,
-                    position: 1,
-                  },
-                  pathname: '/quiz',
-                }}
-                display="inline-block"
-                text="Retake Quiz"
-                styletype="secondary"
-              />
+              <ButtonContainer>
+                <CTA
+                  to={{
+                    state: {
+                      activeId: entryQuestion,
+                      position: 1,
+                    },
+                    pathname: '/quiz',
+                  }}
+                  display="inline-block"
+                  text="Retake Quiz"
+                  styletype="secondary"
+                />
+                <Share />
+              </ButtonContainer>
             )}
-            {props.topic === 'answer' && <Share />}
           </TitleAreaContent>
         )}
       </TitleArea>
