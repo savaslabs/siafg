@@ -77,10 +77,12 @@ const TitleAreaContent = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 65vw;
+  ${breakpoint('sm', 'md')`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65vw;
+  `}
 `;
 
 const titleArea = props => {

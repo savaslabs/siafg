@@ -56,21 +56,6 @@ const SplitScreenWrapper = styled.main`
 `;
 
 const MainArea = styled.div`
-  ${breakpoint('lg')`
-    width: calc(66.66vw - 140px);
-    left: 33.33vw;
-    position: absolute;
-    padding: 0 65px 0 75px;
-    right: 0;
-    height: 100%;
-  `}
-
-  ${props =>
-    props.topic === 'question' &&
-    `
-      text-align: center;
-    `};
-
   background-color: transparent;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -78,7 +63,22 @@ const MainArea = styled.div`
   width: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: ${props => props.elementHeight};
+  height: ${props => props.mainAreaHeightMobile};
+
+  ${breakpoint('lg')`
+    width: calc(66.66vw - 140px);
+    left: 33.33vw;
+    position: absolute;
+    padding: 0 65px 0 75px;
+    right: 0;
+    height: ${props => props.mainAreaHeightDesktop};
+  `}
+
+  ${props =>
+    props.topic === 'question' &&
+    `
+      text-align: center;
+    `};
 
   &::-webkit-scrollbar {
     display: none;
@@ -150,7 +150,8 @@ const Split = ({ page, topic }) => {
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
   const [backDisabled, setBackDisabled] = useState(true);
-  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
+  const [mainAreaHeightMobile, setMainAreaHeightMobile] = useState('100vh');
+  const [mainAreaHeightDesktop, setMainAreaHeightDesktop] = useState('100vh');
 
   /*
    * Get a single question record based on ID.
@@ -242,7 +243,9 @@ const Split = ({ page, topic }) => {
 
   useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
-    setMainAreaHeight(`calc(100vh - ${titleHeight + 150}px)`);
+    const headerHeight = document.getElementById('site-header')?.clientHeight;
+    setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 25}px)`);
+    setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
   });
 
   const goBack = e => {
@@ -287,7 +290,11 @@ const Split = ({ page, topic }) => {
         >
           <ScrollGradient />
         </Animated>
-        <MainArea topic={topic} elementHeight={mainAreaHeight}>
+        <MainArea
+          topic={topic}
+          mainAreaHeightMobile={mainAreaHeightMobile}
+          mainAreaHeightDesktop={mainAreaHeightDesktop}
+        >
           {topic === 'question' && (
             <QuestionWrapper>
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>

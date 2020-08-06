@@ -115,19 +115,20 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
     return (
       <>
         {search ? (
-          <p>
+          <>
             <Highlight matchElement={HighlightMark} search={search}>
-              {resource?.fields.summary}
+              <ReactMarkdown source={resource?.fields.summary} />
             </Highlight>
-          </p>
+          </>
         ) : (
+          // ReactMarkdown is handled in GlossaryTooltip.
           <GlossaryTooltip textToReplace={resource?.fields.summary} />
         )}
 
-        <p>
+        <>
           {search && (
             <Highlight matchElement={HighlightMark} search={search}>
-              {resource?.fields.source_author}
+              <ReactMarkdown source={resource?.fields.source_author} />
             </Highlight>
           )}
           {resource && (
@@ -141,7 +142,7 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
               )}
             </Attribution>
           )}
-        </p>
+        </>
       </>
     );
   };
@@ -173,19 +174,18 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
         {page === 'Glossary' && (
           <>
             {term.fields.definition && (
-              <p>
+              <>
                 {search ? (
                   <Highlight matchElement={HighlightMark} search={search}>
                     <ReactMarkdown source={term.fields.definition} />
-                    {term.fields.definition}
                   </Highlight>
                 ) : (
                   <ReactMarkdown source={term.fields.definition} />
                 )}
-              </p>
+              </>
             )}
             {term.fields.related_term_names && (
-              <div>
+              <p>
                 See also:
                 {term.fields.related_term_names.map((related, index) => {
                   return (
@@ -194,11 +194,11 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
                     </RelatedTerm>
                   );
                 })}
-              </div>
+              </p>
             )}
           </>
         )}
-        {resource?.fields.link && <CardLink href={resource?.fields.link}></CardLink>}
+        {resource?.fields.link && <CardLink href={resource?.fields.link} />}
       </Card>
     </Animated>
   );
