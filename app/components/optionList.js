@@ -25,6 +25,7 @@ const Legend = styled.legend`
 const OptionsWrapper = styled.fieldset`
   border-width: 0;
   padding: 0;
+  margin: 0;
 `;
 
 const optionList = ({ options }) => {

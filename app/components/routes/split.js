@@ -73,6 +73,7 @@ const MainArea = styled.div`
 
   background-color: transparent;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 50px 0 0 0;
   width: auto;
   scrollbar-width: none;
