@@ -13,6 +13,8 @@ const Legend = styled.legend`
   margin-bottom: 25px;
   font-weight: 700;
   font-size: 21px;
+  text-align: center;
+  width: 100%;
   color: ${props => props.theme.colors.primaryPurple};
 
   ${breakpoint('lg')`

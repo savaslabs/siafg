@@ -24,8 +24,9 @@ const GlobalStyles = createGlobalStyle`
     font-size: 18px;
     line-height: 1.45;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     color: ${props => props.theme.colors.darkGray};
+    max-height: 100vh;
 
     ${breakpoint('md')`
       font-size: 20px;

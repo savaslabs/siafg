@@ -241,7 +241,7 @@ const Split = ({ page, topic }) => {
 
   useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
-    setMainAreaHeight(`calc(100vh - ${titleHeight + 50}px)`);
+    setMainAreaHeight(`calc(100vh - ${titleHeight + 150}px)`);
   });
 
   const goBack = e => {
