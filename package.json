@@ -28,7 +28,9 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack -p --config webpack.config.js --mode production",
-    "watch": "webpack -p --config webpack.config.js --mode development --watch"
+    "watch": "webpack -p --config webpack.config.js --mode development --watch",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
@@ -48,6 +50,7 @@
     "eslint-plugin-react": "^7.20.3",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fuse.js": "^6.3.1",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.0.3",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
@@ -106,5 +109,5 @@
   "bugs": {
     "url": "https://github.com/savaslabs/siafg/issues"
   },
-  "homepage": "https://github.com/savaslabs/siafg#readme"
+  "homepage": "http://savaslabs.github.io/siafg"
 }
