@@ -2,6 +2,7 @@
 build/*
 !build/_redirects
 !build/logo.svg
+!build/og.svg
 .env
 app/services/secrets.js
 .DS_Store

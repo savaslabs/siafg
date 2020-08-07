@@ -275,7 +275,7 @@ const Split = ({ page, topic }) => {
               : `${title} | Should I Ask For Gender?`
           }
         />
-        <meta property="description" content={metaDescription} />
+        <meta name="description" content={metaDescription} />
         <meta property="og:description" content={metaDescription} />
       </Helmet>
       <Header />

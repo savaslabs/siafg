@@ -15,6 +15,7 @@ import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { Helmet } from 'react-helmet';
 import logo from './assets/logo.svg';
+import ogImage from './assets/og.svg';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -116,7 +117,7 @@ const App = () => {
             data-react-helmet="true"
           />
           <link rel="logo" type="image/svg" href={logo} />
-          <meta property="og:image" content={logo} />
+          <meta property="og:image" content={ogImage} />
         </Helmet>
         <SiteContainer page={location.pathname} className="container">
           <Hexes />
