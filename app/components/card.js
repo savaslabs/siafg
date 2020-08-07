@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './glossaryTooltip';
 import { Animated } from 'react-animated-css';
@@ -41,6 +41,10 @@ const Card = styled.article`
   }
 `;
 
+const RelatedTermText = styled.span`
+  white-space: nowrap;
+`;
+
 const RelatedTerm = styled.a`
   margin-left: 10px;
   color: ${props => props.theme.colors.primaryPurple};
@@ -60,7 +64,7 @@ const Separator = styled.span`
   padding: 0 11px;
 `;
 
-const Attribution = styled.span`
+const Attribution = styled.p`
   font-weight: 600;
   color: ${props => props.theme.colors.charcoal};
 
@@ -80,9 +84,11 @@ const CardLink = styled.a`
   }
 `;
 
-const HighlightMark = styled.mark`
-  background-color: ${props => props.theme.colors.highlighter};
-  color: inherit;
+const HighlightMarkStyles = createGlobalStyle`
+  .card mark {
+    background-color: ${props => props.theme.colors.highlighter};
+    color: inherit;
+  }
 `;
 
 const card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
@@ -116,33 +122,31 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
       <>
         {search ? (
           <>
-            <Highlight matchElement={HighlightMark} search={search}>
-              <ReactMarkdown source={resource?.fields.summary} />
-            </Highlight>
+            <ReactMarkdown
+              source={resource?.fields.summary}
+              renderers={{
+                text: text => {
+                  return <Highlight search={search}>{text.value}</Highlight>;
+                },
+              }}
+            />
           </>
         ) : (
           // ReactMarkdown is handled in GlossaryTooltip.
           <GlossaryTooltip textToReplace={resource?.fields.summary} />
         )}
 
-        <>
-          {search && (
-            <Highlight matchElement={HighlightMark} search={search}>
-              <ReactMarkdown source={resource?.fields.source_author} />
-            </Highlight>
-          )}
-          {resource && (
-            <Attribution>
-              {resource.fields.source_author ? resource.fields.source_author : ''}
-              {resource.fields.date && (
-                <>
-                  <Separator>&ndash;</Separator>
-                  {new Date(resource.fields.date).toLocaleString('en-US', { dateStyle: 'short' })}
-                </>
-              )}
-            </Attribution>
-          )}
-        </>
+        {resource && (
+          <Attribution>
+            {resource.fields.source_author ? resource.fields.source_author : ''}
+            {resource.fields.date && (
+              <>
+                <Separator>&ndash;</Separator>
+                {new Date(resource.fields.date).toLocaleString('en-US', { dateStyle: 'short' })}
+              </>
+            )}
+          </Attribution>
+        )}
       </>
     );
   };
@@ -155,16 +159,9 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
       animationOutDuration={800}
       animationInDelay={(listLength - index) * 15}
     >
-      <Card {...renderId()}>
-        <h1>
-          {search ? (
-            <Highlight matchElement={HighlightMark} search={search}>
-              {renderH1()}
-            </Highlight>
-          ) : (
-            renderH1()
-          )}
-        </h1>
+      <HighlightMarkStyles />
+      <Card {...renderId()} className="card">
+        <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
         {explanation && (
           <div className="answer">
             <GlossaryTooltip textToReplace={explanation} className="answer" />
@@ -176,17 +173,22 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
             {term.fields.definition && (
               <>
                 {search ? (
-                  <Highlight matchElement={HighlightMark} search={search}>
-                    <ReactMarkdown source={term.fields.definition} />
-                  </Highlight>
+                  <ReactMarkdown
+                    source={term.fields.definition}
+                    renderers={{
+                      text: text => {
+                        return <Highlight search={search}>{text.value}</Highlight>;
+                      },
+                    }}
+                  />
                 ) : (
                   <ReactMarkdown source={term.fields.definition} />
                 )}
               </>
             )}
             {term.fields.related_term_names && (
-              <p>
-                See also:
+              <div>
+                <RelatedTermText>See also:</RelatedTermText>
                 {term.fields.related_term_names.map((related, index) => {
                   return (
                     <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
@@ -194,7 +196,7 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
                     </RelatedTerm>
                   );
                 })}
-              </p>
+              </div>
             )}
           </>
         )}

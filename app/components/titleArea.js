@@ -13,7 +13,7 @@ const TitleArea = styled.div`
   width: 100vw;
   margin-left: -30px;
   margin-top: -40px;
-  padding: 65px 0 40px 0;
+  padding: ${props => (props.isArchive ? '65px 0 30px' : '65px 0 40px 0')};
   background: white;
   text-align: ${props => (props.isArchive ? 'left' : 'center')};
   line-height: 1.3;

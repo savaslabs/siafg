@@ -33,7 +33,6 @@ const MatchSpan = styled.span`
 
 const GlossaryTooltip = ({ textToReplace }) => {
   const { glossary, highlightedTerms } = useContext(AppDataContext);
-  const [showTooltip, setShowTooltip] = useState(false);
 
   const renderReplacementText = text => {
     let matchesFound = [];

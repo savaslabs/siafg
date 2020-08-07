@@ -35,7 +35,47 @@ const cardList = props => {
   const { searchResults, searchTerm } = useContext(ArchiveContext);
 
   const renderResults = () => {
-    if (searchResults !== undefined && searchResults.length > 0) {
+    if (searchResults.length === 0 || searchTerm.length === 0) {
+      if (props.page === 'Glossary' && glossary) {
+        return (
+          <>
+            {glossary
+              .sort((a, b) => {
+                return a.fields.term - b.fields.term;
+              })
+              .map((term, idx) => {
+                return (
+                  <CardListItem key={idx} index={idx}>
+                    <Card term={term} page={props.page} index={idx} listLength={glossary.length} />
+                  </CardListItem>
+                );
+              })}
+          </>
+        );
+      }
+      if (props.page === 'Resources' && resources) {
+        return (
+          <>
+            {resources
+              .sort((a, b) => {
+                return a.fields.date - b.fields.date;
+              })
+              .map((resource, idx) => {
+                return (
+                  <CardListItem key={idx} index={idx}>
+                    <Card
+                      resource={resource}
+                      page={props.page}
+                      index={idx}
+                      listLength={resources.length}
+                    />
+                  </CardListItem>
+                );
+              })}
+          </>
+        );
+      }
+    } else {
       if (props.page === 'Glossary') {
         return (
           <>
@@ -67,38 +107,6 @@ const cardList = props => {
                     page={props.page}
                     index={idx}
                     listLength={searchResults.length}
-                  />
-                </CardListItem>
-              );
-            })}
-          </>
-        );
-      }
-    } else {
-      if (props.page === 'Glossary' && glossary) {
-        return (
-          <>
-            {glossary.map((term, idx) => {
-              return (
-                <CardListItem key={idx} index={idx}>
-                  <Card term={term} page={props.page} index={idx} listLength={glossary.length} />
-                </CardListItem>
-              );
-            })}
-          </>
-        );
-      }
-      if (props.page === 'Resources' && resources) {
-        return (
-          <>
-            {resources.map((resource, idx) => {
-              return (
-                <CardListItem key={idx} index={idx}>
-                  <Card
-                    resource={resource}
-                    page={props.page}
-                    index={idx}
-                    listLength={resources.length}
                   />
                 </CardListItem>
               );
