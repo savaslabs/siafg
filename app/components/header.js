@@ -8,9 +8,9 @@ import darkLogo from '../assets/logo-dark.svg';
 import home from '../assets/home.svg';
 
 const Header = styled.header`
-  z-index: 100;
+  z-index: 200;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: ${props => (props.home ? '0' : '40px')};
   top: 25px;
   position: relative;
 
@@ -197,7 +197,7 @@ const header = ({ home }) => {
   };
 
   return (
-    <Header id="site-header">
+    <Header id="site-header" home={home}>
       {/* Logo */}
       <LogoLink
         to={{
