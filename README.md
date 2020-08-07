@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a2ee1092-2c66-483a-916e-6190c2ac4d16/deploy-status)](https://app.netlify.com/sites/trusting-colden-635363/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6f485b64-c580-43b9-9a17-55f25d5909d5/deploy-status)](https://app.netlify.com/sites/savas-siafg/deploys)
 
 # siafg
 
