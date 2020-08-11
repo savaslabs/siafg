@@ -30,10 +30,6 @@ const Card = styled.article`
     & > p {
       margin-bottom: 0;
     }
-
-    & > div:not(.answer) {
-      display: none;
-    }
   `}
 
   &:hover {
@@ -46,7 +42,7 @@ const RelatedTermText = styled.span`
 `;
 
 const RelatedTerm = styled.a`
-  margin-left: 10px;
+  margin-left: 16px;
   color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
 
