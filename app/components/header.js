@@ -215,6 +215,7 @@ const header = ({ home }) => {
         className={open ? 'open' : null}
         aria-controls="navigation"
         aria-expanded="false"
+        aria-label="navigation toggle"
       >
         <span></span>
         <span></span>
