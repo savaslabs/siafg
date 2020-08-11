@@ -32,13 +32,8 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
     `}
 
     ${breakpoint('lg')`
-      left: 33.33vw;
-      margin-left: 75px;
-      margin-right: 65px;
       height: 300px;
-      margin-top: 0;
-      width: calc(66.66vw - 140px);
-      display: ${props => (props.topic === 'question' ? 'none' : 'block')};
+      display: none;
     `}
   }
 `;
