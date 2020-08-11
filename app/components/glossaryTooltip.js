@@ -33,11 +33,12 @@ const MatchSpan = styled.span`
 
 const GlossaryTooltip = ({ textToReplace }) => {
   const { glossary, highlightedTerms } = useContext(AppDataContext);
+  const glossaryTermArray = glossary.map(item => item.fields.term.toLowerCase());
 
   const renderReplacementText = text => {
     let matchesFound = [];
     return reactStringReplace(text, highlightedTerms, (match, i) => {
-      if (!matchesFound.includes(match)) {
+      if (!matchesFound.includes(match) && glossaryTermArray.includes(match.toLowerCase())) {
         matchesFound = [...matchesFound, match];
         return (
           <MatchSpan data-tip data-for={`${match}-tooltip`} key={match + i}>
