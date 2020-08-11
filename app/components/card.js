@@ -7,7 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import ReactMarkdown from 'react-markdown';
 
 const Card = styled.article`
-  box-shadow: 0 8px 4px -4px rgba(89, 62, 191, 0.3);
+  box-shadow: 0px 4px 4px rgba(89, 62, 191, 0.3);
   transition: box-shadow 0.5s ease-out;
   padding: 20px;
   background: white;
@@ -32,8 +32,9 @@ const Card = styled.article`
     }
   `}
 
-  &:hover {
-    box-shadow: 0 8px 10px -4px rgba(89, 62, 191, 0.5);
+  &:hover,
+  &:focus {
+    box-shadow: 4px 4px 15px rgba(89, 62, 191, 0.3);
   }
 `;
 
