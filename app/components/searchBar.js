@@ -20,15 +20,25 @@ const SearchContainer = styled.div`
   `}
 `;
 
-const SearchBar = styled.input`
+const SearchOutline = styled.div`
   border-radius: 100px;
   border: 3px solid ${props => props.theme.colors.charcoal};
   padding: 11px 25px;
-  width: 100%;
   max-width: 375px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const SearchInput = styled.input`
   font-size: 16px;
   appearance: none;
-  display: block;
+  border: 0;
+  align-self: stretch;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
 
   &::-webkit-search-cancel-button {
     display: none;
@@ -55,20 +65,8 @@ const ClearSearch = styled.button`
   background: url(${clearSearch}) center/cover no-repeat;
   width: 15px;
   height: 15px;
+  align-self: center;
   border: 0;
-  position: relative;
-  left: calc(100% - 35px);
-  top: -35px;
-
-  ${breakpoint('md')`
-    left: 340px;
-    top: -37px;
-  `}
-
-  ${breakpoint('lg')`
-    left: calc(100% - 35px);
-    top: -38px;
-  `}
 `;
 
 const searchBar = () => {
@@ -126,14 +124,16 @@ const searchBar = () => {
 
   return (
     <SearchContainer>
-      <SearchBar
-        type="search"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={handleSearch}
-        ref={inputRef}
-      />
-      {showButton() && <ClearSearch onClick={clearSearchTerm} />}
+      <SearchOutline>
+        <SearchInput
+          type="search"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearch}
+          ref={inputRef}
+        />
+        {showButton() && <ClearSearch onClick={clearSearchTerm} />}
+      </SearchOutline>
       <Animated
         animationIn="fadeIn"
         animationOut="fadeOut"
