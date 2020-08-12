@@ -11,6 +11,10 @@ const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   height: 100vh;
+
+  ${breakpoint('lg')`
+    overflow-y: scroll;
+  `}
 `;
 
 const MainPageContent = styled.main`
@@ -27,7 +31,7 @@ const MainPageContent = styled.main`
   ${breakpoint('lg')`
     max-width: 50%;
     padding: 0 0 0 84px;
-    margin-bottom: 50px;
+    margin-bottom: 140px;
   `}
 `;
 
