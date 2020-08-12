@@ -204,10 +204,6 @@ const Split = ({ page, topic }) => {
     setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
   });
 
-  const goBack = e => {
-    history.goBack();
-  };
-
   const metaDescription =
     topic === 'answer'
       ? `${explanation.split('.')[0]}.`
