@@ -17,6 +17,10 @@ const footer = () => {
               Share Feedback
               <span className="sr-only">Opens an email to info@savaslabs.com</span>
             </FooterLink>
+            <FooterLink href="/about">
+              About
+              <span className="sr-only">Opens the about page</span>
+            </FooterLink>
           </FooterMenu>
         </div>
       </FooterContainer>
