@@ -41,6 +41,7 @@ const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
     flex-wrap: wrap;
+    min-height: calc(100vh - 100px);
   `}
 
   & > div.animated:first-child {
@@ -99,12 +100,7 @@ const Contact = styled.p`
   margin-bottom: 50px;
 
   ${breakpoint('lg')`
-    right: 30px;
-    bottom: 30px;
     text-align: right;
-    width: auto;
-    margin: 0;
-    position: fixed;
   `}
 `;
 
