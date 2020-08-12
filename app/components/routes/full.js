@@ -29,7 +29,8 @@ const MainPageContent = styled.main`
   `}
 
   ${breakpoint('lg')`
-    max-width: 50%;
+    max-width: 60%;
+    max-width: 700px;
     padding: 0 0 0 84px;
     margin-bottom: 140px;
   `}
