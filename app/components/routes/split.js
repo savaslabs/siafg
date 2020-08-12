@@ -12,7 +12,6 @@ import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
 import { Helmet } from 'react-helmet';
-import back from '../../assets/back.svg';
 
 const GradientOverlayAnimationStyle = createGlobalStyle`
 
@@ -109,31 +108,6 @@ const Contact = styled.p`
   `}
 `;
 
-const QuizNavigation = styled.div`
-  margin: 40px auto;
-`;
-
-const PrevQuestion = styled.button`
-  ${breakpoint('lg')`
-    display: none;
-  `}
-
-  appearance: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  transition: opacity 0.2;
-
-  &:after {
-    content: url(${back});
-  }
-
-  &:disabled {
-    cursor: auto;
-    opacity: 0.5;
-  }
-`;
-
 const Split = ({ page, topic }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -144,7 +118,6 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
-  const [backDisabled, setBackDisabled] = useState(true);
   const [mainAreaHeightMobile, setMainAreaHeightMobile] = useState('100vh');
   const [mainAreaHeightDesktop, setMainAreaHeightDesktop] = useState('100vh');
 
@@ -229,14 +202,6 @@ const Split = ({ page, topic }) => {
   }, [location, appData]);
 
   useEffect(() => {
-    if (location.state?.activeId === entryQuestion) {
-      setBackDisabled(true);
-    } else {
-      setBackDisabled(false);
-    }
-  }, [location.state?.activeId]);
-
-  useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
     const headerHeight = document.getElementById('site-header')?.clientHeight;
     setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 25}px)`);
@@ -295,11 +260,6 @@ const Split = ({ page, topic }) => {
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
                 <OptionList options={questionOptions} />{' '}
               </Animated>
-              <QuizNavigation>
-                <PrevQuestion showBack={backDisabled} disabled={backDisabled} onClick={goBack}>
-                  <span className="sr-only">Previous Question</span>
-                </PrevQuestion>
-              </QuizNavigation>
               <Contact>
                 Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>
