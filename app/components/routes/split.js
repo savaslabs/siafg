@@ -12,7 +12,6 @@ import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
 import { Helmet } from 'react-helmet';
-import back from '../../assets/back.svg';
 
 const GradientOverlayAnimationStyle = createGlobalStyle`
 
@@ -32,13 +31,8 @@ const GradientOverlayAnimationStyle = createGlobalStyle`
     `}
 
     ${breakpoint('lg')`
-      left: 33.33vw;
-      margin-left: 75px;
-      margin-right: 65px;
       height: 300px;
-      margin-top: 0;
-      width: calc(66.66vw - 140px);
-      display: ${props => (props.topic === 'question' ? 'none' : 'block')};
+      display: none;
     `}
   }
 `;
@@ -47,6 +41,7 @@ const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
     flex-wrap: wrap;
+    min-height: calc(100vh - 100px);
   `}
 
   & > div.animated:first-child {
@@ -105,38 +100,8 @@ const Contact = styled.p`
   margin-bottom: 50px;
 
   ${breakpoint('lg')`
-    right: 30px;
-    bottom: 30px;
     text-align: right;
-    width: auto;
-    margin: 0;
-    position: fixed;
   `}
-`;
-
-const QuizNavigation = styled.div`
-  margin: 40px auto;
-`;
-
-const PrevQuestion = styled.button`
-  ${breakpoint('lg')`
-    display: none;
-  `}
-
-  appearance: none;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  transition: opacity 0.2;
-
-  &:after {
-    content: url(${back});
-  }
-
-  &:disabled {
-    cursor: auto;
-    opacity: 0.5;
-  }
 `;
 
 const Split = ({ page, topic }) => {
@@ -149,7 +114,6 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
-  const [backDisabled, setBackDisabled] = useState(true);
   const [mainAreaHeightMobile, setMainAreaHeightMobile] = useState('100vh');
   const [mainAreaHeightDesktop, setMainAreaHeightDesktop] = useState('100vh');
 
@@ -234,23 +198,11 @@ const Split = ({ page, topic }) => {
   }, [location, appData]);
 
   useEffect(() => {
-    if (location.state?.activeId === entryQuestion) {
-      setBackDisabled(true);
-    } else {
-      setBackDisabled(false);
-    }
-  }, [location.state?.activeId]);
-
-  useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
     const headerHeight = document.getElementById('site-header')?.clientHeight;
     setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 25}px)`);
     setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
   });
-
-  const goBack = e => {
-    history.goBack();
-  };
 
   const metaDescription =
     topic === 'answer'
@@ -300,11 +252,6 @@ const Split = ({ page, topic }) => {
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
                 <OptionList options={questionOptions} />{' '}
               </Animated>
-              <QuizNavigation>
-                <PrevQuestion showBack={backDisabled} disabled={backDisabled} onClick={goBack}>
-                  <span className="sr-only">Previous Question</span>
-                </PrevQuestion>
-              </QuizNavigation>
               <Contact>
                 Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>

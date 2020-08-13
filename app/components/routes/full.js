@@ -10,7 +10,6 @@ import Footer from '../footer';
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  height: 100vh;
 `;
 
 const MainPageContent = styled.main`
@@ -25,9 +24,10 @@ const MainPageContent = styled.main`
   `}
 
   ${breakpoint('lg')`
-    max-width: 50%;
-    padding: 0 0 0 84px;
-    margin-bottom: 50px;
+    max-width: 60%;
+    max-width: 700px;
+    padding: 0 0 20px 0;
+    min-height: calc(100vh - 280px);
   `}
 `;
 
@@ -64,34 +64,36 @@ const Full = props => {
         };
 
   return (
-    <FullPageWrapper>
-      <div className="container">
-        <Header home />
-        <MainPageContent>
-          <div>
-            <SiteTitle>{content.title}</SiteTitle>
-            <GlossaryTooltip textToReplace={content.mainText} paragraph />
-          </div>
-          <div style={{ marginTop: 35 }}>
-            <CTA
-              styletype="primary"
-              to={{
-                state: {
-                  activeId: entryQuestion,
-                  position: 1,
-                },
-                pathname: '/quiz',
-              }}
-              text="Take Quiz"
-              display="inline-block"
-            />
-          </div>
-          {/* For development only
+    <>
+      <FullPageWrapper>
+        <div className="container">
+          <Header home />
+          <MainPageContent>
+            <div>
+              <SiteTitle>{content.title}</SiteTitle>
+              <GlossaryTooltip textToReplace={content.mainText} paragraph />
+            </div>
+            <div style={{ marginTop: 35 }}>
+              <CTA
+                styletype="primary"
+                to={{
+                  state: {
+                    activeId: entryQuestion,
+                    position: 1,
+                  },
+                  pathname: '/quiz',
+                }}
+                text="Take Quiz"
+                display="inline-block"
+              />
+            </div>
+            {/* For development only
           <ComponentLibrary /> */}
-        </MainPageContent>
-        <Footer />
-      </div>
-    </FullPageWrapper>
+          </MainPageContent>
+        </div>
+      </FullPageWrapper>
+      <Footer />
+    </>
   );
 };
 
