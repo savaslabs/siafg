@@ -124,8 +124,13 @@ const App = () => {
           <Switch>
             {routes.map((route, index) => {
               const path = route.toLowerCase();
-              return route === 'Welcome' ? (
-                <Route exact path={'/'} key={index} route={route}>
+              return route === 'Welcome' || route === 'About' ? (
+                <Route
+                  exact
+                  path={route === 'Welcome' ? '/' : `/${path}`}
+                  key={index}
+                  route={route}
+                >
                   <Full page={route} />
                 </Route>
               ) : (
