@@ -33,8 +33,9 @@ const SearchInput = styled.input`
   font-size: 16px;
   appearance: none;
   border: 0;
-  align-self: stretch;
+  margin: 0;
   background: none;
+  width: calc(100% - 20px);
 
   &:focus {
     outline: none;
@@ -50,7 +51,7 @@ const SearchInput = styled.input`
 `;
 
 const NoResultsText = styled.p`
-  margin: 0;
+  padding-top: 10px;
 
   em {
     color: ${props => props.theme.colors.primaryPurple};
