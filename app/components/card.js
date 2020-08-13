@@ -40,16 +40,35 @@ const Card = styled.article`
 
 const RelatedTermText = styled.span`
   white-space: nowrap;
+  padding-right: 10px;
+`;
+
+const RelatedTermContainer = styled.span`
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+
+  ${breakpoint('lg')`
+    margin-top: 0;
+  `}
+`;
+
+const RelatedTermWrapper = styled.div`
+  display: inline;
 `;
 
 const RelatedTerm = styled.a`
-  margin-left: 16px;
+  margin-left: 12px;
   color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
 
   ${breakpoint('sm', 'lg')`
     font-size: 16px;
   `}
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   &:hover,
   &:focus {
@@ -184,16 +203,18 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
               </>
             )}
             {term.fields.related_term_names && (
-              <div>
+              <RelatedTermContainer>
                 <RelatedTermText>See also:</RelatedTermText>
-                {term.fields.related_term_names.map((related, index) => {
-                  return (
-                    <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
-                      {related}
-                    </RelatedTerm>
-                  );
-                })}
-              </div>
+                <RelatedTermWrapper>
+                  {term.fields.related_term_names.map((related, index) => {
+                    return (
+                      <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
+                        {related}
+                      </RelatedTerm>
+                    );
+                  })}
+                </RelatedTermWrapper>
+              </RelatedTermContainer>
             )}
           </>
         )}
