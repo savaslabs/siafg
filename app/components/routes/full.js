@@ -10,11 +10,6 @@ import Footer from '../footer';
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  height: 100vh;
-
-  ${breakpoint('lg')`
-    overflow-y: scroll;
-  `}
 `;
 
 const MainPageContent = styled.main`
@@ -31,8 +26,8 @@ const MainPageContent = styled.main`
   ${breakpoint('lg')`
     max-width: 60%;
     max-width: 700px;
-    padding: 0 0 0 84px;
-    margin-bottom: 140px;
+    padding: 0 0 20px 0;
+    min-height: calc(100vh - 280px);
   `}
 `;
 
@@ -54,35 +49,37 @@ const Full = () => {
   const welcomeText = `Before working to design more inclusive gender form fields, ask yourself, "Should I be asking for gender at all?" We're here to help with that. Click below to take the quiz and we'll provide some feedback and resources to help you out.`;
 
   return (
-    <FullPageWrapper>
-      <div className="container">
-        <Header home />
-        <MainPageContent>
-          <div>
-            <SiteTitle>Should I Ask For Gender?</SiteTitle>
-            <GlossaryTooltip textToReplace={welcomeText} paragraph />
-          </div>
-          <div style={{ marginTop: 35 }}>
-            <CTA
-              styletype="primary"
-              to={{
-                state: {
-                  activeId: entryQuestion,
-                  position: 1,
-                },
-                pathname: '/quiz',
-              }}
-              text="Take Quiz"
-              display="inline-block"
-            />
-          </div>
+    <>
+      <FullPageWrapper>
+        <div className="container">
+          <Header home />
+          <MainPageContent>
+            <div>
+              <SiteTitle>Should I Ask For Gender?</SiteTitle>
+              <GlossaryTooltip textToReplace={welcomeText} paragraph />
+            </div>
+            <div style={{ marginTop: 35 }}>
+              <CTA
+                styletype="primary"
+                to={{
+                  state: {
+                    activeId: entryQuestion,
+                    position: 1,
+                  },
+                  pathname: '/quiz',
+                }}
+                text="Take Quiz"
+                display="inline-block"
+              />
+            </div>
 
-          {/* For development only
+            {/* For development only
           <ComponentLibrary /> */}
-        </MainPageContent>
-        <Footer />
-      </div>
-    </FullPageWrapper>
+          </MainPageContent>
+        </div>
+      </FullPageWrapper>
+      <Footer />
+    </>
   );
 };
 

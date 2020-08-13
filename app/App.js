@@ -26,11 +26,16 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.45;
     margin: 0;
     overflow: hidden;
+
     color: ${props => props.theme.colors.darkGray};
     max-height: 100vh;
 
     ${breakpoint('md')`
       font-size: 20px;
+    `}
+
+    ${breakpoint('lg')`
+      overflow-y: scroll;
     `}
   }
 
@@ -89,7 +94,6 @@ const GlobalStyles = createGlobalStyle`
 const SiteContainer = styled.div`
   height: 100vh;
   position: relative;
-  overflow: hidden;
 `;
 
 const App = () => {

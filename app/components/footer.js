@@ -6,45 +6,34 @@ import footerPolygon from '../assets/footer-polygon.svg';
 const footer = () => {
   return (
     <Footer>
-      <FooterContainer>
-        <div className="container">
-          <FooterMenu>
-            <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
-              Savas Labs
-              <span className="sr-only">Opens in new window</span>
-            </FooterLink>
-            <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
-              Share Feedback
-              <span className="sr-only">Opens an email to info@savaslabs.com</span>
-            </FooterLink>
-          </FooterMenu>
-        </div>
-      </FooterContainer>
+      <div className="container">
+        <FooterMenu>
+          <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
+            Savas Labs
+            <span className="sr-only">Opens in new window</span>
+          </FooterLink>
+          <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
+            Share Feedback
+            <span className="sr-only">Opens an email to info@savaslabs.com</span>
+          </FooterLink>
+        </FooterMenu>
+      </div>
     </Footer>
   );
 };
 
 const Footer = styled.footer`
-  width: 100vw;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  ${breakpoint('lg')`
-    background: ${props => props.theme.colors.footerGradient};
-      padding: 45px 0 45px 85px;
-      z-index: 9;
+  ${breakpoint('sm')`
+    display: none;
   `}
-`;
-
-const FooterContainer = styled.div`
-  width: 100%;
-  display: none;
-  justify-content: space-between;
 
   ${breakpoint('lg')`
-    display: flex;
+    display: inherit;
+    width: 100vw;
+    background: ${props => props.theme.colors.footerGradient};
+    padding: 34px 0;
+    z-index: 9;
+    margin-left: -60px;
   `}
 `;
 
