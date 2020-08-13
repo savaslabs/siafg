@@ -15,6 +15,19 @@ const Card = styled.article`
   position: relative;
   line-height: 1.5;
   font-size: 18px;
+  display: normal;
+
+  ${breakpoint('sm')`
+    & > div.resource-summary {	
+      display: none;	
+    }
+  `}
+
+  ${breakpoint('md')`
+    & > div.resource-summary {	
+      display: block;	
+    }
+  `}
 
   ${breakpoint('lg')`
     font-size: 20px;
@@ -149,7 +162,9 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
           </>
         ) : (
           // ReactMarkdown is handled in GlossaryTooltip.
-          <GlossaryTooltip textToReplace={resource?.fields.summary} />
+          <div className="resource-summary">
+            <GlossaryTooltip textToReplace={resource?.fields.summary} />
+          </div>
         )}
 
         {resource && (
