@@ -238,11 +238,16 @@ const header = ({ home }) => {
             </HomeIcon>
           </MenuItem>
           {routes.slice(1).map((menuItem, idx) => {
-            return (
-              <MenuItem key={idx}>
-                <NavItem to={`/${menuItem.toLowerCase()}`}>{menuItem}</NavItem>
-              </MenuItem>
-            );
+            // Do not render the About item at desktop width.
+            if (menuItem === 'About' && open === false) {
+              return;
+            } else {
+              return (
+                <MenuItem key={idx}>
+                  <NavItem to={`/${menuItem.toLowerCase()}`}>{menuItem}</NavItem>
+                </MenuItem>
+              );
+            }
           })}
         </Menu>
       </nav>

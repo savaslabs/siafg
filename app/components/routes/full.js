@@ -45,8 +45,23 @@ const SiteTitle = styled.h1`
   `}
 `;
 
-const Full = () => {
-  const welcomeText = `Before working to design more inclusive gender form fields, ask yourself, "Should I be asking for gender at all?" We're here to help with that. Click below to take the quiz and we'll provide some feedback and resources to help you out.`;
+const Full = props => {
+  const content =
+    props.page === 'Welcome'
+      ? {
+          title: 'Should I Ask For Gender?',
+          mainText: `Before working to design more inclusive gender form fields, ask yourself, "Should I be asking for 
+          gender at all?" We're here to help with that. Click below to take the quiz and we'll provide some feedback 
+          and resources to help you out.`,
+        }
+      : {
+          title: 'About',
+          mainText: `Often, forms ask for gender and present two options to the user: male or female. If you don’t fit 
+        into one of those two identities, the limited options can be alienating. *Should I Ask for Gender?*  was created 
+        by [Savas Labs](https://www.savaslabs.com/) to provide a resource for form designers to think critically in 
+        advance of crafting forms and collecting data. There are several ways to address this challenge and empathize 
+        with all users, but it starts with a simple question: Should I be asking for gender?`,
+        };
 
   return (
     <>
@@ -55,8 +70,8 @@ const Full = () => {
           <Header home />
           <MainPageContent>
             <div>
-              <SiteTitle>Should I Ask For Gender?</SiteTitle>
-              <GlossaryTooltip textToReplace={welcomeText} paragraph />
+              <SiteTitle>{content.title}</SiteTitle>
+              <GlossaryTooltip textToReplace={content.mainText} paragraph />
             </div>
             <div style={{ marginTop: 35 }}>
               <CTA
@@ -72,7 +87,6 @@ const Full = () => {
                 display="inline-block"
               />
             </div>
-
             {/* For development only
           <ComponentLibrary /> */}
           </MainPageContent>

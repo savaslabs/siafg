@@ -1,5 +1,5 @@
 export const AIRTABLE_API_KEY = 'keyIveHQ90JLZtwtw';
-export const routes = ['Welcome', 'Resources', 'Glossary', 'Quiz'];
+export const routes = ['Welcome', 'Resources', 'Glossary', 'Quiz', 'About'];
 export const entryQuestion = 'recbUJj5ay5guHEg9';
 export const searchOptions = {
   includeScore: true,

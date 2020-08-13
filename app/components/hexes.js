@@ -99,7 +99,11 @@ const hexes = () => {
   };
 
   useEffect(() => {
-    if (location.pathname === '/' || location.pathname === '/welcome') {
+    if (
+      location.pathname === '/' ||
+      location.pathname === '/welcome' ||
+      location.pathname === '/about'
+    ) {
       // Landing page.
       setDataPosition(0);
     } else if (location.state?.position) {

@@ -55,7 +55,8 @@ const GlossaryTooltip = ({ textToReplace }) => {
               <span key={i}>
                 {
                   glossary.filter(term => {
-                    return term?.fields.terms_to_highlight?.includes(match.toLowerCase());
+                    const termMatches = term?.fields.terms_to_highlight.split('|');
+                    return termMatches.includes(match.toLowerCase());
                   })[0]?.fields.definition
                 }
               </span>
