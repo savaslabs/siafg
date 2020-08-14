@@ -71,7 +71,7 @@ const SidebarBackground = styled.div`
   &:after {
     content: url(${triangle});
     position: absolute;
-    top: ${props => props.arrowPosition};
+    top: ${(props) => props.arrowPosition};
     left: calc(33.33vw - 10px);
     transition: left 800ms;
   }
@@ -89,16 +89,17 @@ const Hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
   const [arrowPosition, setArrowPosition] = useState('140px');
-  let position = 0;
-  let max = 6;
-
-  const updatePosition = n => {
-    position += n;
-    position = position < 0 ? 0 : position > max ? max : position;
-    setDataPosition(position);
-  };
 
   useEffect(() => {
+    let position = 0;
+    let max = 6;
+
+    const updatePosition = (n) => {
+      position += n;
+      position = position < 0 ? 0 : position > max ? max : position;
+      setDataPosition(position);
+    };
+
     if (
       location.pathname === '/' ||
       location.pathname === '/welcome' ||
@@ -118,7 +119,7 @@ const Hexes = () => {
   useEffect(() => {
     const headerHeight = document.getElementById('site-header')?.offsetHeight;
     setArrowPosition(`${headerHeight + 50}px`);
-  });
+  }, []);
 
   // Hex constructor.
   const createHex = (r, m, x, y, index) => {
@@ -133,7 +134,10 @@ const Hexes = () => {
 
   return (
     <>
-      <SidebarBackground data-position={dataPosition} arrowPosition={arrowPosition} />
+      <SidebarBackground
+        data-position={dataPosition}
+        arrowPosition={arrowPosition}
+      />
       <SvgBackground
         className="background"
         viewBox="0 0 500 500"
@@ -142,7 +146,10 @@ const Hexes = () => {
         data-position={dataPosition}
       >
         <defs>
-          <linearGradient id="sunnytangerine" gradientTransform="rotate(70) translate(0,-100)">
+          <linearGradient
+            id="sunnytangerine"
+            gradientTransform="rotate(70) translate(0,-100)"
+          >
             <stop stopColor="#FFDD94" offset="0%"></stop>
             <stop stopColor="#D1C6F3" offset="100%"></stop>
           </linearGradient>
@@ -157,13 +164,24 @@ const Hexes = () => {
         </defs>
         {g.map((type, i) => {
           return (
-            <Group key={i} className={type[0]} fill={type[1]} fillOpacity={type[2]}>
+            <Group
+              key={i}
+              className={type[0]}
+              fill={type[1]}
+              fillOpacity={type[2]}
+            >
               {type[0] === 'tangerines' &&
-                tangerines.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
+                tangerines.map((hex, index) =>
+                  createHex(hex[0], hex[1], hex[2], hex[3], index)
+                )}
               {type[0] === 'ghosts' &&
-                ghosts.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
+                ghosts.map((hex, index) =>
+                  createHex(hex[0], hex[1], hex[2], hex[3], index)
+                )}
               {type[0] === 'lavenders' &&
-                lavenders.map((hex, index) => createHex(hex[0], hex[1], hex[2], hex[3], index))}
+                lavenders.map((hex, index) =>
+                  createHex(hex[0], hex[1], hex[2], hex[3], index)
+                )}
             </Group>
           );
         })}
