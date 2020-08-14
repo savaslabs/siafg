@@ -16,7 +16,7 @@ import { Helmet } from 'react-helmet';
 const GradientOverlayAnimationStyle = createGlobalStyle`
 
   .gradient-overlay-anim {
-    background: ${props => props.theme.colors.scrollGradient};
+    background: ${(props) => props.theme.colors.scrollGradient};
     height: 200px;
     left: 0;
     width: 100vw;
@@ -58,7 +58,7 @@ const MainArea = styled.div`
   width: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: ${props => props.mainAreaHeightMobile};
+  height: ${(props) => props.mainAreaHeightMobile};
 
   ${breakpoint('lg')`
     width: calc(66.66vw - 140px);
@@ -66,10 +66,10 @@ const MainArea = styled.div`
     position: absolute;
     padding: 0 65px 0 75px;
     right: 0;
-    height: ${props => props.mainAreaHeightDesktop};
+    height: ${(props) => props.mainAreaHeightDesktop};
   `}
 
-  ${props =>
+  ${(props) =>
     props.topic === 'question' &&
     `
       text-align: center;
@@ -117,54 +117,60 @@ const Split = ({ page, topic }) => {
   const [mainAreaHeightMobile, setMainAreaHeightMobile] = useState('100vh');
   const [mainAreaHeightDesktop, setMainAreaHeightDesktop] = useState('100vh');
 
-  /*
-   * Get a single question record based on ID.
-   */
-  const getActiveQuestion = id => {
-    if (questions.length > 0 && options.length > 0) {
-      const questionRecord = questions.find(record => record.id === id).fields;
-      setTitle(questionRecord?.question);
-      setDescription(questionRecord?.description);
-      getQuestionOptions(questionRecord?.options);
-    }
-  };
-
-  /*
-   * Get related resources for an answer.
-   */
-  const getRelatedResources = id => {
-    const filteredResources = resources?.filter(record => record.fields.answers?.includes(id));
-
-    setRelatedResources(filteredResources ? filteredResources : []);
-  };
-
-  /*
-   * Get options for a specific question.
-   */
-  const getQuestionOptions = optionArr => {
-    let optionList = [];
-    optionArr.forEach(opt => {
-      optionList = [...optionList, options?.find(record => record.id === opt).fields];
-    });
-
-    setQuestionOptions(optionList[0] ? optionList : []);
-  };
-
-  /*
-   * Get a single answer record.
-   */
-  const getActiveAnswer = id => {
-    if (answers.length > 0 && resources.length > 0) {
-      const answerRecord = answers?.find(record => record.id === id).fields;
-      setTitle(answerRecord?.title);
-      setDescription('');
-      setExplanation(answerRecord?.explanation);
-      getRelatedResources(id);
-    }
-  };
-
   // Read browser history state to determine what to render.
   useEffect(() => {
+    /*
+     * Get related resources for an answer.
+     */
+    const getRelatedResources = (id) => {
+      const filteredResources = resources?.filter((record) =>
+        record.fields.answers?.includes(id)
+      );
+
+      setRelatedResources(filteredResources ? filteredResources : []);
+    };
+
+    /*
+     * Get options for a specific question.
+     */
+    const getQuestionOptions = (optionArr) => {
+      let optionList = [];
+      optionArr.forEach((opt) => {
+        optionList = [
+          ...optionList,
+          options?.find((record) => record.id === opt).fields,
+        ];
+      });
+
+      setQuestionOptions(optionList[0] ? optionList : []);
+    };
+
+    /*
+     * Get a single answer record.
+     */
+    const getActiveAnswer = (id) => {
+      if (answers.length > 0 && resources.length > 0) {
+        const answerRecord = answers?.find((record) => record.id === id).fields;
+        setTitle(answerRecord?.title);
+        setDescription('');
+        setExplanation(answerRecord?.explanation);
+        getRelatedResources(id);
+      }
+    };
+
+    /*
+     * Get a single question record based on ID.
+     */
+    const getActiveQuestion = (id) => {
+      if (questions.length > 0 && options.length > 0) {
+        const questionRecord = questions.find((record) => record.id === id)
+          .fields;
+        setTitle(questionRecord?.question);
+        setDescription(questionRecord?.description);
+        getQuestionOptions(questionRecord?.options);
+      }
+    };
+
     switch (topic) {
       case 'question':
         /*
@@ -195,14 +201,24 @@ const Split = ({ page, topic }) => {
       default:
         break;
     }
-  }, [location, appData]);
+  }, [
+    location,
+    appData,
+    history,
+    page,
+    topic,
+    answers,
+    options,
+    questions,
+    resources,
+  ]);
 
   useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
     const headerHeight = document.getElementById('site-header')?.clientHeight;
     setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 25}px)`);
     setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
-  });
+  }, []);
 
   const metaDescription =
     topic === 'answer'
@@ -249,11 +265,16 @@ const Split = ({ page, topic }) => {
         >
           {topic === 'question' && (
             <QuestionWrapper>
-              <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
+              <Animated
+                animationIn="fadeInUp"
+                animationInDuration={300}
+                animationInDelay={500}
+              >
                 <OptionList options={questionOptions} />{' '}
               </Animated>
               <Contact>
-                Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
+                Have an edit suggestion?{' '}
+                <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>
             </QuestionWrapper>
           )}
