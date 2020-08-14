@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AppDataContext } from '../context/appDataContext';
 import reactStringReplace from 'react-string-replace';
 import ReactTooltip from 'react-tooltip';
 import styled, { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import ReactMarkdown from 'react-markdown/with-html';
-import htmlParser from 'react-markdown/plugins/html-parser';
 
 const ToolTipStyles = createGlobalStyle`
 
@@ -26,7 +25,7 @@ const ToolTipStyles = createGlobalStyle`
 `;
 
 const MatchSpan = styled.span`
-  border-bottom: 1px dashed ${props => props.theme.colors.primaryPurple};
+  border-bottom: 1px dashed ${(props) => props.theme.colors.primaryPurple};
   position: relative;
   z-index: 100;
 `;
@@ -34,7 +33,7 @@ const MatchSpan = styled.span`
 const GlossaryTooltip = ({ textToReplace }) => {
   const { glossary, highlightedTerms } = useContext(AppDataContext);
 
-  const renderReplacementText = text => {
+  const renderReplacementText = (text) => {
     let matchesFound = [];
     return reactStringReplace(text, highlightedTerms, (match, i) => {
       if (!matchesFound.includes(match)) {
@@ -54,8 +53,10 @@ const GlossaryTooltip = ({ textToReplace }) => {
             >
               <span key={i}>
                 {
-                  glossary.filter(term => {
-                    const termMatches = term?.fields.terms_to_highlight.split('|');
+                  glossary.filter((term) => {
+                    const termMatches = term?.fields.terms_to_highlight.split(
+                      '|'
+                    );
                     return termMatches.includes(match.toLowerCase());
                   })[0]?.fields.definition
                 }
@@ -74,7 +75,7 @@ const GlossaryTooltip = ({ textToReplace }) => {
       <ToolTipStyles />
       <ReactMarkdown
         source={textToReplace}
-        renderers={{ text: text => renderReplacementText(text.value) }}
+        renderers={{ text: (text) => renderReplacementText(text.value) }}
       />
     </>
   );

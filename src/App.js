@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { routes } from './constants';
 import Hexes from './components/Hexes';
@@ -12,8 +12,6 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import logo from './assets/logo.svg';
-import ogImage from './assets/og.svg';
 
 const GlobalStyles = createGlobalStyle`
 

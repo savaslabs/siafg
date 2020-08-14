@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
@@ -81,7 +81,7 @@ const CardList = props => {
           <>
             {searchResults.map((result, idx) => {
               return (
-                <CardListItem key={idx} index={idx} index={idx}>
+                <CardListItem key={idx} index={idx}>
                   <Card
                     term={result.item}
                     search={searchTerm}

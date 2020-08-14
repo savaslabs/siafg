@@ -88,21 +88,21 @@ const SearchBar = () => {
 
   // Add resources to state, along with fuse options.
   useEffect(() => {
-    if (resources !== undefined && path === 'resources') {
+    if (resources && path === 'resources') {
       searchOptions.keys = ['fields.source_author', 'fields.summary', 'fields.title'];
       setOptions(searchOptions);
       setSearchable(resources);
     }
-  }, [resources]);
+  }, [resources, path]);
 
   // Add glossary to state, along with fuse options.
   useEffect(() => {
-    if (glossary !== undefined && path === 'glossary') {
+    if (glossary && path === 'glossary') {
       searchOptions.keys = ['fields.definition', 'fields.term'];
       setOptions(searchOptions);
       setSearchable(glossary);
     }
-  }, [glossary]);
+  }, [glossary, path]);
 
   const handleSearch = async event => {
     setSearchTerm(event.target.value);

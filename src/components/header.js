@@ -240,7 +240,7 @@ const Header = ({ home }) => {
           {routes.slice(1).map((menuItem, idx) => {
             // Do not render the About item at desktop width.
             if (menuItem === 'About' && open === false) {
-              return;
+              return null;
             } else {
               return (
                 <MenuItem key={idx}>

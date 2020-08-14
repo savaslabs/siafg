@@ -5,7 +5,6 @@ import { getRecordsList } from '../services/airtable-service';
 export const AppDataContext = createContext();
 
 export const AppDataProvider = props => {
-  const [appData, setAppData] = useState({});
   const [questions, setQuestions] = useState([]);
   const [resources, setResources] = useState([]);
   const [glossary, setGlossary] = useState([]);
