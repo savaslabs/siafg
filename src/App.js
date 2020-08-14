@@ -98,6 +98,7 @@ const App = () => {
 
   useEffect(() => {
     getAllData();
+    // eslint-disable-next-line
   }, []);
 
   return (

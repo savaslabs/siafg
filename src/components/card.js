@@ -121,6 +121,7 @@ const HighlightMarkStyles = createGlobalStyle`
 `;
 
 const Card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
+  // eslint-disable-next-line
   let title;
 
   // Process glossary term name for id or href.
