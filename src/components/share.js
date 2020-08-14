@@ -12,6 +12,10 @@ const ShareStyles = createGlobalStyle`
     ${breakpoint('lg')`
       display: block;
     `}
+
+    a {
+      font-size: 0;
+    }
   }
 
   .a2a_tablet {
@@ -25,6 +29,10 @@ const ShareStyles = createGlobalStyle`
       padding: 10px 0;
       margin-left: 25px;
     `}
+
+    a {
+      font-size: 0;
+    }
   }
 
   .a2a_mobile {
@@ -38,6 +46,10 @@ const ShareStyles = createGlobalStyle`
     ${breakpoint('md')`
       display: none;
     `}
+
+    a {
+      font-size: 0;
+    }
   }
 `;
 
@@ -63,7 +75,7 @@ const Share = () => {
   };
 
   return (
-    <ShareRef ref={el => (shareButton = el)}>
+    <ShareRef ref={(el) => (shareButton = el)}>
       <CTA
         text="Share Results"
         as="button"
@@ -85,10 +97,18 @@ const Share = () => {
           className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_desktop"
           data-a2a-icon-color="#593EBF"
         >
-          <a className="a2a_button_facebook" />
-          <a className="a2a_button_twitter" />
-          <a className="a2a_button_linkedin" />
-          <a className="a2a_button_email" />
+          <a className="a2a_button_facebook" href="/">
+            Share on Facebook
+          </a>
+          <a className="a2a_button_twitter" href="/">
+            Share on Twitter
+          </a>
+          <a className="a2a_button_linkedin" href="/">
+            Share on LinkedIn
+          </a>
+          <a className="a2a_button_email" href="/">
+            Share by Email
+          </a>
         </div>
       </Animated>
       <Animated
@@ -103,10 +123,18 @@ const Share = () => {
           className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_tablet"
           data-a2a-icon-color="#593EBF"
         >
-          <a className="a2a_button_facebook" />
-          <a className="a2a_button_twitter" />
-          <a className="a2a_button_linkedin" />
-          <a className="a2a_button_email" />
+          <a className="a2a_button_facebook" href="/">
+            Share on Facebook
+          </a>
+          <a className="a2a_button_twitter" href="/">
+            Share on Twitter
+          </a>
+          <a className="a2a_button_linkedin" href="/">
+            Share on LinkedIn
+          </a>
+          <a className="a2a_button_email" href="/">
+            Share by Email
+          </a>
         </div>
       </Animated>
       <Animated
@@ -121,10 +149,18 @@ const Share = () => {
           className="a2a_kit a2a_kit_size_32 a2a_default_style a2a_mobile"
           data-a2a-icon-color="#593EBF"
         >
-          <a className="a2a_button_facebook" />
-          <a className="a2a_button_twitter" />
-          <a className="a2a_button_linkedin" />
-          <a className="a2a_button_email" />
+          <a className="a2a_button_facebook" href="/">
+            Share on Facebook
+          </a>
+          <a className="a2a_button_twitter" href="/">
+            Share on Twitter
+          </a>
+          <a className="a2a_button_linkedin" href="/">
+            Share on LinkedIn
+          </a>
+          <a className="a2a_button_email" href="/">
+            Share by Email
+          </a>
         </div>
       </Animated>
     </ShareRef>
