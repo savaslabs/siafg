@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import SearchBar from './searchBar';
-import Share from './share';
-import CTA from './cta';
-import GlossaryTooltip from './glossaryTooltip';
+import SearchBar from './SearchBar';
+import Share from './Share';
+import CTA from './Cta';
+import GlossaryTooltip from './GlossaryTooltip';
 import { entryQuestion } from '../constants';
 import { Animated } from 'react-animated-css';
 import triangleDown from '../assets/triangle--down.svg';
 
-const TitleArea = styled.div`
+const TitleAreaWrapper = styled.div`
   width: 100vw;
   margin-left: -30px;
   margin-top: -40px;
@@ -85,14 +85,14 @@ const ButtonContainer = styled.div`
   `}
 `;
 
-const titleArea = props => {
+const TitleArea = props => {
   return (
     <Animated
       animationIn={props.topic === 'archive' ? 'fadeInUp' : 'fadeInDown'}
       animationInDuration={props.topic === 'answer' ? 0 : 300}
       animationInDelay={props.topic === 'answer' ? 0 : 600}
     >
-      <TitleArea isArchive={props.topic === 'archive'} id="title-area">
+      <TitleAreaWrapper isArchive={props.topic === 'archive'} id="title-area">
         <h1 className="sr-only">Quiz</h1>
         <TitleAreaContent as="h2" isTitle>
           {props.title}
@@ -122,9 +122,9 @@ const titleArea = props => {
             )}
           </TitleAreaContent>
         )}
-      </TitleArea>
+      </TitleAreaWrapper>
     </Animated>
   );
 };
 
-export default titleArea;
+export default TitleArea;

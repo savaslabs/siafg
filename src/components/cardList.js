@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import Card from './card';
+import Card from './Card';
 import { ArchiveContext } from '../context/archiveContext';
 import { AppDataContext } from '../context/appDataContext';
 import styled, { css } from 'styled-components';
@@ -30,7 +30,7 @@ const CardListItem = styled.li`
   }
 `;
 
-const cardList = props => {
+const CardList = props => {
   const { glossary, resources } = useContext(AppDataContext);
   const { searchResults, searchTerm } = useContext(ArchiveContext);
 
@@ -133,4 +133,4 @@ const cardList = props => {
   );
 };
 
-export default cardList;
+export default CardList;

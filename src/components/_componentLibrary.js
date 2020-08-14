@@ -1,7 +1,7 @@
 import React from 'react';
-import CTA from './cta';
-import SearchBar from './searchBar';
-import Share from './share';
+import CTA from './Cta';
+import SearchBar from './SearchBar';
+import Share from './Share';
 
 const componentLibrary = () => {
   return (

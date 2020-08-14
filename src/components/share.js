@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-animated-css';
-import CTA from './cta';
+import CTA from './Cta';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { createGlobalStyle } from 'styled-components';
@@ -47,7 +47,7 @@ const ShareRef = styled.div`
   z-index: 5;
 `;
 
-const share = () => {
+const Share = () => {
   let shareButton = useRef();
   const [showButtons, setShowButtons] = useState(false);
 
@@ -131,4 +131,4 @@ const share = () => {
   );
 };
 
-export default share;
+export default Share;

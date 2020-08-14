@@ -65,7 +65,7 @@ const OptionLabel = styled.label`
   pointer-events: none;
 `;
 
-const option = ({ option }) => {
+const Option = ({ option }) => {
   const location = useLocation();
   const history = useHistory();
   const { value, display_text, next_question, answer } = option;
@@ -111,4 +111,4 @@ const option = ({ option }) => {
   );
 };
 
-export default option;
+export default Option;

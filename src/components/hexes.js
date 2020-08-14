@@ -85,7 +85,7 @@ const SidebarBackground = styled.div`
   }
 `;
 
-const hexes = () => {
+const Hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
   const [arrowPosition, setArrowPosition] = useState('140px');
@@ -172,4 +172,4 @@ const hexes = () => {
   );
 };
 
-export default hexes;
+export default Hexes;

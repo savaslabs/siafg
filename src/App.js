@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { routes } from './constants';
-import Hexes from './components/hexes';
+import Hexes from './components/Hexes';
 import Split from './components/routes/Split';
 import Full from './components/routes/Full';
 import NoMatch from './components/routes/NoMatch';

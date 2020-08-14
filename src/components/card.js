@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Highlight from 'react-highlighter';
-import GlossaryTooltip from './glossaryTooltip';
+import GlossaryTooltip from './GlossaryTooltip';
 import { Animated } from 'react-animated-css';
 import breakpoint from 'styled-components-breakpoint';
 import ReactMarkdown from 'react-markdown';
 
-const Card = styled.article`
+const CardWrapper = styled.article`
   box-shadow: 0px 4px 4px rgba(89, 62, 191, 0.3);
   transition: box-shadow 0.5s ease-out;
   padding: 20px;
@@ -120,7 +120,7 @@ const HighlightMarkStyles = createGlobalStyle`
   }
 `;
 
-const card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
+const Card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
   let title;
 
   // Process glossary term name for id or href.
@@ -191,7 +191,7 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
       animationInDelay={(listLength - index) * 15}
     >
       <HighlightMarkStyles />
-      <Card {...renderId()} className="card">
+      <CardWrapper {...renderId()} className="card">
         <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
         {explanation && (
           <div className="answer">
@@ -234,9 +234,9 @@ const card = ({ answer, term, explanation, resource, page, search, index, listLe
           </>
         )}
         {resource?.fields.link && <CardLink href={resource?.fields.link} />}
-      </Card>
+      </CardWrapper>
     </Animated>
   );
 };
 
-export default card;
+export default Card;

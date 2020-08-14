@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import TitleArea from '../titleArea';
-import Card from '../card';
-import CardList from '../cardList';
-import OptionList from '../optionList';
-import Header from '../header';
+import TitleArea from '../TitleArea';
+import Card from '../Card';
+import CardList from '../CardList';
+import OptionList from '../OptionList';
+import Header from '../Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';

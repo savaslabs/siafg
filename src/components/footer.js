@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import footerPolygon from '../assets/footer-polygon.svg';
 
-const footer = () => {
+const Footer = () => {
   return (
-    <Footer>
+    <FooterWrapper>
       <div className="container">
         <FooterMenu>
           <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
@@ -22,11 +22,11 @@ const footer = () => {
           </FooterLink>
         </FooterMenu>
       </div>
-    </Footer>
+    </FooterWrapper>
   );
 };
 
-const Footer = styled.footer`
+const FooterWrapper = styled.footer`
   ${breakpoint('sm')`
     display: none;
   `}
@@ -56,4 +56,4 @@ const FooterLink = styled.a`
   }
 `;
 
-export default footer;
+export default Footer;

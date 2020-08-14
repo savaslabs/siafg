@@ -7,7 +7,7 @@ import logo from '../assets/logo.svg';
 import darkLogo from '../assets/logo-dark.svg';
 import home from '../assets/home.svg';
 
-const Header = styled.header`
+const HeaderWrapper = styled.header`
   z-index: 200;
   align-items: center;
   margin-bottom: ${props => (props.home ? '0' : '40px')};
@@ -189,7 +189,7 @@ const HomeIcon = styled(NavItem)`
   `}
 `;
 
-const header = ({ home }) => {
+const Header = ({ home }) => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = e => {
@@ -197,7 +197,7 @@ const header = ({ home }) => {
   };
 
   return (
-    <Header id="site-header" home={home}>
+    <HeaderWrapper id="site-header" home={home}>
       {/* Logo */}
       <LogoLink
         to={{
@@ -251,8 +251,8 @@ const header = ({ home }) => {
           })}
         </Menu>
       </nav>
-    </Header>
+    </HeaderWrapper>
   );
 };
 
-export default header;
+export default Header;

@@ -132,7 +132,7 @@ const ShareText = styled.span`
   `}
 `;
 
-const cta = props => {
+const Cta = props => {
   return (
     <CTA {...props}>
       {props.share ? (
@@ -148,4 +148,4 @@ const cta = props => {
   );
 };
 
-export default cta;
+export default Cta;

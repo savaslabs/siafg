@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import CTA from '../cta';
-import Header from '../header';
-import GlossaryTooltip from '../glossaryTooltip';
+import CTA from '../Cta';
+import Header from '../Header';
+import GlossaryTooltip from '../GlossaryTooltip';
 import { entryQuestion } from '../../constants';
-import Footer from '../footer';
+import Footer from '../Footer';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -26,7 +26,7 @@ const MainPageContent = styled.main`
   ${breakpoint('lg')`
     max-width: 60%;
     max-width: 700px;
-    padding: 0 0 20px 0;
+    padding: 0 0 20px 84px;
     min-height: calc(100vh - 280px);
   `}
 `;

@@ -70,7 +70,7 @@ const ClearSearch = styled.button`
   border: 0;
 `;
 
-const searchBar = () => {
+const SearchBar = () => {
   const {
     glossary,
     resources,
@@ -154,4 +154,4 @@ const searchBar = () => {
   );
 };
 
-export default searchBar;
+export default SearchBar;
