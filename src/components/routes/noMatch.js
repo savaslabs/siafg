@@ -7,7 +7,7 @@ const NoMatchWrapper = styled.div`
   text-align: center;
 `;
 
-const noMatch = () => {
+const NoMatch = () => {
   const location = useLocation();
 
   return (
@@ -17,4 +17,4 @@ const noMatch = () => {
   );
 };
 
-export default noMatch;
+export default NoMatch;

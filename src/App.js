@@ -1,19 +1,17 @@
 import React, { useEffect, useContext } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
-import '@babel/polyfill';
 import styled from 'styled-components';
 import { routes } from './constants';
 import Hexes from './components/hexes';
-import Split from './components/routes/split';
-import Full from './components/routes/full';
-import NoMatch from './components/routes/noMatch';
+import Split from './components/routes/Split';
+import Full from './components/routes/Full';
+import NoMatch from './components/routes/NoMatch';
 import { ArchiveProvider } from './context/archiveContext';
 import { AppDataContext } from './context/appDataContext';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { Helmet } from 'react-helmet';
 import logo from './assets/logo.svg';
 import ogImage from './assets/og.svg';
 
@@ -108,21 +106,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <ArchiveProvider>
         <GlobalStyles />
-        <Helmet>
-          <meta property="og:title" content="Should I Ask For Gender?" data-react-helmet="true" />
-          <meta
-            name="description"
-            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
-            data-react-helmet="true"
-          />
-          <meta
-            property="og:description"
-            content="Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out."
-            data-react-helmet="true"
-          />
-          <link rel="logo" type="image/svg" href={logo} />
-          <meta property="og:image" content={ogImage} />
-        </Helmet>
         <SiteContainer page={location.pathname} className="container">
           <Hexes />
           <Switch>
