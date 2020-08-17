@@ -88,8 +88,10 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const SiteContainer = styled.div`
-  height: 100vh;
+  height: ${(props) =>
+    props.page === '/' || props.page === '/about' ? 'auto' : '100vh'};;
   position: relative;
+  overflow: hidden;
 `;
 
 const App = () => {

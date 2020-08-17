@@ -10,7 +10,6 @@ import home from '../assets/home.svg';
 const HeaderWrapper = styled.header`
   z-index: 200;
   align-items: center;
-  margin-bottom: ${props => (props.home ? '0' : '40px')};
   top: 25px;
   position: relative;
 
@@ -197,7 +196,7 @@ const Header = ({ home }) => {
   };
 
   return (
-    <HeaderWrapper id="site-header" home={home}>
+    <HeaderWrapper id="site-header">
       {/* Logo */}
       <LogoLink
         to={{

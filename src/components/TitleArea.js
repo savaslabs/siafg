@@ -12,8 +12,7 @@ import triangleDown from '../assets/triangle--down.svg';
 const TitleAreaWrapper = styled.div`
   width: 100vw;
   margin-left: -30px;
-  margin-top: -40px;
-  padding: ${props => (props.isArchive ? '65px 0 30px' : '65px 0 40px 0')};
+  padding: ${props => (props.isArchive ? '55px 0 30px' : '55px 0 40px 0')};
   background: white;
   text-align: ${props => (props.isArchive ? 'left' : 'center')};
   line-height: 1.3;
@@ -32,7 +31,6 @@ const TitleAreaWrapper = styled.div`
 
   ${breakpoint('md')`
     margin-left: -60px;
-    margin-top: -70px;
     text-align: left;
   `}
 
@@ -74,6 +72,10 @@ const TitleAreaContent = styled.div`
     margin-left: 0;
     margin-top: 40px;
   `};
+
+  p {
+    margin-bottom: 0;
+  }
 `;
 
 const ButtonContainer = styled.div`

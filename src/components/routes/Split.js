@@ -42,6 +42,7 @@ const SplitScreenWrapper = styled.main`
     display: flex;
     flex-wrap: wrap;
     min-height: calc(100vh - 100px);
+    padding-top: 45px;
   `}
 
   & > div.animated:first-child {
@@ -52,7 +53,7 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   background-color: transparent;
-  overflow-y: scroll;
+  overflow-y: ${(props) => (props.topic === 'question' ? 'hidden' : 'scroll')};
   overflow-x: hidden;
   padding: 50px 0 0 0;
   width: auto;

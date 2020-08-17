@@ -42,7 +42,8 @@ const SvgBackground = styled.svg`
   ${breakpoint('lg')`
     top: 0;
     width: 66.66vw;
-    height: 100vh;
+    height: ${(props) =>
+      props.page === '/' || props.page === '/about' ? '100%' : '100vh'};
   `}
 
   &[data-position='0'] {
@@ -60,7 +61,8 @@ const SidebarBackground = styled.div`
   width: 33.33vw;
   position: absolute;
   left: 0;
-  height: 100vh;
+  height: ${(props) =>
+    props.page === '/' || props.page === '/about' ? '100%' : '100vh'};
   pointer-events: none;
   transition: width 800ms;
 
@@ -144,6 +146,7 @@ const Hexes = () => {
         preserveAspectRatio="xMidYMin slice"
         xmlns="http://www.w3.org/2000/svg"
         data-position={dataPosition}
+        page={location.pathname}
       >
         <defs>
           <linearGradient

@@ -72,7 +72,7 @@ const RelatedTermWrapper = styled.div`
 
 const RelatedTerm = styled.a`
   margin-left: 12px;
-  color: ${props => props.theme.colors.primaryPurple};
+  color: ${(props) => props.theme.colors.primaryPurple};
   font-weight: 600;
 
   ${breakpoint('sm', 'lg')`
@@ -95,7 +95,7 @@ const Separator = styled.span`
 
 const Attribution = styled.p`
   font-weight: 600;
-  color: ${props => props.theme.colors.charcoal};
+  color: ${(props) => props.theme.colors.charcoal};
 
   ${breakpoint('sm', 'lg')`
     font-size: 16px;
@@ -115,17 +115,26 @@ const CardLink = styled.a`
 
 const HighlightMarkStyles = createGlobalStyle`
   .card mark {
-    background-color: ${props => props.theme.colors.highlighter};
+    background-color: ${(props) => props.theme.colors.highlighter};
     color: inherit;
   }
 `;
 
-const Card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
+const Card = ({
+  answer,
+  term,
+  explanation,
+  resource,
+  page,
+  search,
+  index,
+  listLength,
+}) => {
   // eslint-disable-next-line
   let title;
 
   // Process glossary term name for id or href.
-  const cleanTerm = name => {
+  const cleanTerm = (name) => {
     return name.toLowerCase().replace(/ /g, '_');
   };
 
@@ -155,7 +164,7 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
             <ReactMarkdown
               source={resource?.fields.summary}
               renderers={{
-                text: text => {
+                text: (text) => {
                   return <Highlight search={search}>{text.value}</Highlight>;
                 },
               }}
@@ -174,7 +183,9 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
             {resource.fields.date && (
               <>
                 <Separator>&ndash;</Separator>
-                {new Date(resource.fields.date).toLocaleString('en-US', { dateStyle: 'short' })}
+                {new Date(resource.fields.date).toLocaleString('en-US', {
+                  dateStyle: 'short',
+                })}
               </>
             )}
           </Attribution>
@@ -193,7 +204,13 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
     >
       <HighlightMarkStyles />
       <CardWrapper {...renderId()} className="card">
-        <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
+        <h1>
+          {search ? (
+            <Highlight search={search}>{renderH1()}</Highlight>
+          ) : (
+            renderH1()
+          )}
+        </h1>
         {explanation && (
           <div className="answer">
             <GlossaryTooltip textToReplace={explanation} className="answer" />
@@ -208,8 +225,10 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
                   <ReactMarkdown
                     source={term.fields.definition}
                     renderers={{
-                      text: text => {
-                        return <Highlight search={search}>{text.value}</Highlight>;
+                      text: (text) => {
+                        return (
+                          <Highlight search={search}>{text.value}</Highlight>
+                        );
                       },
                     }}
                   />
@@ -224,7 +243,11 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
                 <RelatedTermWrapper>
                   {term.fields.related_term_names.map((related, index) => {
                     return (
-                      <RelatedTerm href={`#${cleanTerm(related)}`} key={index} search={search}>
+                      <RelatedTerm
+                        href={`#${cleanTerm(related)}`}
+                        key={index}
+                        search={search}
+                      >
                         {related}
                       </RelatedTerm>
                     );
@@ -234,7 +257,11 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
             )}
           </>
         )}
-        {resource?.fields.link && <CardLink href={resource?.fields.link} />}
+        {resource?.fields.link && (
+          <CardLink href={resource?.fields.link} target="_blank">
+            <span className="sr-only">{`Open ${resource?.fields.title} in new window.`}</span>
+          </CardLink>
+        )}
       </CardWrapper>
     </Animated>
   );

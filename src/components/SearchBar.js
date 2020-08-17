@@ -22,7 +22,7 @@ const SearchContainer = styled.div`
 
 const SearchOutline = styled.div`
   border-radius: 100px;
-  border: 3px solid ${props => props.theme.colors.charcoal};
+  border: 3px solid ${(props) => props.theme.colors.charcoal};
   padding: 11px 25px;
   max-width: 375px;
   display: flex;
@@ -51,10 +51,12 @@ const SearchInput = styled.input`
 `;
 
 const NoResultsText = styled.p`
-  padding-top: 10px;
+  height: ${(props) => (props.isVisible ? 'auto' : 0)};
+  margin: ${(props) => (props.isVisible ? 'inherit' : 0)};
+  padding-top: ${(props) => (props.isVisible ? '10px' : 0)};
 
   em {
-    color: ${props => props.theme.colors.primaryPurple};
+    color: ${(props) => props.theme.colors.primaryPurple};
   }
 
   a {
@@ -89,7 +91,11 @@ const SearchBar = () => {
   // Add resources to state, along with fuse options.
   useEffect(() => {
     if (resources && path === 'resources') {
-      searchOptions.keys = ['fields.source_author', 'fields.summary', 'fields.title'];
+      searchOptions.keys = [
+        'fields.source_author',
+        'fields.summary',
+        'fields.title',
+      ];
       setOptions(searchOptions);
       setSearchable(resources);
     }
@@ -104,7 +110,7 @@ const SearchBar = () => {
     }
   }, [glossary, path]);
 
-  const handleSearch = async event => {
+  const handleSearch = async (event) => {
     setSearchTerm(event.target.value);
 
     if (searchable.length > 0) {
@@ -133,7 +139,11 @@ const SearchBar = () => {
           onChange={handleSearch}
           ref={inputRef}
         />
-        {showButton() && <ClearSearch onClick={clearSearchTerm} />}
+        {showButton() && (
+          <ClearSearch onClick={clearSearchTerm}>
+            <span className="sr-only">Clear Search</span>
+          </ClearSearch>
+        )}
       </SearchOutline>
       <Animated
         animationIn="fadeIn"
@@ -144,7 +154,9 @@ const SearchBar = () => {
         animateOnMount={false}
         className="no-results"
       >
-        <NoResultsText>
+        <NoResultsText
+          isVisible={searchResults.length === 0 && searchTerm.length > 1}
+        >
           <em>No results found</em>
           <br />
           <a href="mailto:info@savaslabs.com">Email us</a> to add a term.

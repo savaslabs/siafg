@@ -5,7 +5,7 @@ import footerPolygon from '../assets/footer-polygon.svg';
 
 const Footer = () => {
   return (
-    <FooterWrapper>
+    <FooterWrapper id="site-footer">
       <div className="container">
         <FooterMenu>
           <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
@@ -35,7 +35,7 @@ const FooterWrapper = styled.footer`
     display: inherit;
     width: 100vw;
     background: ${props => props.theme.colors.footerGradient};
-    padding: 34px 0;
+    padding: 34px 0 34px 84px;
     z-index: 9;
     margin-left: -60px;
   `}
