@@ -63,7 +63,8 @@ const Full = (props) => {
   const [mainHeight, setMainHeight] = useState('0');
 
   useEffect(() => {
-    const footerHeight = document.getElementById('site-footer')?.clientHeight;
+    let footerHeight = document.getElementById('site-footer')?.clientHeight;
+    if (footerHeight < 133) footerHeight = 133;
     setMainHeight(`calc(100vh - ${footerHeight}px)`);
   }, []);
 

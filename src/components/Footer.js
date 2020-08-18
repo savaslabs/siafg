@@ -1,27 +1,63 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import footerPolygon from '../assets/footer-polygon.svg';
+import labsLogo from '../assets/labs-logo.svg';
 
 const Footer = () => {
+  let footerSocial = useRef();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://static.addtoany.com/menu/page.js';
+    footerSocial.appendChild(script);
+  }, []);
+
   return (
     <FooterWrapper id="site-footer">
-      <div className="container">
-        <FooterMenu>
-          <FooterLink href="https://savaslabs.com" target="_blank" rel="noreferrer">
-            Savas Labs
-            <span className="sr-only">Opens in new window</span>
-          </FooterLink>
-          <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
-            Share Feedback
-            <span className="sr-only">Opens an email to info@savaslabs.com</span>
-          </FooterLink>
+      <LogoLink
+        href="https://savaslabs.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="sr-only">Open Savas Labs website in new window.</span>
+        <img
+          src={labsLogo}
+          alt="Labs: A Place for Experimentation at Savas Labs"
+        />
+      </LogoLink>
+      <FooterMenu ref={(el) => (footerSocial = el)}>
+        <div>
           <FooterLink href="/about">
             About
             <span className="sr-only">Opens the about page</span>
           </FooterLink>
-        </FooterMenu>
-      </div>
+          <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
+            Share Feedback
+            <span className="sr-only">
+              Opens an email to info@savaslabs.com
+            </span>
+          </FooterLink>
+        </div>
+        <div
+          className="a2a_kit a2a_kit_size_32 a2a_default_style"
+          data-a2a-icon-color="transparent,#19142D"
+        >
+          <a className="a2a_button_facebook" href="/">
+            Share on Facebook
+          </a>
+          <a className="a2a_button_twitter" href="/">
+            Share on Twitter
+          </a>
+          <a className="a2a_button_linkedin" href="/">
+            Share on LinkedIn
+          </a>
+          <a className="a2a_button_email" href="/">
+            Share by Email
+          </a>
+        </div>
+      </FooterMenu>
     </FooterWrapper>
   );
 };
@@ -32,26 +68,47 @@ const FooterWrapper = styled.footer`
   `}
 
   ${breakpoint('lg')`
-    display: inherit;
-    width: 100vw;
-    background: ${props => props.theme.colors.footerGradient};
-    padding: 34px 0 34px 84px;
+    background: ${(props) => props.theme.colors.footerPurple};
+    padding: 25px 60px 25px 144px;
     z-index: 9;
     margin-left: -60px;
+    margin-right: -60px;
+    display: flex;
+    justify-content: space-between;
   `}
+
+  .a2a_kit {
+    font-size: 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+  }
+`;
+
+const LogoLink = styled.a`
+  display: flex;
+  align-items: center;
 `;
 
 const FooterMenu = styled.div`
-  width: 100%;
-  min-width: 450px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: -10px;
+
+  & > div:first-child {
+    display: flex;
+  }
 `;
 
 const FooterLink = styled.a`
+  color: ${(props) => props.theme.colors.footerText};
+  font-weight: 600;
+
   &:not(:last-child) {
     &:after {
       content: url(${footerPolygon});
-      margin: 0 25px;
+      margin: 0 15px;
     }
   }
 `;
