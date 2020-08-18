@@ -138,6 +138,7 @@ const SearchBar = () => {
           value={searchTerm}
           onChange={handleSearch}
           ref={inputRef}
+          aria-label="Enter search term."
         />
         {showButton() && (
           <ClearSearch onClick={clearSearchTerm}>
