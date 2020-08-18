@@ -221,31 +221,27 @@ const Split = ({ page, topic }) => {
     setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
   }, []);
 
-  const metaDescription =
-    topic === 'answer'
-      ? `${explanation.split('.')[0]}.`
-      : topic === 'archive'
-      ? `${page} related to asking for gender on forms.`
-      : `Should you be asking users for gender? Take this quiz to help answer that question. We'll provide some feedback and resources to help you out.`;
+  const pageTitle =
+    topic === 'question' || topic === 'answer'
+      ? `Quiz | Should I Ask For Gender?`
+      : `${title} | Should I Ask For Gender?`;
 
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
       <Helmet>
         <title>
-          {topic === 'question' || topic === 'answer'
-            ? `Quiz | Should I Ask For Gender?`
-            : `${title} | Should I Ask For Gender?`}
+          {pageTitle}
         </title>
         <meta
           property="og:title"
-          content={
-            topic === 'question' || topic === 'answer'
-              ? `Quiz | Should I Ask For Gender?`
-              : `${title} | Should I Ask For Gender?`
-          }
+          content={pageTitle}
+          data-react-helmet="true"
         />
-        <meta name="description" content={metaDescription} />
-        <meta property="og:description" content={metaDescription} />
+        <meta
+          name="twitter:title"
+          content={pageTitle}
+          data-react-helmet="true"
+        />
       </Helmet>
       <Header />
       <SplitScreenWrapper>
