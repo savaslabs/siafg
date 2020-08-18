@@ -11,7 +11,11 @@ const FullPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${(props) => props.height};
+  height: 100vh;
+
+  ${breakpoint('lg')`
+    height: ${(props) => props.height};
+  `}
 `;
 
 const MainPageContent = styled.main`

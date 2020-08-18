@@ -70,10 +70,16 @@ const RelatedTermWrapper = styled.div`
   display: inline;
 `;
 
-const RelatedTerm = styled.a`
+const RelatedTerm = styled.button`
   margin-left: 12px;
   color: ${(props) => props.theme.colors.primaryPurple};
   font-weight: 600;
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  font-family: inherit;
+  padding: 0;
 
   ${breakpoint('sm', 'lg')`
     font-size: 16px;
@@ -86,6 +92,7 @@ const RelatedTerm = styled.a`
   &:hover,
   &:focus {
     text-decoration: underline;
+    cursor: pointer;
   }
 `;
 
@@ -132,6 +139,14 @@ const Card = ({
 }) => {
   // eslint-disable-next-line
   let title;
+
+  const scrollToTerm = (e) => {
+    // const mainArea = document.getElementById('main-area');
+    const element = document.getElementById(e.currentTarget.value);
+    // const { top } = element?.getBoundingClientRect();
+    // console.log(element?.getBoundingClientRect());
+    element.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Process glossary term name for id or href.
   const cleanTerm = (name) => {
@@ -244,7 +259,8 @@ const Card = ({
                   {term.fields.related_term_names.map((related, index) => {
                     return (
                       <RelatedTerm
-                        href={`#${cleanTerm(related)}`}
+                        onClick={scrollToTerm}
+                        value={cleanTerm(related)}
                         key={index}
                         search={search}
                       >
