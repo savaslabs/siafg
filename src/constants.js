@@ -1,18 +1,18 @@
-export const AIRTABLE_API_KEY = 'keyIveHQ90JLZtwtw';
-export const routes = ['Welcome', 'Resources', 'Glossary', 'Quiz', 'About'];
-export const entryQuestion = 'recbUJj5ay5guHEg9';
+export const AIRTABLE_API_KEY = "keyIveHQ90JLZtwtw";
+export const routes = ["Welcome", "Resources", "Glossary", "Quiz", "About"];
+export const entryQuestion = "recbUJj5ay5guHEg9";
 export const searchOptions = {
   includeScore: true,
   ignoreLocation: true,
   threshold: 0,
 };
 export const tables = [
-  'questions',
-  'resources',
-  'glossary',
-  'answers',
-  'options',
-  'glossary_highlighted_terms',
+  "questions",
+  "resources",
+  "glossary",
+  "answers",
+  "options",
+  "glossary_highlighted_terms",
 ];
 export const theme = {
   breakpoints: {
@@ -21,27 +21,28 @@ export const theme = {
     lg: 1025,
   },
   colors: {
-    primaryPurple: '#593ebf',
-    charcoal: '#181818',
-    darkGray: '#4F4F4F',
-    highlighter: '#ffe9d5',
-    backgroundPurple: '#F9F8FF',
-    footerPurple: '#E5DDF4',
-    footerText: '#19142D',
-    scrollGradient: 'linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%)',
-    primaryGradient: 'linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)',
-    hoverGradient: 'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%)',
+    primaryPurple: "#593ebf",
+    charcoal: "#181818",
+    darkGray: "#4F4F4F",
+    highlighter: "#ffe9d5",
+    backgroundPurple: "#F9F8FF",
+    footerPurple: "#E5DDF4",
+    footerText: "#635685",
+    scrollGradient:
+      "linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 25%)",
+    primaryGradient: "linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%)",
+    hoverGradient: "linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%)",
     gradientBorder:
-      'linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%) border-box;',
+      "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #FFDD94 0%, #D1C6F3 100%) border-box;",
     gradientBorderHover:
-      'linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) padding-box, linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) border-box;',
-    footerGradient: 'linear-gradient(173deg, #FFF4DC 0%, #D4C7FF 181.95%)',
+      "linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) padding-box, linear-gradient(135deg, #FFF4DC 0%, #D4C7FF 100%) border-box;",
+    footerGradient: "linear-gradient(173deg, #FFF4DC 0%, #D4C7FF 181.95%)",
   },
 };
 export const g = [
-  ['tangerines', 'url(#sunnytangerine)', 0.3],
-  ['ghosts', '#F9F8FF', 0.4],
-  ['lavenders', '#F0ECFF', 0.3],
+  ["tangerines", "url(#sunnytangerine)", 0.3],
+  ["ghosts", "#F9F8FF", 0.4],
+  ["lavenders", "#F0ECFF", 0.3],
 ];
 export const tangerines = [
   [45, 4.5, 270, 70],

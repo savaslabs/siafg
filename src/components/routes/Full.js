@@ -8,25 +8,26 @@ import { entryQuestion } from '../../constants';
 import Footer from '../Footer';
 
 const FullPageWrapper = styled.div`
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
 
   ${breakpoint('lg')`
-    height: ${(props) => props.height};
+    min-height: ${props => props.mainHeight};
   `}
 `;
 
 const MainPageContent = styled.main`
-  height: 100%;
+  padding: 20% 0;
   display: flex;
   flex-direction: column;
-  padding-top: 50%;
+  padding: 40% 0;
 
   ${breakpoint('md')`
     max-width: 75%;
-    padding-top: 25%;
+    padding: 25% 0;
 
     h1 {
       max-width: 500px;
@@ -36,8 +37,9 @@ const MainPageContent = styled.main`
   ${breakpoint('lg')`
     max-width: 60%;
     max-width: 700px;
-    padding: 0 0 20px 84px;
-    justify-content: center;
+    padding: 30px 0 30px 84px;
+    min-height: calc(100vh - 330px);
+    justify-content: space-evenly;
   `}
 
   h1 {
@@ -59,13 +61,13 @@ const SiteTitle = styled.h1`
   `}
 `;
 
-const Full = (props) => {
+const Full = props => {
   const [mainHeight, setMainHeight] = useState('0');
 
   useEffect(() => {
     let footerHeight = document.getElementById('site-footer')?.clientHeight;
     if (footerHeight < 133) footerHeight = 133;
-    setMainHeight(`calc(100vh - ${footerHeight}px)`);
+    setMainHeight(`calc(100vh - 100px -${footerHeight}px )`);
   }, []);
 
   const content =
@@ -87,30 +89,32 @@ const Full = (props) => {
 
   return (
     <>
-      <FullPageWrapper height={mainHeight}>
-        <Header home />
-        <MainPageContent>
-          <div>
-            <SiteTitle>{content.title}</SiteTitle>
-            <GlossaryTooltip textToReplace={content.mainText} paragraph />
-          </div>
-          <div style={{ marginTop: 35 }}>
-            <CTA
-              styletype="primary"
-              to={{
-                state: {
-                  activeId: entryQuestion,
-                  position: 1,
-                },
-                pathname: '/quiz',
-              }}
-              text="Take Quiz"
-              display="inline-block"
-            />
-          </div>
-          {/* For development only
+      <FullPageWrapper mainHeight={mainHeight}>
+        <div className="container">
+          <Header home />
+          <MainPageContent>
+            <div>
+              <SiteTitle>{content.title}</SiteTitle>
+              <GlossaryTooltip textToReplace={content.mainText} paragraph />
+            </div>
+            <div>
+              <CTA
+                styletype="primary"
+                to={{
+                  state: {
+                    activeId: entryQuestion,
+                    position: 1,
+                  },
+                  pathname: '/quiz',
+                }}
+                text="Take Quiz"
+                display="inline-block"
+              />
+            </div>
+            {/* For development only
           <ComponentLibrary /> */}
-        </MainPageContent>
+          </MainPageContent>
+        </div>
       </FullPageWrapper>
       <Footer />
     </>
