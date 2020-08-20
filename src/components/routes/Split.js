@@ -41,7 +41,6 @@ const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
     flex-wrap: wrap;
-    min-height: calc(100vh - 100px);
     padding-top: 45px;
   `}
 
@@ -217,9 +216,16 @@ const Split = ({ page, topic }) => {
   useEffect(() => {
     const titleHeight = document.getElementById('title-area')?.clientHeight;
     const headerHeight = document.getElementById('site-header')?.clientHeight;
-    setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 25}px)`);
-    setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 25}px)`);
+    setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 45}px)`);
+    setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 45}px)`);
   }, []);
+
+  const metaDescription =
+    topic === 'answer'
+      ? `${explanation.split('.')[0]}.`
+      : topic === 'archive'
+      ? `${page} related to asking for gender on forms.`
+      : `Forms often present binary options to the user that can be alienating. See if it’s necessary to ask for gender by taking this quiz.`;
 
   const pageTitle =
     topic === 'question' || topic === 'answer'
@@ -229,9 +235,7 @@ const Split = ({ page, topic }) => {
   return (
     <ArchiveProvider resources={resources} glossary={glossary}>
       <Helmet>
-        <title>
-          {pageTitle}
-        </title>
+        <title>{pageTitle}</title>
         <meta
           property="og:title"
           content={pageTitle}
@@ -241,6 +245,16 @@ const Split = ({ page, topic }) => {
           name="twitter:title"
           content={pageTitle}
           data-react-helmet="true"
+        />
+        <meta property="og:description" content={metaDescription} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta
+          property="twitter:url"
+          content={`https://shouldiaskforgender.com${location.pathname}`}
+        />
+        <meta
+          property="og:url"
+          content={`https://shouldiaskforgender.com${location.pathname}`}
         />
       </Helmet>
       <Header />

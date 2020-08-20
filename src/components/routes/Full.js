@@ -11,7 +11,11 @@ const FullPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${(props) => props.height};
+  height: 100vh;
+
+  ${breakpoint('lg')`
+    height: ${(props) => props.height};
+  `}
 `;
 
 const MainPageContent = styled.main`
@@ -59,7 +63,8 @@ const Full = (props) => {
   const [mainHeight, setMainHeight] = useState('0');
 
   useEffect(() => {
-    const footerHeight = document.getElementById('site-footer')?.clientHeight;
+    let footerHeight = document.getElementById('site-footer')?.clientHeight;
+    if (footerHeight < 133) footerHeight = 133;
     setMainHeight(`calc(100vh - ${footerHeight}px)`);
   }, []);
 
