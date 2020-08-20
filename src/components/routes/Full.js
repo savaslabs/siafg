@@ -13,26 +13,39 @@ const FullPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  ${breakpoint('lg')`
+    min-height: ${(props) => props.mainHeight};
+  `}
 `;
 
 const MainPageContent = styled.main`
   padding: 20% 0;
   display: flex;
   flex-direction: column;
+  padding: 40% 0;
 
   ${breakpoint("md")`
     max-width: 75%;
+    padding: 25% 0;
+
     h1 {
       max-width: 500px;
     }
   `}
+
   ${breakpoint("lg")`
     max-width: 60%;
     max-width: 700px;
-    padding: 0 0 20px 0;
-    min-height: calc(100vh - 290px);
-    justify-content: center;
+    padding: 30px 0 30px 84px;
+    min-height: calc(100vh - 310px);
+    justify-content: space-evenly;
   `}
+
+  h1 {
+    margin-top: 0;
+  }
+
 `;
 
 const SiteTitle = styled.h1`
@@ -77,7 +90,7 @@ const Full = props => {
 
   return (
     <>
-      <FullPageWrapper height={mainHeight}>
+      <FullPageWrapper mainHeight={mainHeight}>
         <div className="container">
           <Header home />
           <MainPageContent>
@@ -93,7 +106,7 @@ const Full = props => {
                     activeId: entryQuestion,
                     position: 1,
                   },
-                  pathname: "/quiz",
+                  pathname: '/quiz',
                 }}
                 text="Take Quiz"
                 display="inline-block"

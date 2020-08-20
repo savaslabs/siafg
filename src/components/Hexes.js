@@ -42,8 +42,6 @@ const SvgBackground = styled.svg`
   ${breakpoint("lg")`
     top: 0;
     width: 66.66vw;
-    height: ${props =>
-      props.page === "/" || props.page === "/about" ? "100%" : "100vh"};
   `}
 
   &[data-position='0'] {

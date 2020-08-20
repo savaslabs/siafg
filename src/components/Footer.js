@@ -1,34 +1,25 @@
-import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
-import breakpoint from "styled-components-breakpoint";
-import footerPolygon from "../assets/footer-polygon.svg";
-import labsLogo from "../assets/labs-logo.svg";
+import React, { useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+import footerPolygon from '../assets/footer-polygon.svg';
+import labsLogo from '../assets/labs-logo.svg';
 
 const Footer = () => {
   let footerSocial = useRef();
 
   useEffect(() => {
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.async = true;
-    script.src = "https://static.addtoany.com/menu/page.js";
+    script.src = 'https://static.addtoany.com/menu/page.js';
     footerSocial.appendChild(script);
   }, []);
 
   return (
     <FooterWrapper id="site-footer">
       <FooterContainer>
-        <LogoLink
-          href="https://savaslabs.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span className="sr-only">
-            Open Savas Labs website in new window.
-          </span>
-          <img
-            src={labsLogo}
-            alt="Labs: A Place for Experimentation at Savas Labs"
-          />
+        <LogoLink href="https://savaslabs.com" target="_blank" rel="noopener noreferrer">
+          <span className="sr-only">Open Savas Labs website in new window.</span>
+          <img src={labsLogo} alt="Labs: A Place for Experimentation at Savas Labs" />
         </LogoLink>
         <FooterMenu ref={el => (footerSocial = el)}>
           <div>
@@ -38,9 +29,7 @@ const Footer = () => {
             </FooterLink>
             <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
               Share Feedback
-              <span className="sr-only">
-                Opens an email to info@savaslabs.com
-              </span>
+              <span className="sr-only">Opens an email to info@savaslabs.com</span>
             </FooterLink>
           </div>
           <div
@@ -67,10 +56,10 @@ const Footer = () => {
 };
 
 const FooterWrapper = styled.footer`
-  ${breakpoint("sm")`
+  ${breakpoint('sm')`
     display: none;
   `}
-  ${breakpoint("lg")`
+  ${breakpoint('lg')`
     width: 100vw;
     background: ${props => props.theme.colors.footerPurple};
     padding: 34px 0;
@@ -97,7 +86,8 @@ const FooterContainer = styled.div`
 const LogoLink = styled.a`
   display: flex;
   align-items: center;
-  
+  padding-left: 84px;
+
   img:hover {
     src={labsLog-hover}
   }

@@ -20,19 +20,15 @@ const GlobalStyles = createGlobalStyle`
     font-size: 18px;
     line-height: 1.45;
     margin: 0;
-    overflow: hidden;
-    color: ${props => props.theme.colors.darkGray};
+    color: ${(props) => props.theme.colors.darkGray};
     max-height: 100vh;
     ${breakpoint("md")`
       font-size: 20px;
     `}
-    ${breakpoint("lg")`
-      overflow-y: auto;
-    `}
   }
   a {
     text-decoration: none;
-    color: ${props => props.theme.colors.primaryPurple};
+    color: ${(props) => props.theme.colors.primaryPurple};
     &:hover {
       text-decoration: underline;
     }
@@ -64,12 +60,12 @@ const GlobalStyles = createGlobalStyle`
   h2,
   h3,
   h4 {
-    color: ${props => props.theme.colors.primaryPurple};
+    color: ${(props) => props.theme.colors.primaryPurple};
     line-height: initial;
   }
   h2 {
     font-size: 21px;
-    ${breakpoint("lg")`
+    ${breakpoint('lg')`
       font-size: 28px;
     `}
   }
@@ -111,7 +107,7 @@ const App = () => {
                 <Route exact path={`/${path}`} key={index} route={route}>
                   <Split
                     page={route}
-                    topic={route === "Quiz" ? "question" : "archive"}
+                    topic={route === 'Quiz' ? 'question' : 'archive'}
                   />
                 </Route>
               );
