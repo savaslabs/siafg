@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
           <div
             className="a2a_kit a2a_kit_size_32 a2a_default_style"
-            data-a2a-icon-color="transparent,#19142D"
+            data-a2a-icon-color="transparent,#635685"
           >
             <a className="a2a_button_facebook" href="/">
               Share on Facebook
@@ -97,6 +97,10 @@ const FooterContainer = styled.div`
 const LogoLink = styled.a`
   display: flex;
   align-items: center;
+  
+  img:hover {
+    src={labsLog-hover}
+  }
 `;
 
 const FooterMenu = styled.div`
