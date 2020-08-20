@@ -10,10 +10,16 @@ import Footer from "../Footer";
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const MainPageContent = styled.main`
   padding: 25% 0;
+  display: flex;
+  flex-direction: column;
+
   ${breakpoint("md")`
     max-width: 75%;
     h1 {
@@ -24,7 +30,8 @@ const MainPageContent = styled.main`
     max-width: 60%;
     max-width: 700px;
     padding: 0 0 20px 0;
-    min-height: calc(100vh - 333px);
+    min-height: calc(100vh - 290px);
+    justify-content: center;
   `}
 `;
 
