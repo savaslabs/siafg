@@ -1,20 +1,19 @@
-import React, { useEffect, useContext } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { routes } from './constants';
-import Hexes from './components/Hexes';
-import Split from './components/routes/Split';
-import Full from './components/routes/Full';
-import NoMatch from './components/routes/NoMatch';
-import { ArchiveProvider } from './context/archiveContext';
-import { AppDataContext } from './context/appDataContext';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './constants';
-import { createGlobalStyle } from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
+import React, { useEffect, useContext } from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
+import styled from "styled-components";
+import { routes } from "./constants";
+import Hexes from "./components/Hexes";
+import Split from "./components/routes/Split";
+import Full from "./components/routes/Full";
+import NoMatch from "./components/routes/NoMatch";
+import { ArchiveProvider } from "./context/archiveContext";
+import { AppDataContext } from "./context/appDataContext";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./constants";
+import { createGlobalStyle } from "styled-components";
+import breakpoint from "styled-components-breakpoint";
 
 const GlobalStyles = createGlobalStyle`
-
   body {
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
@@ -22,42 +21,34 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.45;
     margin: 0;
     overflow: hidden;
-
     color: ${props => props.theme.colors.darkGray};
     max-height: 100vh;
-
-    ${breakpoint('md')`
+    ${breakpoint("md")`
       font-size: 20px;
     `}
-
-    ${breakpoint('lg')`
-      overflow-y: scroll;
+    ${breakpoint("lg")`
+      overflow-y: auto;
     `}
   }
-
   a {
     text-decoration: none;
     color: ${props => props.theme.colors.primaryPurple};
-
     &:hover {
       text-decoration: underline;
     }
   }
-
   ul {
     padding-inline-start: 0;
     list-style: none;
   }
-
   .container {
-    ${breakpoint('sm')`
+    ${breakpoint("sm")`
       padding: 0 30px;
     `}
-    ${breakpoint('md')`
+    ${breakpoint("md")`
       padding: 0 60px;
     `}
   }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -69,7 +60,6 @@ const GlobalStyles = createGlobalStyle`
     white-space: nowrap;
     border-width: 0;
   }
-
   h1,
   h2,
   h3,
@@ -77,21 +67,17 @@ const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.colors.primaryPurple};
     line-height: initial;
   }
-
   h2 {
     font-size: 21px;
-
-    ${breakpoint('lg')`
+    ${breakpoint("lg")`
       font-size: 28px;
     `}
   }
 `;
 
 const SiteContainer = styled.div`
-  height: ${(props) =>
-    props.page === '/' || props.page === '/about' ? 'auto' : '100vh'};;
+  height: 100vh;
   position: relative;
-  overflow: hidden;
 `;
 
 const App = () => {
@@ -112,10 +98,10 @@ const App = () => {
           <Switch>
             {routes.map((route, index) => {
               const path = route.toLowerCase();
-              return route === 'Welcome' || route === 'About' ? (
+              return route === "Welcome" || route === "About" ? (
                 <Route
                   exact
-                  path={route === 'Welcome' ? '/' : `/${path}`}
+                  path={route === "Welcome" ? "/" : `/${path}`}
                   key={index}
                   route={route}
                 >
@@ -123,7 +109,10 @@ const App = () => {
                 </Route>
               ) : (
                 <Route exact path={`/${path}`} key={index} route={route}>
-                  <Split page={route} topic={route === 'Quiz' ? 'question' : 'archive'} />
+                  <Split
+                    page={route}
+                    topic={route === "Quiz" ? "question" : "archive"}
+                  />
                 </Route>
               );
             })}

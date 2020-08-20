@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { g, tangerines, ghosts, lavenders } from '../constants';
-import styled, { css } from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
-import triangle from '../assets/triangle--right.svg';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { g, tangerines, ghosts, lavenders } from "../constants";
+import styled, { css } from "styled-components";
+import breakpoint from "styled-components-breakpoint";
+import triangle from "../assets/triangle--right.svg";
 
 const generatePositionStyles = () => {
   let styles = ``;
@@ -30,7 +30,7 @@ const generatePositionStyles = () => {
 };
 
 const SvgBackground = styled.svg`
-  position: absolute;
+  position: fixed;
   background: #f9f8ff;
   right: 0;
   width: 100vw;
@@ -39,11 +39,11 @@ const SvgBackground = styled.svg`
   transition: width 800ms;
   z-index: -1;
 
-  ${breakpoint('lg')`
+  ${breakpoint("lg")`
     top: 0;
     width: 66.66vw;
-    height: ${(props) =>
-      props.page === '/' || props.page === '/about' ? '100%' : '100vh'};
+    height: ${props =>
+      props.page === "/" || props.page === "/about" ? "100%" : "100vh"};
   `}
 
   &[data-position='0'] {
@@ -61,24 +61,24 @@ const SidebarBackground = styled.div`
   width: 33.33vw;
   position: absolute;
   left: 0;
-  height: ${(props) =>
-    props.page === '/' || props.page === '/about' ? '100%' : '100vh'};
+  height: ${props =>
+    props.page === "/" || props.page === "/about" ? "100%" : "100vh"};
   pointer-events: none;
   transition: width 800ms;
 
-  ${breakpoint('sm', 'lg')`
+  ${breakpoint("sm", "lg")`
     display: none;
   `}
 
   &:after {
     content: url(${triangle});
     position: absolute;
-    top: ${(props) => props.arrowPosition};
+    top: ${props => props.arrowPosition};
     left: calc(33.33vw - 10px);
     transition: left 800ms;
   }
 
-  &[data-position='0'] {
+  &[data-position="0"] {
     width: 0;
 
     &:after {
@@ -90,22 +90,22 @@ const SidebarBackground = styled.div`
 const Hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
-  const [arrowPosition, setArrowPosition] = useState('140px');
+  const [arrowPosition, setArrowPosition] = useState("140px");
 
   useEffect(() => {
     let position = 0;
     let max = 6;
 
-    const updatePosition = (n) => {
+    const updatePosition = n => {
       position += n;
       position = position < 0 ? 0 : position > max ? max : position;
       setDataPosition(position);
     };
 
     if (
-      location.pathname === '/' ||
-      location.pathname === '/welcome' ||
-      location.pathname === '/about'
+      location.pathname === "/" ||
+      location.pathname === "/welcome" ||
+      location.pathname === "/about"
     ) {
       // Landing page.
       setDataPosition(0);
@@ -119,7 +119,7 @@ const Hexes = () => {
   }, [location]);
 
   useEffect(() => {
-    const headerHeight = document.getElementById('site-header')?.offsetHeight;
+    const headerHeight = document.getElementById("site-header")?.offsetHeight;
     setArrowPosition(`${headerHeight + 50}px`);
   }, []);
 
@@ -173,15 +173,15 @@ const Hexes = () => {
               fill={type[1]}
               fillOpacity={type[2]}
             >
-              {type[0] === 'tangerines' &&
+              {type[0] === "tangerines" &&
                 tangerines.map((hex, index) =>
                   createHex(hex[0], hex[1], hex[2], hex[3], index)
                 )}
-              {type[0] === 'ghosts' &&
+              {type[0] === "ghosts" &&
                 ghosts.map((hex, index) =>
                   createHex(hex[0], hex[1], hex[2], hex[3], index)
                 )}
-              {type[0] === 'lavenders' &&
+              {type[0] === "lavenders" &&
                 lavenders.map((hex, index) =>
                   createHex(hex[0], hex[1], hex[2], hex[3], index)
                 )}
