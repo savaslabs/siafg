@@ -16,7 +16,7 @@ const FullPageWrapper = styled.div`
 `;
 
 const MainPageContent = styled.main`
-  padding: 25% 0;
+  padding: 20% 0;
   display: flex;
   flex-direction: column;
 
@@ -85,7 +85,7 @@ const Full = props => {
               <SiteTitle>{content.title}</SiteTitle>
               <GlossaryTooltip textToReplace={content.mainText} paragraph />
             </div>
-            <div style={{ marginTop: 35 }}>
+            <div>
               <CTA
                 styletype="primary"
                 to={{
