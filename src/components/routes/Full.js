@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import breakpoint from "styled-components-breakpoint";
-import CTA from "../Cta";
-import Header from "../Header";
-import GlossaryTooltip from "../GlossaryTooltip";
-import { entryQuestion } from "../../constants";
-import Footer from "../Footer";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+import CTA from '../Cta';
+import Header from '../Header';
+import GlossaryTooltip from '../GlossaryTooltip';
+import { entryQuestion } from '../../constants';
+import Footer from '../Footer';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -15,7 +15,7 @@ const FullPageWrapper = styled.div`
   justify-content: space-between;
 
   ${breakpoint('lg')`
-    min-height: ${(props) => props.mainHeight};
+    min-height: ${props => props.mainHeight};
   `}
 `;
 
@@ -25,7 +25,7 @@ const MainPageContent = styled.main`
   flex-direction: column;
   padding: 40% 0;
 
-  ${breakpoint("md")`
+  ${breakpoint('md')`
     max-width: 75%;
     padding: 25% 0;
 
@@ -34,53 +34,52 @@ const MainPageContent = styled.main`
     }
   `}
 
-  ${breakpoint("lg")`
+  ${breakpoint('lg')`
     max-width: 60%;
     max-width: 700px;
     padding: 30px 0 30px 84px;
-    min-height: calc(100vh - 310px);
+    min-height: calc(100vh - 330px);
     justify-content: space-evenly;
   `}
 
   h1 {
     margin-top: 0;
   }
-
 `;
 
 const SiteTitle = styled.h1`
   font-size: 33px;
   margin-bottom: 20px;
 
-  ${breakpoint("md")`
+  ${breakpoint('md')`
     font-size: 52px;
     margin-bottom: 35px;
   `}
 
-  ${breakpoint("lg")`
+  ${breakpoint('lg')`
     font-size: 64px;
   `}
 `;
 
 const Full = props => {
-  const [mainHeight, setMainHeight] = useState("0");
+  const [mainHeight, setMainHeight] = useState('0');
 
   useEffect(() => {
-    let footerHeight = document.getElementById("site-footer")?.clientHeight;
+    let footerHeight = document.getElementById('site-footer')?.clientHeight;
     if (footerHeight < 133) footerHeight = 133;
-    setMainHeight(`calc(100vh - ${footerHeight}px)`);
+    setMainHeight(`calc(100vh - 100px -${footerHeight}px )`);
   }, []);
 
   const content =
-    props.page === "Welcome"
+    props.page === 'Welcome'
       ? {
-          title: "Should I Ask For Gender?",
+          title: 'Should I Ask For Gender?',
           mainText: `Before working to design more inclusive gender form fields, ask yourself, "Should I be asking for 
           gender at all?" We're here to help with that. Click below to take the quiz and we'll provide some feedback 
           and resources to help you out.`,
         }
       : {
-          title: "About",
+          title: 'About',
           mainText: `Often, forms ask for gender and present two options to the user: male or female. If you don’t fit 
         into one of those two identities, the limited options can be alienating. *Should I Ask for Gender?*  was created 
         by [Savas Labs](https://www.savaslabs.com/) to provide a resource for form designers to think critically in 
