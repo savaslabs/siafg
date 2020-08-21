@@ -4,7 +4,7 @@ import Card from '../Card';
 import CardList from '../CardList';
 import OptionList from '../OptionList';
 import Header from '../Header';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -12,30 +12,6 @@ import { ArchiveProvider } from '../../context/archiveContext';
 import { AppDataContext } from '../../context/appDataContext';
 import { Animated } from 'react-animated-css';
 import { Helmet } from 'react-helmet';
-
-const GradientOverlayAnimationStyle = createGlobalStyle`
-
-  .gradient-overlay-anim {
-    background: ${(props) => props.theme.colors.scrollGradient};
-    height: 200px;
-    left: 0;
-    width: 100vw;
-    position: fixed;
-    z-index: 15;
-    margin-top: -15px;
-    pointer-events: none !important;
-
-    ${breakpoint('md')`
-      left: 60px;
-      width: calc(100vw - 120px);
-    `}
-
-    ${breakpoint('lg')`
-      height: 300px;
-      display: none;
-    `}
-  }
-`;
 
 const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
@@ -52,13 +28,12 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   background-color: transparent;
-  overflow-y: ${(props) => (props.topic === 'question' ? 'hidden' : 'scroll')};
-  overflow-x: hidden;
+  overflow-y: ${(props) => (props.topic === 'archive' ? 'scroll' : '')};
   padding: 50px 0 0 0;
   width: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: ${(props) => props.mainAreaHeightMobile};
+  height: ${(props) => props.topic === 'archive' ? props.mainAreaHeight : 'auto'};
 
   ${breakpoint('lg')`
     width: calc(66.66vw - 140px);
@@ -66,7 +41,7 @@ const MainArea = styled.div`
     position: absolute;
     padding: 0 65px 0 75px;
     right: 0;
-    height: ${(props) => props.mainAreaHeightDesktop};
+    height: ${(props) => props.mainAreaHeight};
   `}
 
   ${(props) =>
@@ -78,11 +53,6 @@ const MainArea = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-`;
-
-const ScrollGradient = styled.div`
-  width: 100%;
-  height: 100%;
 `;
 
 const QuestionWrapper = styled.div`
@@ -97,7 +67,7 @@ const Contact = styled.p`
   font-weight: 600;
   text-align: center;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 
   ${breakpoint('lg')`
     text-align: right;
@@ -114,8 +84,7 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
-  const [mainAreaHeightMobile, setMainAreaHeightMobile] = useState('100vh');
-  const [mainAreaHeightDesktop, setMainAreaHeightDesktop] = useState('100vh');
+  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
 
   // Read browser history state to determine what to render.
   useEffect(() => {
@@ -214,10 +183,8 @@ const Split = ({ page, topic }) => {
   ]);
 
   useEffect(() => {
-    const titleHeight = document.getElementById('title-area')?.clientHeight;
-    const headerHeight = document.getElementById('site-header')?.clientHeight;
-    setMainAreaHeightMobile(`calc(100vh - ${titleHeight + 45}px)`);
-    setMainAreaHeightDesktop(`calc(100vh - ${headerHeight + 45}px)`);
+    const offset = document.getElementById('split-main')?.offsetTop;
+    setMainAreaHeight(`calc(100vh - ${offset}px)`);
   }, []);
 
   const metaDescription =
@@ -260,19 +227,10 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <GradientOverlayAnimationStyle topic={topic} />
-        <Animated
-          animationIn="fadeIn"
-          animationInDuration={800}
-          animationInDelay={1200}
-          className="gradient-overlay-anim"
-        >
-          <ScrollGradient />
-        </Animated>
         <MainArea
           topic={topic}
-          mainAreaHeightMobile={mainAreaHeightMobile}
-          mainAreaHeightDesktop={mainAreaHeightDesktop}
+          mainAreaHeight={mainAreaHeight}
+          id="split-main"
         >
           {topic === 'question' && (
             <QuestionWrapper>

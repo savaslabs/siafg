@@ -14,41 +14,30 @@ import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 const GlobalStyles = createGlobalStyle`
-
   body {
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 1.45;
     margin: 0;
-    overflow: hidden;
-
     color: ${props => props.theme.colors.darkGray};
     max-height: 100vh;
-
+    overflow-x: hidden;
     ${breakpoint('md')`
       font-size: 20px;
     `}
-
-    ${breakpoint('lg')`
-      overflow-y: scroll;
-    `}
   }
-
   a {
     text-decoration: none;
     color: ${props => props.theme.colors.primaryPurple};
-
     &:hover {
       text-decoration: underline;
     }
   }
-
   ul {
     padding-inline-start: 0;
     list-style: none;
   }
-
   .container {
     ${breakpoint('sm')`
       padding: 0 30px;
@@ -57,7 +46,6 @@ const GlobalStyles = createGlobalStyle`
       padding: 0 60px;
     `}
   }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -69,7 +57,6 @@ const GlobalStyles = createGlobalStyle`
     white-space: nowrap;
     border-width: 0;
   }
-
   h1,
   h2,
   h3,
@@ -77,10 +64,8 @@ const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.colors.primaryPurple};
     line-height: initial;
   }
-
   h2 {
     font-size: 21px;
-
     ${breakpoint('lg')`
       font-size: 28px;
     `}
@@ -88,10 +73,8 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const SiteContainer = styled.div`
-  height: ${(props) =>
-    props.page === '/' || props.page === '/about' ? 'auto' : '100vh'};;
+  height: 100vh;
   position: relative;
-  overflow: hidden;
 `;
 
 const App = () => {
