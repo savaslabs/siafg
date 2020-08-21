@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import footerPolygon from '../assets/footer-polygon.svg';
-import labsLogo from '../assets/labs-logo.svg';
+import { LabsLogo } from './LabsLogo';
 
 const Footer = () => {
   let footerSocial = useRef();
@@ -19,11 +19,7 @@ const Footer = () => {
       <FooterContainer>
         <LogoLink href="https://savaslabs.com" target="_blank" rel="noopener noreferrer">
           <span className="sr-only">Open Savas Labs website in new window.</span>
-          <object
-            type="image/svg+xml"
-            data={labsLogo}
-            alt="Labs: A Place for Experimentation at Savas Labs"
-          />
+          <LabsLogo />
         </LogoLink>
         <FooterMenu ref={el => (footerSocial = el)}>
           <div>
@@ -90,6 +86,7 @@ const FooterContainer = styled.div`
 const LogoLink = styled.a`
   display: flex;
   align-items: center;
+  margin-left: 70px;
 `;
 
 const FooterMenu = styled.div`
