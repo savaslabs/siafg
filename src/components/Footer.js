@@ -19,7 +19,11 @@ const Footer = () => {
       <FooterContainer>
         <LogoLink href="https://savaslabs.com" target="_blank" rel="noopener noreferrer">
           <span className="sr-only">Open Savas Labs website in new window.</span>
-          <img src={labsLogo} alt="Labs: A Place for Experimentation at Savas Labs" />
+          <object
+            type="image/svg+xml"
+            data={labsLogo}
+            alt="Labs: A Place for Experimentation at Savas Labs"
+          />
         </LogoLink>
         <FooterMenu ref={el => (footerSocial = el)}>
           <div>
@@ -62,7 +66,7 @@ const FooterWrapper = styled.footer`
   ${breakpoint('lg')`
     width: 100vw;
     background: ${props => props.theme.colors.footerPurple};
-    padding: 34px 0;
+    padding: 10px 0;
     z-index: 9;
     margin-left: -60px;
     display: flex;
@@ -86,11 +90,6 @@ const FooterContainer = styled.div`
 const LogoLink = styled.a`
   display: flex;
   align-items: center;
-  padding-left: 84px;
-
-  img:hover {
-    src={labsLog-hover}
-  }
 `;
 
 const FooterMenu = styled.div`

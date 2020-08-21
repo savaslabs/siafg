@@ -38,7 +38,7 @@ const MainPageContent = styled.main`
     max-width: 60%;
     max-width: 700px;
     padding: 30px 0 30px 84px;
-    min-height: calc(100vh - 330px);
+    min-height: calc(100vh - 308px);
     justify-content: space-evenly;
   `}
 
