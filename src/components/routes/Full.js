@@ -6,13 +6,14 @@ import Header from '../Header';
 import GlossaryTooltip from '../GlossaryTooltip';
 import { entryQuestion } from '../../constants';
 import Footer from '../Footer';
+import { Helmet } from 'react-helmet';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 
   ${breakpoint('lg')`
     min-height: ${props => props.mainHeight};
@@ -39,7 +40,7 @@ const MainPageContent = styled.main`
     max-width: 700px;
     padding: 30px 0 30px 84px;
     min-height: calc(100vh - 308px);
-    justify-content: space-evenly;
+    justify-content: center;
   `}
 
   h1 {
@@ -90,6 +91,11 @@ const Full = props => {
   return (
     <>
       <FullPageWrapper mainHeight={mainHeight}>
+        <Helmet>
+          <title>{content.title}</title>
+          <meta property="og:title" content={content.title} data-react-helmet="true" />
+          <meta property="og:description" content={'Forms often present binary options to the user that can be alienating. See if it’s necessary to ask for gender by taking this quiz."'} />
+        </Helmet>
         <div className="container">
           <Header home />
           <MainPageContent>
