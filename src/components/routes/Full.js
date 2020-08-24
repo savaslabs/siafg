@@ -6,6 +6,7 @@ import Header from '../Header';
 import GlossaryTooltip from '../GlossaryTooltip';
 import { entryQuestion } from '../../constants';
 import Footer from '../Footer';
+import { Helmet } from 'react-helmet';
 
 const FullPageWrapper = styled.div`
   margin-left: calc(50% - 50vw);
@@ -90,6 +91,11 @@ const Full = props => {
   return (
     <>
       <FullPageWrapper mainHeight={mainHeight}>
+        <Helmet>
+          <title>{content.title}</title>
+          <meta property="og:title" content={content.title} data-react-helmet="true" />
+          <meta property="og:description" content={'Forms often present binary options to the user that can be alienating. See if it’s necessary to ask for gender by taking this quiz."'} />
+        </Helmet>
         <div className="container">
           <Header home />
           <MainPageContent>
