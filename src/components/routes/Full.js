@@ -13,7 +13,7 @@ const FullPageWrapper = styled.div`
   margin-right: calc(50% - 50vw);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 
   ${breakpoint('lg')`
     min-height: ${props => props.mainHeight};
@@ -40,7 +40,7 @@ const MainPageContent = styled.main`
     max-width: 700px;
     padding: 30px 0 30px 84px;
     min-height: calc(100vh - 308px);
-    justify-content: space-evenly;
+    justify-content: center;
   `}
 
   h1 {

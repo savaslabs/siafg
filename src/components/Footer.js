@@ -12,6 +12,17 @@ const Footer = () => {
     script.async = true;
     script.src = 'https://static.addtoany.com/menu/page.js';
     footerSocial.appendChild(script);
+
+    const customScript = document.createElement('script');
+    customScript.text = `
+      var a2a_config = a2a_config || {};
+      a2a_config.templates = a2a_config.templates || {};
+      a2a_config.templates.twitter = {
+        via: 'SavasLabs',
+        related: 'SavasLabs',
+      };
+    `;
+    footerSocial.appendChild(customScript);
   }, []);
 
   return (

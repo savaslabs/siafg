@@ -28,7 +28,7 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   background-color: transparent;
-  overflow-y: ${(props) => (props.topic === 'archive' ? 'scroll' : '')};
+  overflow-y: ${(props) => (props.topic === 'archive' || props.topic === 'answer' ? 'scroll' : '')};
   padding: 50px 0 0 0;
   width: auto;
   scrollbar-width: none;
