@@ -151,7 +151,7 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
   // Conditionally render id for glossary term articles.
   const renderId = () => {
     if (page === 'Glossary') {
-      return { id: cleanTerm(term.fields.term) };
+      return { id: cleanTerm(term.term) };
     }
   };
 
@@ -160,9 +160,9 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
     if (answer) {
       return (title = "And Here's Why...");
     } else if (page === 'Glossary') {
-      return (title = term.fields.term);
+      return (title = term.term);
     } else {
-      return (title = resource.fields.title);
+      return (title = resource.title);
     }
   };
 
@@ -172,7 +172,7 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
         {search ? (
           <>
             <ReactMarkdown
-              source={resource?.fields.summary}
+              source={resource?.summary}
               renderers={{
                 text: text => {
                   return <Highlight search={search}>{text.value}</Highlight>;
@@ -183,17 +183,17 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
         ) : (
           // ReactMarkdown is handled in GlossaryTooltip.
           <div className="resource-summary">
-            <GlossaryTooltip textToReplace={resource?.fields.summary} />
+            <GlossaryTooltip textToReplace={resource?.summary} />
           </div>
         )}
 
         {resource && (
           <Attribution>
-            {resource.fields.source_author ? resource.fields.source_author : ''}
-            {resource.fields.date && (
+            {resource.source_author ? resource.source_author : ''}
+            {resource.date && (
               <>
                 <Separator>&ndash;</Separator>
-                {new Date(resource.fields.date).toLocaleString('en-US', {
+                {new Date(resource.date).toLocaleString('en-US', {
                   dateStyle: 'short',
                 })}
               </>
@@ -224,11 +224,11 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
         {renderResourceFields()}
         {page === 'Glossary' && (
           <>
-            {term.fields.definition && (
+            {term.definition && (
               <>
                 {search ? (
                   <ReactMarkdown
-                    source={term.fields.definition}
+                    source={term.definition}
                     renderers={{
                       text: text => {
                         return <Highlight search={search}>{text.value}</Highlight>;
@@ -236,15 +236,15 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
                     }}
                   />
                 ) : (
-                  <ReactMarkdown source={term.fields.definition} />
+                  <ReactMarkdown source={term.definition} />
                 )}
               </>
             )}
-            {term.fields.related_term_names && (
+            {term.related_term_names && (
               <RelatedTermContainer>
                 <RelatedTermText>See also:</RelatedTermText>
                 <RelatedTermWrapper>
-                  {term.fields.related_term_names.map((related, index) => {
+                  {term.related_term_names.map((related, index) => {
                     return (
                       <RelatedTerm
                         onClick={scrollToTerm}
@@ -261,9 +261,9 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
             )}
           </>
         )}
-        {resource?.fields.link && (
-          <CardLink href={resource?.fields.link} target="_blank">
-            <span className="sr-only">{`Open ${resource?.fields.title} in new window.`}</span>
+        {resource?.link && (
+          <CardLink href={resource?.link} target="_blank">
+            <span className="sr-only">{`Open ${resource?.title} in new window.`}</span>
           </CardLink>
         )}
       </CardWrapper>

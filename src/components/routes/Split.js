@@ -28,12 +28,12 @@ const SplitScreenWrapper = styled.main`
 
 const MainArea = styled.div`
   background-color: transparent;
-  overflow-y: ${(props) => (props.topic === 'archive' || props.topic === 'answer' ? 'scroll' : '')};
+  overflow-y: ${props => (props.topic === 'archive' || props.topic === 'answer' ? 'scroll' : '')};
   padding: 50px 0 0 0;
   width: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: ${(props) => props.topic === 'archive' ? props.mainAreaHeight : 'auto'};
+  height: ${props => (props.topic === 'archive' ? props.mainAreaHeight : 'auto')};
 
   ${breakpoint('lg')`
     width: calc(66.66vw - 140px);
@@ -41,10 +41,10 @@ const MainArea = styled.div`
     position: absolute;
     padding: 0 65px 0 75px;
     right: 0;
-    height: ${(props) => props.mainAreaHeight};
+    height: ${props => props.mainAreaHeight};
   `}
 
-  ${(props) =>
+  ${props =>
     props.topic === 'question' &&
     `
       text-align: center;
@@ -89,54 +89,27 @@ const Split = ({ page, topic }) => {
   // Read browser history state to determine what to render.
   useEffect(() => {
     /*
-     * Get related resources for an answer.
-     */
-    const getRelatedResources = (id) => {
-      const filteredResources = resources?.filter((record) =>
-        record.fields.answers?.includes(id)
-      );
-
-      setRelatedResources(filteredResources ? filteredResources : []);
-    };
-
-    /*
-     * Get options for a specific question.
-     */
-    const getQuestionOptions = (optionArr) => {
-      let optionList = [];
-      optionArr.forEach((opt) => {
-        optionList = [
-          ...optionList,
-          options?.find((record) => record.id === opt).fields,
-        ];
-      });
-
-      setQuestionOptions(optionList[0] ? optionList : []);
-    };
-
-    /*
      * Get a single answer record.
      */
-    const getActiveAnswer = (id) => {
+    const getActiveAnswer = id => {
       if (answers.length > 0 && resources.length > 0) {
-        const answerRecord = answers?.find((record) => record.id === id).fields;
+        const answerRecord = answers?.find(record => record.__id === id);
         setTitle(answerRecord?.title);
         setDescription('');
         setExplanation(answerRecord?.explanation);
-        getRelatedResources(id);
+        setRelatedResources(answerRecord.articles);
       }
     };
 
     /*
      * Get a single question record based on ID.
      */
-    const getActiveQuestion = (id) => {
+    const getActiveQuestion = id => {
       if (questions.length > 0 && options.length > 0) {
-        const questionRecord = questions.find((record) => record.id === id)
-          .fields;
+        const questionRecord = questions.find(record => record.__id === id);
         setTitle(questionRecord?.question);
         setDescription(questionRecord?.description);
-        getQuestionOptions(questionRecord?.options);
+        setQuestionOptions(questionRecord?.options);
       }
     };
 
@@ -170,22 +143,13 @@ const Split = ({ page, topic }) => {
       default:
         break;
     }
-  }, [
-    location,
-    appData,
-    history,
-    page,
-    topic,
-    answers,
-    options,
-    questions,
-    resources,
-  ]);
+  }, [location, appData, history, page, topic, answers, options, questions, resources]);
 
   useEffect(() => {
     const offset = document.getElementById('split-main')?.offsetTop;
     setMainAreaHeight(`calc(100vh - ${offset}px)`);
   }, []);
+
 
   const metaDescription =
     topic === 'answer'
@@ -203,47 +167,21 @@ const Split = ({ page, topic }) => {
     <ArchiveProvider resources={resources} glossary={glossary}>
       <Helmet>
         <title>{pageTitle}</title>
-        <meta
-          property="og:title"
-          content={pageTitle}
-          data-react-helmet="true"
-        />
-        <meta
-          name="twitter:title"
-          content={pageTitle}
-          data-react-helmet="true"
-        />
+        <meta property="og:title" content={pageTitle} data-react-helmet="true" />
         <meta property="og:description" content={metaDescription} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta
-          property="twitter:url"
-          content={`https://shouldiaskforgender.com${location.pathname}`}
-        />
-        <meta
-          property="og:url"
-          content={`https://shouldiaskforgender.com${location.pathname}`}
-        />
+        <meta property="og:url" content={`https://shouldiaskforgender.com${location.pathname}`} />
       </Helmet>
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea
-          topic={topic}
-          mainAreaHeight={mainAreaHeight}
-          id="split-main"
-        >
+        <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
           {topic === 'question' && (
             <QuestionWrapper>
-              <Animated
-                animationIn="fadeInUp"
-                animationInDuration={300}
-                animationInDelay={500}
-              >
+              <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
                 <OptionList options={questionOptions} />{' '}
               </Animated>
               <Contact>
-                Have an edit suggestion?{' '}
-                <a href="mailto:info@savaslabs.com">Email us</a>.
+                Have an edit suggestion? <a href="mailto:info@savaslabs.com">Email us</a>.
               </Contact>
             </QuestionWrapper>
           )}

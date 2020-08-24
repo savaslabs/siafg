@@ -63,6 +63,7 @@ const SidebarBackground = styled.div`
     props.page === "/" || props.page === "/about" ? "100%" : "100vh"};
   pointer-events: none;
   transition: width 800ms;
+  background: white;
 
   ${breakpoint("sm", "lg")`
     display: none;
@@ -71,7 +72,7 @@ const SidebarBackground = styled.div`
   &:after {
     content: url(${triangle});
     position: absolute;
-    top: ${props => props.arrowPosition};
+    top: 166px;
     left: calc(33.33vw - 10px);
     transition: left 800ms;
   }
@@ -88,7 +89,6 @@ const SidebarBackground = styled.div`
 const Hexes = () => {
   const location = useLocation();
   const [dataPosition, setDataPosition] = useState(0);
-  const [arrowPosition, setArrowPosition] = useState("140px");
 
   useEffect(() => {
     let position = 0;
@@ -116,11 +116,6 @@ const Hexes = () => {
     }
   }, [location]);
 
-  useEffect(() => {
-    const headerHeight = document.getElementById("site-header")?.offsetHeight;
-    setArrowPosition(`${headerHeight + 50}px`);
-  }, []);
-
   // Hex constructor.
   const createHex = (r, m, x, y, index) => {
     return (
@@ -136,7 +131,6 @@ const Hexes = () => {
     <>
       <SidebarBackground
         data-position={dataPosition}
-        arrowPosition={arrowPosition}
       />
       <SvgBackground
         className="background"
