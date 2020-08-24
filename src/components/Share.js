@@ -57,6 +57,10 @@ const ShareRef = styled.div`
   display: inline-block;
   position: relative;
   z-index: 5;
+
+  ${breakpoint('lg')`
+    display: block;
+  `}
 `;
 
 const Share = () => {
