@@ -8,4 +8,5 @@
 1. Run `yarn start` to view the project in the browser.
 
 ## App Data
-Running `yarn node data/data-scripts.js` to generate updated JSON tables.` will generate new JSON files under `src/assets/data`.
+
+Running `yarn node data/data-scripts.js` will generate new JSON files under `src/assets/data`.
