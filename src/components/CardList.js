@@ -41,7 +41,7 @@ const CardList = props => {
           <>
             {glossary
               .sort((a, b) => {
-                return a.fields.term - b.fields.term;
+                return a.term - b.term;
               })
               .map((term, idx) => {
                 return (
@@ -58,7 +58,7 @@ const CardList = props => {
           <>
             {resources
               .sort((a, b) => {
-                return a.fields.date - b.fields.date;
+                return a.date - b.date;
               })
               .map((resource, idx) => {
                 return (

@@ -5,5 +5,7 @@
 ## Local Development
 
 1. Clone project and run `yarn` from inside the project root to install theme dependencies.
+1. Run `yarn start` to view the project in the browser.
 
-2. Run `yarn start` to view the project in the browser.
+## App Data
+Running `yarn node data/data-scripts.js` to generate updated JSON tables.` will generate new JSON files under `src/assets/data`.
