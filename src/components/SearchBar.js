@@ -92,9 +92,9 @@ const SearchBar = () => {
   useEffect(() => {
     if (resources && path === 'resources') {
       searchOptions.keys = [
-        'fields.source_author',
-        'fields.summary',
-        'fields.title',
+        'source_author',
+        'summary',
+        'title',
       ];
       setOptions(searchOptions);
       setSearchable(resources);
@@ -104,7 +104,7 @@ const SearchBar = () => {
   // Add glossary to state, along with fuse options.
   useEffect(() => {
     if (glossary && path === 'glossary') {
-      searchOptions.keys = ['fields.definition', 'fields.term'];
+      searchOptions.keys = ['definition', 'term'];
       setOptions(searchOptions);
       setSearchable(glossary);
     }

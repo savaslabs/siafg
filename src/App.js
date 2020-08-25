@@ -70,6 +70,31 @@ const GlobalStyles = createGlobalStyle`
       font-size: 28px;
     `}
   }
+
+  .glossary-tooltip {
+    width: 70vw;
+    font-size: 16px !important;
+    line-height: 1.25;
+    box-shadow: 0px 2px 12px 0px rgba(253, 229, 229, 0.1);
+
+    ${breakpoint('sm', 'md')`
+      left: 30px !important;
+      margin-top: 3px !important;
+
+      &:after {
+        display: none;
+      }
+    `}
+
+    ${breakpoint('md')`
+      width: 400px;
+    `}
+
+    &.show {
+      opacity: 0.95 !important;
+    }
+  }
+
 `;
 
 const SiteContainer = styled.div`

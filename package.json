@@ -44,5 +44,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "airtable-json": "^1.2.7",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }

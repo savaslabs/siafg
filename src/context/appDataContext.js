@@ -1,6 +1,10 @@
 import React, { useState, createContext } from 'react';
-import { tables } from '../constants';
-import { getRecordsList } from '../services/airtable-service';
+import QuestionData from '../assets/data/questions-data.json';
+import ResourceData from '../assets/data/resources-data.json';
+import GlossaryData from '../assets/data/glossary-data.json';
+import AnswersData from '../assets/data/answers-data.json';
+import OptionsData from '../assets/data/options-data.json';
+import HighlightedTermsData from '../assets/data/glossaryHighlightedTerms-data.json'
 
 export const AppDataContext = createContext();
 
@@ -13,35 +17,15 @@ export const AppDataProvider = props => {
   const [highlightedTerms, setHighlightedTerms] = useState('');
   const [matchedTerms, setMatchedTerms] = useState([]);
 
-  const getAllData = async () => {
-    await tables.forEach(async table => {
-      const res = await getRecordsList(table, { params: { view: 'Grid view' } });
-      switch (table) {
-        case 'questions':
-          setQuestions(res);
-          break;
-        case 'resources':
-          setResources(res);
-          break;
-        case 'glossary':
-          setGlossary(res);
-          break;
-        case 'answers':
-          setAnswers(res);
-          break;
-        case 'options':
-          setOptions(res);
-          break;
-        case 'glossary_highlighted_terms':
-          const termsRegexString = res[0]?.fields.glossary_regex_terms?.replace(/\s/g, '\\s');
-          const termsRegex = new RegExp(`\\b(${termsRegexString})\\b`, 'gi');
-          setHighlightedTerms(termsRegex);
-          break;
-
-        default:
-          break;
-      }
-    });
+  const getAllData = () => {
+    setQuestions(QuestionData);
+    setResources(ResourceData);
+    setGlossary(GlossaryData);
+    setAnswers(AnswersData);
+    setOptions(OptionsData);
+    const termsRegexString = HighlightedTermsData[0]?.glossary_regex_terms?.replace(/\s/g, '\\s');
+    const termsRegex = new RegExp(`\\b(${termsRegexString})\\b`, 'gi');
+    setHighlightedTerms(termsRegex);
   };
 
   return (

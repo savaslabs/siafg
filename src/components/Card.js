@@ -15,7 +15,6 @@ const CardWrapper = styled.article`
   position: relative;
   line-height: 1.5;
   font-size: 18px;
-  display: normal;
 
   ${breakpoint('sm')`
     & > div.resource-summary {	
@@ -72,7 +71,7 @@ const RelatedTermWrapper = styled.div`
 
 const RelatedTerm = styled.button`
   margin-left: 12px;
-  color: ${(props) => props.theme.colors.primaryPurple};
+  color: ${props => props.theme.colors.primaryPurple};
   font-weight: 600;
   appearance: none;
   border: 0;
@@ -102,7 +101,7 @@ const Separator = styled.span`
 
 const Attribution = styled.p`
   font-weight: 600;
-  color: ${(props) => props.theme.colors.charcoal};
+  color: ${props => props.theme.colors.charcoal};
 
   ${breakpoint('sm', 'lg')`
     font-size: 16px;
@@ -122,25 +121,21 @@ const CardLink = styled.a`
 
 const HighlightMarkStyles = createGlobalStyle`
   .card mark {
-    background-color: ${(props) => props.theme.colors.highlighter};
+    background-color: ${props => props.theme.colors.highlighter};
     color: inherit;
+  }
+
+  .answer-card {
+    position: relative;
+    z-index: 11;
   }
 `;
 
-const Card = ({
-  answer,
-  term,
-  explanation,
-  resource,
-  page,
-  search,
-  index,
-  listLength,
-}) => {
+const Card = ({ answer, term, explanation, resource, page, search, index, listLength }) => {
   // eslint-disable-next-line
   let title;
 
-  const scrollToTerm = (e) => {
+  const scrollToTerm = e => {
     // const mainArea = document.getElementById('main-area');
     const element = document.getElementById(e.currentTarget.value);
     // const { top } = element?.getBoundingClientRect();
@@ -149,14 +144,14 @@ const Card = ({
   };
 
   // Process glossary term name for id or href.
-  const cleanTerm = (name) => {
+  const cleanTerm = name => {
     return name.toLowerCase().replace(/ /g, '_');
   };
 
   // Conditionally render id for glossary term articles.
   const renderId = () => {
     if (page === 'Glossary') {
-      return { id: cleanTerm(term.fields.term) };
+      return { id: cleanTerm(term.term) };
     }
   };
 
@@ -165,9 +160,9 @@ const Card = ({
     if (answer) {
       return (title = "And Here's Why...");
     } else if (page === 'Glossary') {
-      return (title = term.fields.term);
+      return (title = term.term);
     } else {
-      return (title = resource.fields.title);
+      return (title = resource.title);
     }
   };
 
@@ -177,9 +172,9 @@ const Card = ({
         {search ? (
           <>
             <ReactMarkdown
-              source={resource?.fields.summary}
+              source={resource?.summary}
               renderers={{
-                text: (text) => {
+                text: text => {
                   return <Highlight search={search}>{text.value}</Highlight>;
                 },
               }}
@@ -188,17 +183,17 @@ const Card = ({
         ) : (
           // ReactMarkdown is handled in GlossaryTooltip.
           <div className="resource-summary">
-            <GlossaryTooltip textToReplace={resource?.fields.summary} />
+            <GlossaryTooltip textToReplace={resource?.summary} />
           </div>
         )}
 
         {resource && (
           <Attribution>
-            {resource.fields.source_author ? resource.fields.source_author : ''}
-            {resource.fields.date && (
+            {resource.source_author ? resource.source_author : ''}
+            {resource.date && (
               <>
                 <Separator>&ndash;</Separator>
-                {new Date(resource.fields.date).toLocaleString('en-US', {
+                {new Date(resource.date).toLocaleString('en-US', {
                   dateStyle: 'short',
                 })}
               </>
@@ -216,16 +211,11 @@ const Card = ({
       animationInDuration={index === 0 ? 800 : 500}
       animationOutDuration={800}
       animationInDelay={(listLength - index) * 15}
+      className={answer && 'answer-card'}
     >
       <HighlightMarkStyles />
       <CardWrapper {...renderId()} className="card">
-        <h1>
-          {search ? (
-            <Highlight search={search}>{renderH1()}</Highlight>
-          ) : (
-            renderH1()
-          )}
-        </h1>
+        <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
         {explanation && (
           <div className="answer">
             <GlossaryTooltip textToReplace={explanation} className="answer" />
@@ -234,29 +224,27 @@ const Card = ({
         {renderResourceFields()}
         {page === 'Glossary' && (
           <>
-            {term.fields.definition && (
+            {term.definition && (
               <>
                 {search ? (
                   <ReactMarkdown
-                    source={term.fields.definition}
+                    source={term.definition}
                     renderers={{
-                      text: (text) => {
-                        return (
-                          <Highlight search={search}>{text.value}</Highlight>
-                        );
+                      text: text => {
+                        return <Highlight search={search}>{text.value}</Highlight>;
                       },
                     }}
                   />
                 ) : (
-                  <ReactMarkdown source={term.fields.definition} />
+                  <ReactMarkdown source={term.definition} />
                 )}
               </>
             )}
-            {term.fields.related_term_names && (
+            {term.related_term_names && (
               <RelatedTermContainer>
                 <RelatedTermText>See also:</RelatedTermText>
                 <RelatedTermWrapper>
-                  {term.fields.related_term_names.map((related, index) => {
+                  {term.related_term_names.map((related, index) => {
                     return (
                       <RelatedTerm
                         onClick={scrollToTerm}
@@ -273,9 +261,9 @@ const Card = ({
             )}
           </>
         )}
-        {resource?.fields.link && (
-          <CardLink href={resource?.fields.link} target="_blank">
-            <span className="sr-only">{`Open ${resource?.fields.title} in new window.`}</span>
+        {resource?.link && (
+          <CardLink href={resource?.link} target="_blank">
+            <span className="sr-only">{`Open ${resource?.title} in new window.`}</span>
           </CardLink>
         )}
       </CardWrapper>

@@ -1,0 +1,651 @@
+[
+  {
+    "display_text": "Targeted Advertising",
+    "value": "adversiting",
+    "next_question": [
+      {
+        "question": "Are you advertising an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "recoUEVsQYoVcwNN9"
+        ],
+        "referencing_options": [
+          "recJi210lu9CSYtiY"
+        ],
+        "__id": "rec1eAFlDmrg0W7kP"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "How are you going to use gender information?",
+        "description": "Let us know how you plan to use data about a user's gender and we'll go from there.\n",
+        "options": [
+          "recdE3AfX2yLkfnbG",
+          "recJi210lu9CSYtiY",
+          "reclS2Jv5sikPIGXy",
+          "rec8rDst43MHjHFse"
+        ],
+        "__id": "recbUJj5ay5guHEg9"
+      }
+    ],
+    "__id": "recJi210lu9CSYtiY"
+  },
+  {
+    "display_text": "Demographic Information",
+    "value": "demographic",
+    "next_question": [
+      {
+        "question": "Are you using gender to infer a user’s pronouns or salutation?",
+        "description": "Pronouns could be he/him, she/her, they/them, etc.\nSalutations can include Mr, Mrs, Ms, Mx, etc.\n",
+        "options": [
+          "recC3yWA8v9UaHXJU",
+          "recziVVc5i0DpSNAY"
+        ],
+        "referencing_options": [
+          "recdE3AfX2yLkfnbG"
+        ],
+        "__id": "recOyMoWAmfxeo8I4"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "How are you going to use gender information?",
+        "description": "Let us know how you plan to use data about a user's gender and we'll go from there.\n",
+        "options": [
+          "recdE3AfX2yLkfnbG",
+          "recJi210lu9CSYtiY",
+          "reclS2Jv5sikPIGXy",
+          "rec8rDst43MHjHFse"
+        ],
+        "__id": "recbUJj5ay5guHEg9"
+      }
+    ],
+    "__id": "recdE3AfX2yLkfnbG"
+  },
+  {
+    "display_text": "Medical or Legal Records",
+    "value": "legal",
+    "next_question": [
+      {
+        "question": "Do you require a person's biological sex as defined on their birth certificate?",
+        "description": "Sex and gender are two different things, so questions around them should be handled differently.\n",
+        "options": [
+          "recRVSYmqddfXhuLD",
+          "recpq8xGsJWGutuY4"
+        ],
+        "referencing_options": [
+          "reclS2Jv5sikPIGXy"
+        ],
+        "__id": "recX34vs9IzgfaQEn"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "How are you going to use gender information?",
+        "description": "Let us know how you plan to use data about a user's gender and we'll go from there.\n",
+        "options": [
+          "recdE3AfX2yLkfnbG",
+          "recJi210lu9CSYtiY",
+          "reclS2Jv5sikPIGXy",
+          "rec8rDst43MHjHFse"
+        ],
+        "__id": "recbUJj5ay5guHEg9"
+      }
+    ],
+    "__id": "reclS2Jv5sikPIGXy"
+  },
+  {
+    "display_text": "I Don't Know.",
+    "value": "unknown",
+    "answer": [
+      {
+        "identifier": "unknown",
+        "articles": [
+          "recmrtzBIpXZRPUrl",
+          "recMMI4RHzk3pPdCd",
+          "recPdlH2ylPVPw2Ee",
+          "rec7C5inJn41k5AxD",
+          "recvgNxXy754BU2MW",
+          "recV4k1ghFZy3EtoT"
+        ],
+        "explanation": "Simply put: if you don't know why you're asking for the data, you shouldn't be asking for it. Before including a gender question on your form, give some thought on how you plan to use that information. Asking for the sake of asking risks an invalidating and frustrating experience for your users when it's not necessary.\n",
+        "title": "No, you should avoid asking for gender.",
+        "referencing_options": [
+          "rec8rDst43MHjHFse",
+          "recuu0tWmuuihLF6w"
+        ],
+        "__id": "recyuKV7Kj5jPpdcT"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "How are you going to use gender information?",
+        "description": "Let us know how you plan to use data about a user's gender and we'll go from there.\n",
+        "options": [
+          "recdE3AfX2yLkfnbG",
+          "recJi210lu9CSYtiY",
+          "reclS2Jv5sikPIGXy",
+          "rec8rDst43MHjHFse"
+        ],
+        "__id": "recbUJj5ay5guHEg9"
+      }
+    ],
+    "__id": "rec8rDst43MHjHFse"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_pronouns",
+    "answer": [
+      {
+        "identifier": "pronouns",
+        "articles": [
+          "rec2vUf5umjBHduGc",
+          "recS5zZ6JaniKp6LM",
+          "reco4vjrr2BM4MpNp",
+          "reckjwssI1CMlSZq9",
+          "recMMI4RHzk3pPdCd",
+          "recEmtq860NRJagdx",
+          "recI46b66JWWJJuIi"
+        ],
+        "explanation": "Rather than using gender to infer someone's pronouns or salutation, ask them directly for this information. It ensures you're getting accurate information for each user and removes the risk of offending someone if you've made the wrong inference based solely on a gender field.\n",
+        "title": "No, you should avoid asking for gender.",
+        "referencing_options": [
+          "recC3yWA8v9UaHXJU"
+        ],
+        "__id": "recAU2fDkYtPGfMKM"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you using gender to infer a user’s pronouns or salutation?",
+        "description": "Pronouns could be he/him, she/her, they/them, etc.\nSalutations can include Mr, Mrs, Ms, Mx, etc.\n",
+        "options": [
+          "recC3yWA8v9UaHXJU",
+          "recziVVc5i0DpSNAY"
+        ],
+        "referencing_options": [
+          "recdE3AfX2yLkfnbG"
+        ],
+        "__id": "recOyMoWAmfxeo8I4"
+      }
+    ],
+    "__id": "recC3yWA8v9UaHXJU"
+  },
+  {
+    "display_text": "No",
+    "value": "no_pronouns",
+    "next_question": [
+      {
+        "question": "Are you offering an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "referencing_options": [
+          "recziVVc5i0DpSNAY"
+        ],
+        "__id": "rec6ypqshGzvJpofz"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you using gender to infer a user’s pronouns or salutation?",
+        "description": "Pronouns could be he/him, she/her, they/them, etc.\nSalutations can include Mr, Mrs, Ms, Mx, etc.\n",
+        "options": [
+          "recC3yWA8v9UaHXJU",
+          "recziVVc5i0DpSNAY"
+        ],
+        "referencing_options": [
+          "recdE3AfX2yLkfnbG"
+        ],
+        "__id": "recOyMoWAmfxeo8I4"
+      }
+    ],
+    "__id": "recziVVc5i0DpSNAY"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_gender_specific",
+    "answer": [
+      {
+        "identifier": "gender_specific",
+        "articles": [
+          "reco4vjrr2BM4MpNp",
+          "reckjwssI1CMlSZq9",
+          "rec2vUf5umjBHduGc",
+          "recocvMn5pDiF06tK",
+          "recMMI4RHzk3pPdCd",
+          "recS5zZ6JaniKp6LM",
+          "recCw9XzdXGaQtdMG",
+          "rec7C5inJn41k5AxD",
+          "reczNN50cIdBZ9pX5",
+          "recWkSeMc2E9jYOxt",
+          "recvgNxXy754BU2MW",
+          "recEmtq860NRJagdx",
+          "recI46b66JWWJJuIi",
+          "recV4k1ghFZy3EtoT"
+        ],
+        "explanation": "Even if your product was conceptualized to serve one sex or gender, odds are good you have trans or gender non-conforming users as well. Don't forget that trans-men and non-binary people can have periods, trans-women might be using makeup, or someone with a masculine-of-center gender expression might be shopping for men's clothes.\n\nThere is a great opportunity to adjust user experience based on someone's gender identity, such as customizing messaging or functionality. In this case, demographic data can also be useful for you in determining future improvements or features.\n",
+        "title": "Maybe, but give it thoughtful consideration.",
+        "referencing_options": [
+          "recUke5JuzClyl7EM"
+        ],
+        "__id": "recW2nvNc9ncjq2op"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you offering an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "referencing_options": [
+          "recziVVc5i0DpSNAY"
+        ],
+        "__id": "rec6ypqshGzvJpofz"
+      },
+      {
+        "question": "Are you advertising an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "recoUEVsQYoVcwNN9"
+        ],
+        "referencing_options": [
+          "recJi210lu9CSYtiY"
+        ],
+        "__id": "rec1eAFlDmrg0W7kP"
+      }
+    ],
+    "__id": "recUke5JuzClyl7EM"
+  },
+  {
+    "display_text": "No",
+    "value": "no_gender_specific",
+    "next_question": [
+      {
+        "question": "Are you conducting research?",
+        "description": "Research studies often rely on demographic data.\n",
+        "options": [
+          "recLGqCTg7IunrsAf",
+          "recU6ZFgDouby4sQC"
+        ],
+        "referencing_options": [
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "__id": "recm8UkZabu5Xbi3u"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you offering an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "referencing_options": [
+          "recziVVc5i0DpSNAY"
+        ],
+        "__id": "rec6ypqshGzvJpofz"
+      }
+    ],
+    "__id": "rec5sqBnZYzqSKkLK"
+  },
+  {
+    "display_text": "No",
+    "value": "no_gender_specific_advertising",
+    "answer": [
+      {
+        "identifier": "advertising",
+        "articles": [
+          "recb81bClRHDhv6cr",
+          "recvgNxXy754BU2MW",
+          "recV4k1ghFZy3EtoT",
+          "recT0gKZW9FipW1O2",
+          "recFioM4QbxmWin7o",
+          "recBoKYEJ8pV3WRe7"
+        ],
+        "explanation": "Targeted advertising based on gender is already problematic even if one assumes a gender binary. Before creating targeted advertising based on gender demographics, consider the following:\nMany people who identify as women have a masculine-of-center gender expression. Are you accounting for them in your advertising?\nTrans men or non-binary people who were assigned female at birth might still be in the market for tampons or pads.\nThe resources below can help provide additional context and factors to consider.\n",
+        "title": "Maybe, but give it thoughtful consideration.",
+        "referencing_options": [
+          "recoUEVsQYoVcwNN9"
+        ],
+        "__id": "recAfizcAS7cZxlMq"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you advertising an app or services that serve a particular sex/gender?",
+        "description": "Examples of this could include something like a period-tracking app, makeup apps, or services that specialize in men's or women's clothes.\n",
+        "options": [
+          "recUke5JuzClyl7EM",
+          "recoUEVsQYoVcwNN9"
+        ],
+        "referencing_options": [
+          "recJi210lu9CSYtiY"
+        ],
+        "__id": "rec1eAFlDmrg0W7kP"
+      }
+    ],
+    "__id": "recoUEVsQYoVcwNN9"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_sex",
+    "answer": [
+      {
+        "identifier": "biological_sex",
+        "articles": [
+          "reco4vjrr2BM4MpNp",
+          "reckjwssI1CMlSZq9",
+          "recCw9XzdXGaQtdMG",
+          "recocvMn5pDiF06tK",
+          "recS5zZ6JaniKp6LM",
+          "recd932UkPGNTAf8g",
+          "reczNN50cIdBZ9pX5",
+          "recvgNxXy754BU2MW",
+          "recEmtq860NRJagdx",
+          "recI46b66JWWJJuIi"
+        ],
+        "explanation": "Sex and Gender are not the same thing. Conflating the two terms can be extremely frustrating for users that identify outside the gender binary. If you _truly need_ biological sex, explicitly ask for that.\nWe've provided some resources below that will further help in making the distinction, as well as designing your form and questions to be as inclusive as possible.\n",
+        "title": "No, you should avoid asking for gender.",
+        "referencing_options": [
+          "recRVSYmqddfXhuLD"
+        ],
+        "__id": "rec0bf0m0pG80j80H"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Do you require a person's biological sex as defined on their birth certificate?",
+        "description": "Sex and gender are two different things, so questions around them should be handled differently.\n",
+        "options": [
+          "recRVSYmqddfXhuLD",
+          "recpq8xGsJWGutuY4"
+        ],
+        "referencing_options": [
+          "reclS2Jv5sikPIGXy"
+        ],
+        "__id": "recX34vs9IzgfaQEn"
+      }
+    ],
+    "__id": "recRVSYmqddfXhuLD"
+  },
+  {
+    "display_text": "No",
+    "value": "no_sex",
+    "next_question": [
+      {
+        "question": "Are you attempting to gather information about LGBTQIA people specifically?",
+        "description": "Asking for gender identity is relevant and often encouraged if you're working  directly with the queer and trans community.\n\n",
+        "options": [
+          "recmS7BZUXtO1msAi",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "referencing_options": [
+          "recLGqCTg7IunrsAf",
+          "recpq8xGsJWGutuY4"
+        ],
+        "__id": "recQcln1PChqoUEhV"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Do you require a person's biological sex as defined on their birth certificate?",
+        "description": "Sex and gender are two different things, so questions around them should be handled differently.\n",
+        "options": [
+          "recRVSYmqddfXhuLD",
+          "recpq8xGsJWGutuY4"
+        ],
+        "referencing_options": [
+          "reclS2Jv5sikPIGXy"
+        ],
+        "__id": "recX34vs9IzgfaQEn"
+      }
+    ],
+    "__id": "recpq8xGsJWGutuY4"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_research",
+    "next_question": [
+      {
+        "question": "Are you attempting to gather information about LGBTQIA people specifically?",
+        "description": "Asking for gender identity is relevant and often encouraged if you're working  directly with the queer and trans community.\n\n",
+        "options": [
+          "recmS7BZUXtO1msAi",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "referencing_options": [
+          "recLGqCTg7IunrsAf",
+          "recpq8xGsJWGutuY4"
+        ],
+        "__id": "recQcln1PChqoUEhV"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you conducting research?",
+        "description": "Research studies often rely on demographic data.\n",
+        "options": [
+          "recLGqCTg7IunrsAf",
+          "recU6ZFgDouby4sQC"
+        ],
+        "referencing_options": [
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "__id": "recm8UkZabu5Xbi3u"
+      }
+    ],
+    "__id": "recLGqCTg7IunrsAf"
+  },
+  {
+    "display_text": "No",
+    "value": "no_research",
+    "next_question": [
+      {
+        "question": "Will you provide an explanation to users on why you are collecting this data and how it will be used?",
+        "description": "Providing an explanation to users on why you're asking and how you'll use the data in addition to designing an inclusive input can make a big difference for users.\n",
+        "options": [
+          "rec3bAD4BPdDSXraM",
+          "recuu0tWmuuihLF6w"
+        ],
+        "referencing_options": [
+          "recU6ZFgDouby4sQC",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "__id": "recWy6Ne4ibyoeaVw"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you conducting research?",
+        "description": "Research studies often rely on demographic data.\n",
+        "options": [
+          "recLGqCTg7IunrsAf",
+          "recU6ZFgDouby4sQC"
+        ],
+        "referencing_options": [
+          "rec5sqBnZYzqSKkLK"
+        ],
+        "__id": "recm8UkZabu5Xbi3u"
+      }
+    ],
+    "__id": "recU6ZFgDouby4sQC"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_lgbtqia_specific",
+    "answer": [
+      {
+        "identifier": "resources",
+        "articles": [
+          "reco4vjrr2BM4MpNp",
+          "rec2vUf5umjBHduGc",
+          "recmrtzBIpXZRPUrl",
+          "recMMI4RHzk3pPdCd",
+          "recPdlH2ylPVPw2Ee",
+          "recS5zZ6JaniKp6LM",
+          "recCw9XzdXGaQtdMG",
+          "recd932UkPGNTAf8g",
+          "rec7C5inJn41k5AxD",
+          "reczNN50cIdBZ9pX5",
+          "recWkSeMc2E9jYOxt",
+          "recvgNxXy754BU2MW",
+          "recEmtq860NRJagdx",
+          "recI46b66JWWJJuIi"
+        ],
+        "explanation": "You have a good use case for asking for gender specifically. Here are some resources to help you figure out how to do it in the most inclusive way.\n\n",
+        "title": "Yes, you have a good use case.",
+        "referencing_options": [
+          "recmS7BZUXtO1msAi"
+        ],
+        "__id": "rec96otZQsZca2Lbv"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you attempting to gather information about LGBTQIA people specifically?",
+        "description": "Asking for gender identity is relevant and often encouraged if you're working  directly with the queer and trans community.\n\n",
+        "options": [
+          "recmS7BZUXtO1msAi",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "referencing_options": [
+          "recLGqCTg7IunrsAf",
+          "recpq8xGsJWGutuY4"
+        ],
+        "__id": "recQcln1PChqoUEhV"
+      }
+    ],
+    "__id": "recmS7BZUXtO1msAi"
+  },
+  {
+    "display_text": "No",
+    "value": "no_lgbtqia_specific",
+    "next_question": [
+      {
+        "question": "Will you provide an explanation to users on why you are collecting this data and how it will be used?",
+        "description": "Providing an explanation to users on why you're asking and how you'll use the data in addition to designing an inclusive input can make a big difference for users.\n",
+        "options": [
+          "rec3bAD4BPdDSXraM",
+          "recuu0tWmuuihLF6w"
+        ],
+        "referencing_options": [
+          "recU6ZFgDouby4sQC",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "__id": "recWy6Ne4ibyoeaVw"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Are you attempting to gather information about LGBTQIA people specifically?",
+        "description": "Asking for gender identity is relevant and often encouraged if you're working  directly with the queer and trans community.\n\n",
+        "options": [
+          "recmS7BZUXtO1msAi",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "referencing_options": [
+          "recLGqCTg7IunrsAf",
+          "recpq8xGsJWGutuY4"
+        ],
+        "__id": "recQcln1PChqoUEhV"
+      }
+    ],
+    "__id": "recwE4UJGJnRPrTV7"
+  },
+  {
+    "display_text": "Yes",
+    "value": "yes_explanation",
+    "answer": [
+      {
+        "identifier": "maybe_resources",
+        "articles": [
+          "reco4vjrr2BM4MpNp",
+          "rec2vUf5umjBHduGc",
+          "recmrtzBIpXZRPUrl",
+          "recMMI4RHzk3pPdCd",
+          "recPdlH2ylPVPw2Ee",
+          "recS5zZ6JaniKp6LM",
+          "recCw9XzdXGaQtdMG",
+          "recd932UkPGNTAf8g",
+          "rec7C5inJn41k5AxD",
+          "reczNN50cIdBZ9pX5",
+          "recWkSeMc2E9jYOxt",
+          "recvgNxXy754BU2MW",
+          "recEmtq860NRJagdx",
+          "recI46b66JWWJJuIi",
+          "recV4k1ghFZy3EtoT"
+        ],
+        "explanation": "You might have a good use case for asking for gender specifically. Here are some resources to help you learn how to do it in the most inclusive way.\n\n",
+        "title": "Maybe, but give it thoughtful consideration.",
+        "referencing_options": [
+          "rec3bAD4BPdDSXraM"
+        ],
+        "__id": "recnBbAeHso0cqzWR"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Will you provide an explanation to users on why you are collecting this data and how it will be used?",
+        "description": "Providing an explanation to users on why you're asking and how you'll use the data in addition to designing an inclusive input can make a big difference for users.\n",
+        "options": [
+          "rec3bAD4BPdDSXraM",
+          "recuu0tWmuuihLF6w"
+        ],
+        "referencing_options": [
+          "recU6ZFgDouby4sQC",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "__id": "recWy6Ne4ibyoeaVw"
+      }
+    ],
+    "__id": "rec3bAD4BPdDSXraM"
+  },
+  {
+    "display_text": "No",
+    "value": "no_explanation",
+    "answer": [
+      {
+        "identifier": "unknown",
+        "articles": [
+          "recmrtzBIpXZRPUrl",
+          "recMMI4RHzk3pPdCd",
+          "recPdlH2ylPVPw2Ee",
+          "rec7C5inJn41k5AxD",
+          "recvgNxXy754BU2MW",
+          "recV4k1ghFZy3EtoT"
+        ],
+        "explanation": "Simply put: if you don't know why you're asking for the data, you shouldn't be asking for it. Before including a gender question on your form, give some thought on how you plan to use that information. Asking for the sake of asking risks an invalidating and frustrating experience for your users when it's not necessary.\n",
+        "title": "No, you should avoid asking for gender.",
+        "referencing_options": [
+          "rec8rDst43MHjHFse",
+          "recuu0tWmuuihLF6w"
+        ],
+        "__id": "recyuKV7Kj5jPpdcT"
+      }
+    ],
+    "referencing_questions": [
+      {
+        "question": "Will you provide an explanation to users on why you are collecting this data and how it will be used?",
+        "description": "Providing an explanation to users on why you're asking and how you'll use the data in addition to designing an inclusive input can make a big difference for users.\n",
+        "options": [
+          "rec3bAD4BPdDSXraM",
+          "recuu0tWmuuihLF6w"
+        ],
+        "referencing_options": [
+          "recU6ZFgDouby4sQC",
+          "recwE4UJGJnRPrTV7"
+        ],
+        "__id": "recWy6Ne4ibyoeaVw"
+      }
+    ],
+    "__id": "recuu0tWmuuihLF6w"
+  }
+]
