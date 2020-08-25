@@ -84,7 +84,7 @@ const FooterWrapper = styled.footer`
   padding: 10px 0;
   z-index: 100;
   margin-left: -60px;
-  margin-top: ${props => (props.isSplitScreen ? '-140px' : 0)};
+  margin-top: ${props => (props.isSplitScreen ? '-105px' : 0)};
   display: flex;
   position: relative;
 

@@ -86,6 +86,7 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
+  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
 
   // Read browser history state to determine what to render.
   useEffect(() => {
@@ -146,6 +147,11 @@ const Split = ({ page, topic }) => {
     }
   }, [location, appData, history, page, topic, answers, options, questions, resources]);
 
+  useEffect(() => {
+    const offset = document.getElementById('split-main')?.offsetTop;
+    setMainAreaHeight(`calc(100vh - ${offset}px)`);
+  }, []);
+
   const metaDescription =
     topic === 'answer'
       ? `${explanation.split('.')[0]}.`
@@ -169,7 +175,7 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic} id="split-main">
+        <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
           {topic === 'question' && (
             <QuestionWrapper>
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
