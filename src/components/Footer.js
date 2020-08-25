@@ -41,16 +41,18 @@ const Footer = props => {
         </LogoLink>
         <FooterMenu ref={el => (footerSocial = el)} isSplitScreen={props.split}>
           <div>
-            <FooterLink href="/about">
+            <FooterLink href="/about" isSplitScreen={props.split}>
               About
               <span className="sr-only">Opens the about page</span>
             </FooterLink>
-            {!props.split && (
-              <FooterLink href="mailto:info@savaslabs.com" rel="noreferrer">
-                Share Feedback
-                <span className="sr-only">Opens an email to info@savaslabs.com</span>
-              </FooterLink>
-            )}
+            <FooterLink
+              href="mailto:info@savaslabs.com"
+              rel="noreferrer"
+              isSplitScreen={props.split}
+            >
+              Share Feedback
+              <span className="sr-only">Opens an email to info@savaslabs.com</span>
+            </FooterLink>
           </div>
           <div
             className="a2a_kit a2a_kit_size_32 a2a_default_style"
@@ -80,7 +82,7 @@ const FooterWrapper = styled.footer`
   background: ${props =>
     props.isSplitScreen ? 'transparent' : props.theme.colors.backgroundPurple};
   padding: 10px 0;
-  z-index: 9;
+  z-index: 100;
   margin-left: -60px;
   margin-top: ${props => (props.isSplitScreen ? '-140px' : 0)};
   display: flex;
@@ -119,13 +121,6 @@ const FooterWrapper = styled.footer`
       props.isSplitScreen &&
       `
         margin-right: -10px;
-        a {
-          padding: 0;
-          margin: 0;
-        }
-        .a2a_svg {
-          margin: 0;
-        }
       `};
 
     ${breakpoint('sm', 'lg')`
@@ -158,7 +153,9 @@ const LogoLink = styled.a`
     props.isSplitScreen &&
     `
       margin-left: -10px;
-      width: 125px;
+      width: 100px;
+      height: 55px;
+      align-items: center;
     `}
   ${breakpoint('sm', 'lg')`
     margin-left: 0;
@@ -183,10 +180,17 @@ const FooterLink = styled.a`
   color: ${props => props.theme.colors.footerText};
   font-weight: 600;
   display: inline-block;
+  position: relative;
   &:not(:last-child) {
+    margin-right: ${props => (props.isSplitScreen ? '20px' : '40px')};
     &:after {
-      content: url(${footerPolygon});
-      margin: 0 15px;
+      content: '';
+      background: url(${footerPolygon}) center/cover;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right:${props => (props.isSplitScreen ? '-15px' : '-25px')};
+      top: ${props => (props.isSplitScreen ? '6px' : '10px')};
     }
   }
 `;
