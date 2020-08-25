@@ -14,30 +14,9 @@ const HeaderWrapper = styled.header`
   position: relative;
 
   ${breakpoint('lg')`
-    width: 100%;
     display: flex;
     justify-content: space-between;
   `}
-`;
-
-const FrostedOverlay = styled.div`
-  ${breakpoint('lg')`
-    display: none;
-  `}
-  opacity: 0;
-  width: 100vw;
-  background: white;
-  top: 0;
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  transition: opacity 0.5s;
-  z-index: 100;
-  pointer-events: none;
-
-  &.open {
-    opacity: 0.85;
-  }
 `;
 
 const LogoLink = styled(Link)`
@@ -121,14 +100,13 @@ const Menu = styled.ul`
 
   ${breakpoint('sm', 'lg')`
     flex-direction: column;
+    text-align: center;
     background: ${props => props.theme.colors.backgroundPurple};
     position: fixed;
     transform: translateX(100vw);
     transition: .5s ease-out;
-    padding-top: 80px;
-    box-shadow: -4px 0px 5px rgba(89, 62, 191, .1);
-    width: 66.66vw;
-    max-width: 250px;
+    padding-top: 50px;
+    width: 100vw;
     height: 100vh;
     &.open {
       transform: translateX(0);
@@ -148,7 +126,6 @@ const MenuItem = styled.li`
   font-weight: 700;
   font-size: 24px;
   line-height: 1.2;
-  padding-left: 20px;
 
   &:not(:first-child) {
     margin-top: 35px;
@@ -193,6 +170,7 @@ const Header = ({ home }) => {
 
   const toggleMenu = e => {
     setOpen(!open);
+    document.getElementById('site-footer').classList.toggle('menu-open');
   };
 
   return (
@@ -221,7 +199,6 @@ const Header = ({ home }) => {
         <span></span>
       </MenuToggle>
       <nav id="navigation">
-        <FrostedOverlay className={open ? 'open' : null}></FrostedOverlay>
         <Menu className={open ? 'open' : ''}>
           <MenuItem>
             <HomeIcon

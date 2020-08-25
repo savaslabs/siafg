@@ -94,7 +94,12 @@ const Full = props => {
         <Helmet>
           <title>{content.title}</title>
           <meta property="og:title" content={content.title} data-react-helmet="true" />
-          <meta property="og:description" content={'Forms often present binary options to the user that can be alienating. See if it’s necessary to ask for gender by taking this quiz."'} />
+          <meta
+            property="og:description"
+            content={
+              'Forms often present binary options to the user that can be alienating. See if it’s necessary to ask for gender by taking this quiz."'
+            }
+          />
         </Helmet>
         <div className="container">
           <Header home />

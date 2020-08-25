@@ -4,6 +4,7 @@ import Card from '../Card';
 import CardList from '../CardList';
 import OptionList from '../OptionList';
 import Header from '../Header';
+import Footer from '../Footer';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';
@@ -16,8 +17,8 @@ import { Helmet } from 'react-helmet';
 const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
-    flex-wrap: wrap;
     padding-top: 45px;
+    height: ${props => props.wrapperHeight};
   `}
 
   & > div.animated:first-child {
@@ -36,12 +37,11 @@ const MainArea = styled.div`
   height: ${props => (props.topic === 'archive' ? props.mainAreaHeight : 'auto')};
 
   ${breakpoint('lg')`
-    width: calc(66.66vw - 140px);
-    left: 33.33vw;
-    position: absolute;
+    width: 66.66vw;
+    left: 22px;
     padding: 0 65px 0 75px;
-    right: 0;
-    height: ${props => props.mainAreaHeight};
+    position: relative;
+    margin-right: -38px;
   `}
 
   ${props =>
@@ -57,6 +57,7 @@ const MainArea = styled.div`
 
 const QuestionWrapper = styled.div`
   position: relative;
+  height: 100%;
 
   ${breakpoint('md')`
     margin-bottom: 0;
@@ -71,6 +72,7 @@ const Contact = styled.p`
 
   ${breakpoint('lg')`
     text-align: right;
+    margin-top: auto;
   `}
 `;
 
@@ -84,7 +86,6 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
-  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
 
   // Read browser history state to determine what to render.
   useEffect(() => {
@@ -145,12 +146,6 @@ const Split = ({ page, topic }) => {
     }
   }, [location, appData, history, page, topic, answers, options, questions, resources]);
 
-  useEffect(() => {
-    const offset = document.getElementById('split-main')?.offsetTop;
-    setMainAreaHeight(`calc(100vh - ${offset}px)`);
-  }, []);
-
-
   const metaDescription =
     topic === 'answer'
       ? `${explanation.split('.')[0]}.`
@@ -174,7 +169,7 @@ const Split = ({ page, topic }) => {
       <Header />
       <SplitScreenWrapper>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
+        <MainArea topic={topic} id="split-main">
           {topic === 'question' && (
             <QuestionWrapper>
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>
@@ -199,6 +194,7 @@ const Split = ({ page, topic }) => {
           )}
         </MainArea>
       </SplitScreenWrapper>
+      <Footer split />
     </ArchiveProvider>
   );
 };
