@@ -94,18 +94,20 @@ const MenuToggle = styled.button`
 `;
 
 const NavWrapper = styled.nav`
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-  background: ${props => props.theme.colors.backgroundPurple};
-  transform: translateX(100vw);
-  transition: .5s ease-out;
-  padding-top: 50px;
-  display: flex;
+  ${breakpoint('sm', 'lg')`
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    background: ${props => props.theme.colors.backgroundPurple};
+    transform: translateX(100vw);
+    transition: .5s ease-out;
+    padding-top: 50px;
+    display: flex;
+  `}
 
   &.open {
     transform: translateX(0);
@@ -190,7 +192,7 @@ const Header = ({ home }) => {
     } else {
       document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
     }
-  }, [open])
+  }, [open]);
 
   return (
     <HeaderWrapper id="site-header">

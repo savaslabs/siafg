@@ -130,6 +130,9 @@ const FooterWrapper = styled.footer`
       padding: 0;
       height: 0;
       width: 0;
+      pointer-events: none;
+      font-size: 0;
+      opacity: 0;
     `}
   `}
 
