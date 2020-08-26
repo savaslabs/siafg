@@ -27,7 +27,12 @@ const Footer = props => {
   }, []);
 
   return (
-    <FooterWrapper id="site-footer" isSplitScreen={props.split}>
+    <FooterWrapper
+      id="site-footer"
+      isSplitScreen={props.split}
+      menuEmbed={props.menuEmbed}
+      as={props.menuEmbed ? 'div' : 'footer'}
+    >
       <FooterContainer isSplitScreen={props.split}>
         <LogoLink
           href="https://savaslabs.com"
@@ -79,12 +84,13 @@ const Footer = props => {
 
 const FooterWrapper = styled.footer`
   width: 100vw;
-  background: ${props => props.theme.colors.backgroundPurple};
+  background: ${props => props.theme.colors.footerPurple};
   padding: 10px 0;
   z-index: 100;
   margin-left: -60px;
   display: flex;
   position: relative;
+  visibility: ${props => (props.menuEmbed ? 'hidden' : 'visible')};
 
   ${breakpoint('sm', 'md')`
     margin-left: -30px;
@@ -96,18 +102,20 @@ const FooterWrapper = styled.footer`
   `}
 
   ${breakpoint('sm', 'lg')`
-    padding: 30px 0 35px;
-    background: transparent;
-    transform: translateX(100vw);
-    transition: .5s ease-out;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    z-index: 300;
+    visibility: hidden;
 
-    &.menu-open {
-      transform: translateX(0);
-    }
+    ${props =>
+      props.menuEmbed &&
+      `
+      visibility: visible;
+      padding: 30px 0 35px;
+      background: transparent;
+      transition: .5s ease-out;
+      bottom: 0;
+      display: flex;
+      z-index: 300;
+      margin: auto 0 50px;
+    `}
   `}
 
   ${breakpoint('lg')`
@@ -151,7 +159,7 @@ const FooterContainer = styled.div`
   `}
 
   ${breakpoint('md')`
-    padding: ${props => (props.isSplitScreen ? '0 0 0 60px' : '0 60px')}
+    padding: 0 60px;
   `}
 
   ${breakpoint('lg')`
@@ -160,6 +168,7 @@ const FooterContainer = styled.div`
       `
       width: calc(100% - 60px);
       margin-top: 10px;
+      padding: 0 0 0 60px;
     `}
   `}
 `;
@@ -219,7 +228,9 @@ const FooterLink = styled.a`
     }
 
     ${breakpoint('lg')`
-      ${props => props.isSplitScreen && `
+      ${props =>
+        props.isSplitScreen &&
+        `
         margin-right: 20px;
         &:after {
           right: -15px;

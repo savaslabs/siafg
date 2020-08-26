@@ -26,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
     ${breakpoint('md')`
       font-size: 20px;
     `}
+
+    &.overflow-hidden {
+      overflow: hidden;
+    }
   }
   a {
     text-decoration: none;

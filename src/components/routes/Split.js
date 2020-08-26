@@ -18,7 +18,7 @@ const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
     padding-top: 45px;
-    height: ${props => props.wrapperHeight};
+    min-height: calc(100% - 161px);
   `}
 
   & > div.animated:first-child {
@@ -61,6 +61,12 @@ const QuestionWrapper = styled.div`
 
   ${breakpoint('md')`
     margin-bottom: 0;
+  `}
+
+  ${breakpoint('lg')`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   `}
 `;
 
@@ -173,7 +179,7 @@ const Split = ({ page, topic }) => {
         <meta property="og:url" content={`https://shouldiaskforgender.com${location.pathname}`} />
       </Helmet>
       <Header />
-      <SplitScreenWrapper>
+      <SplitScreenWrapper mainAreaHeight={mainAreaHeight}>
         <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
           {topic === 'question' && (

@@ -6,6 +6,7 @@ import { routes } from '../constants';
 import logo from '../assets/logo.svg';
 import darkLogo from '../assets/logo-dark.svg';
 import home from '../assets/home.svg';
+import Footer from '../components/Footer';
 
 const HeaderWrapper = styled.header`
   z-index: 200;
@@ -92,6 +93,26 @@ const MenuToggle = styled.button`
   }
 `;
 
+const NavWrapper = styled.nav`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  background: ${props => props.theme.colors.backgroundPurple};
+  transform: translateX(100vw);
+  transition: .5s ease-out;
+  padding-top: 50px;
+  display: flex;
+
+  &.open {
+    transform: translateX(0);
+    overflow-y: scroll;
+  }
+`;
+
 const Menu = styled.ul`
   display: flex;
   top: -20px;
@@ -99,18 +120,8 @@ const Menu = styled.ul`
   z-index: 100;
 
   ${breakpoint('sm', 'lg')`
+    margin-top: 0;
     flex-direction: column;
-    text-align: center;
-    background: ${props => props.theme.colors.backgroundPurple};
-    position: fixed;
-    transform: translateX(100vw);
-    transition: .5s ease-out;
-    padding-top: 50px;
-    width: 100vw;
-    height: 100vh;
-    &.open {
-      transform: translateX(0);
-    }
   `}
 
   ${breakpoint('lg')`
@@ -171,6 +182,7 @@ const Header = ({ home }) => {
   const toggleMenu = e => {
     setOpen(!open);
     document.getElementById('site-footer').classList.toggle('menu-open');
+    document.getElementsByTagName('body')[0].classList.toggle('overflow-hidden');
   };
 
   return (
@@ -198,8 +210,8 @@ const Header = ({ home }) => {
         <span></span>
         <span></span>
       </MenuToggle>
-      <nav id="navigation">
-        <Menu className={open ? 'open' : ''}>
+      <NavWrapper id="navigation" className={open ? 'open' : ''}>
+        <Menu>
           <MenuItem>
             <HomeIcon
               to={{
@@ -226,7 +238,8 @@ const Header = ({ home }) => {
             }
           })}
         </Menu>
-      </nav>
+        <Footer menuEmbed />
+      </NavWrapper>
     </HeaderWrapper>
   );
 };

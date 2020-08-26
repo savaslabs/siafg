@@ -46,6 +46,10 @@ const MainPageContent = styled.main`
   h1 {
     margin-top: 0;
   }
+
+  &.overflow-hidden {
+    overflow: hidden;
+  }
 `;
 
 const SiteTitle = styled.h1`
