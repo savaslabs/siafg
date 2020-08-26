@@ -90,7 +90,6 @@ const FooterWrapper = styled.footer`
   margin-left: -60px;
   display: flex;
   position: relative;
-  visibility: ${props => (props.menuEmbed ? 'hidden' : 'visible')};
 
   ${breakpoint('sm', 'md')`
     margin-left: -30px;
@@ -102,12 +101,12 @@ const FooterWrapper = styled.footer`
   `}
 
   ${breakpoint('sm', 'lg')`
-    visibility: hidden;
+    display: none;
 
     ${props =>
       props.menuEmbed &&
       `
-      visibility: visible;
+      display: flex;
       padding: 30px 0 35px;
       background: transparent;
       transition: .5s ease-out;
@@ -125,6 +124,12 @@ const FooterWrapper = styled.footer`
       width: calc(33.33vw - 35px);
       background: transparent;
       margin-top: -105px;
+    `}
+
+    ${props => props.menuEmbed && `
+      padding: 0;
+      height: 0;
+      width: 0;
     `}
   `}
 

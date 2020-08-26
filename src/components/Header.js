@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -182,8 +182,15 @@ const Header = ({ home }) => {
   const toggleMenu = e => {
     setOpen(!open);
     document.getElementById('site-footer').classList.toggle('menu-open');
-    document.getElementsByTagName('body')[0].classList.toggle('overflow-hidden');
   };
+
+  useEffect(() => {
+    if (open) {
+      document.getElementsByTagName('body')[0].classList.add('overflow-hidden');
+    } else {
+      document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
+    }
+  }, [open])
 
   return (
     <HeaderWrapper id="site-header">

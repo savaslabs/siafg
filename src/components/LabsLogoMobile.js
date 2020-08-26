@@ -43,12 +43,12 @@ export const LabsLogoMobile = () => {
           <path
             d="M69.8101 11.6326L57.7937 23.649H37.362L49.3784 11.6326H69.8101Z"
             fill="#635685"
-            className="glare"
+            className="mobile_glare"
           />
           <path
             d="M47.8242 11.6326L35.8078 23.649H31.8619L43.8783 11.6326H47.8242Z"
             fill="#635685"
-            className="glare"
+            className="mobile_glare"
           />
         </g>
         <path
@@ -91,12 +91,12 @@ const MobileLogo = styled.svg`
     display: none;
   `}
 
-  .glare {
+  .mobile_glare {
     transition: transform 0.4s;
     transform: translateX(-30px);
   }
 
-  &:hover .glare {
+  &:hover .mobile_glare {
     transform: translateX(30px);
   }
 `;

@@ -48,7 +48,6 @@ export const LabsLogo = () => {
         <path
           className="glare"
           d="M225.465 83.1421L162.401 146.205H55.174L118.237 83.1421H225.465Z"
-          fill="white"
         />
         <path
           className="glare"
