@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 export const LabsLogo = () => {
   return (
@@ -63,6 +64,10 @@ export const LabsLogo = () => {
 };
 
 const Logo = styled.svg`
+  ${breakpoint('sm', 'lg')`
+    display: none;
+  `}
+
   .background {
     fill: none;
   }

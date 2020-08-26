@@ -4,6 +4,7 @@ import Card from '../Card';
 import CardList from '../CardList';
 import OptionList from '../OptionList';
 import Header from '../Header';
+import Footer from '../Footer';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { entryQuestion } from '../../constants';
@@ -16,8 +17,8 @@ import { Helmet } from 'react-helmet';
 const SplitScreenWrapper = styled.main`
   ${breakpoint('lg')`
     display: flex;
-    flex-wrap: wrap;
     padding-top: 45px;
+    min-height: calc(100% - 161px);
   `}
 
   & > div.animated:first-child {
@@ -36,12 +37,11 @@ const MainArea = styled.div`
   height: ${props => (props.topic === 'archive' ? props.mainAreaHeight : 'auto')};
 
   ${breakpoint('lg')`
-    width: calc(66.66vw - 140px);
-    left: 33.33vw;
-    position: absolute;
+    width: 66.66vw;
+    left: 22px;
     padding: 0 65px 0 75px;
-    right: 0;
-    height: ${props => props.mainAreaHeight};
+    position: relative;
+    margin-right: -38px;
   `}
 
   ${props =>
@@ -57,9 +57,16 @@ const MainArea = styled.div`
 
 const QuestionWrapper = styled.div`
   position: relative;
+  height: 100%;
 
   ${breakpoint('md')`
     margin-bottom: 0;
+  `}
+
+  ${breakpoint('lg')`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   `}
 `;
 
@@ -71,6 +78,7 @@ const Contact = styled.p`
 
   ${breakpoint('lg')`
     text-align: right;
+    margin-top: auto;
   `}
 `;
 
@@ -150,7 +158,6 @@ const Split = ({ page, topic }) => {
     setMainAreaHeight(`calc(100vh - ${offset}px)`);
   }, []);
 
-
   const metaDescription =
     topic === 'answer'
       ? `${explanation.split('.')[0]}.`
@@ -172,7 +179,7 @@ const Split = ({ page, topic }) => {
         <meta property="og:url" content={`https://shouldiaskforgender.com${location.pathname}`} />
       </Helmet>
       <Header />
-      <SplitScreenWrapper>
+      <SplitScreenWrapper mainAreaHeight={mainAreaHeight}>
         <TitleArea title={title} description={description} topic={topic} />
         <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
           {topic === 'question' && (
@@ -199,6 +206,7 @@ const Split = ({ page, topic }) => {
           )}
         </MainArea>
       </SplitScreenWrapper>
+      <Footer split />
     </ArchiveProvider>
   );
 };

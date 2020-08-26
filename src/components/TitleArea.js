@@ -41,6 +41,7 @@ const TitleAreaWrapper = styled.div`
     padding: 0;
     line-height: inherit;
     box-shadow: none;
+    margin-bottom: 140px;
   `}
 
   h2,
