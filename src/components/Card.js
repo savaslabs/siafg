@@ -193,7 +193,7 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
             {resource.date && (
               <>
                 <Separator>&ndash;</Separator>
-                {new Date(resource.date).toLocaleString('en-US', {
+                {new Date(resource.date).toLocaleDateString('en-US', {
                   dateStyle: 'short',
                 })}
               </>

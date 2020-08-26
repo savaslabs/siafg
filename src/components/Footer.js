@@ -78,15 +78,22 @@ const Footer = props => {
 };
 
 const FooterWrapper = styled.footer`
-  width: ${props => (props.isSplitScreen ? 'calc(33.33vw - 35px)' : '100vw')};
-  background: ${props =>
-    props.isSplitScreen ? 'transparent' : props.theme.colors.backgroundPurple};
+  width: 100vw;
+  background: ${props => props.theme.colors.backgroundPurple};
   padding: 10px 0;
   z-index: 100;
   margin-left: -60px;
-  margin-top: ${props => (props.isSplitScreen ? '-105px' : 0)};
   display: flex;
   position: relative;
+
+  ${breakpoint('sm', 'md')`
+    margin-left: -30px;
+    padding: 30px 0 35px;
+  `}
+
+  ${breakpoint('md', 'lg')`
+    padding: 30px 0 50px;
+  `}
 
   ${breakpoint('sm', 'lg')`
     padding: 30px 0 35px;
@@ -103,13 +110,14 @@ const FooterWrapper = styled.footer`
     }
   `}
 
-  ${breakpoint('md', 'lg')`
-    padding: 30px 0 50px;
-  `}
-
-  ${breakpoint('sm', 'md')`
-    margin-left: -30px;
-    padding: 30px 0 35px;
+  ${breakpoint('lg')`
+    ${props =>
+      props.isSplitScreen &&
+      `
+      width: calc(33.33vw - 35px);
+      background: transparent;
+      margin-top: -105px;
+    `}
   `}
 
   .a2a_kit {
@@ -117,23 +125,25 @@ const FooterWrapper = styled.footer`
     display: flex;
     margin-top: 5px;
     justify-content: flex-end;
-    ${props =>
-      props.isSplitScreen &&
-      `
-        margin-right: -10px;
-      `};
 
     ${breakpoint('sm', 'lg')`
       justify-content: center;
+    `}
+
+    ${breakpoint('lg')`
+      ${props =>
+        props.isSplitScreen &&
+        `
+          margin-right: -10px;
+      `};
     `}
   }
 `;
 
 const FooterContainer = styled.div`
-  width: ${props => (props.isSplitScreen ? 'calc(100% - 60px)' : '100%')};
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: ${props => (props.isSplitScreen ? '10px' : 0)};
 
   ${breakpoint('sm', 'lg')`
     flex-direction: column;
@@ -143,23 +153,36 @@ const FooterContainer = styled.div`
   ${breakpoint('md')`
     padding: ${props => (props.isSplitScreen ? '0 0 0 60px' : '0 60px')}
   `}
+
+  ${breakpoint('lg')`
+    ${props =>
+      props.isSplitScreen &&
+      `
+      width: calc(100% - 60px);
+      margin-top: 10px;
+    `}
+  `}
 `;
 
 const LogoLink = styled.a`
   display: flex;
   align-items: center;
   margin-left: 70px;
-  ${props =>
-    props.isSplitScreen &&
-    `
-      margin-left: -10px;
-      width: 100px;
-      height: 55px;
-      align-items: center;
-    `}
+
   ${breakpoint('sm', 'lg')`
     margin-left: 0;
   `};
+
+  ${breakpoint('lg')`
+    ${props =>
+      props.isSplitScreen &&
+      `
+        margin-left: -10px;
+        width: 100px;
+        height: 55px;
+        align-items: center;
+    `}
+  `}
 `;
 
 const FooterMenu = styled.div`
@@ -168,12 +191,14 @@ const FooterMenu = styled.div`
   justify-content: center;
   margin-right: -10px;
 
-  ${props =>
-    props.isSplitScreen &&
-    `
-      font-size: 16px;
-      text-align: right;
+  ${breakpoint('lg')`
+    ${props =>
+      props.isSplitScreen &&
+      `
+        font-size: 16px;
+        text-align: right;
     `}
+  `}
 `;
 
 const FooterLink = styled.a`
@@ -182,16 +207,26 @@ const FooterLink = styled.a`
   display: inline-block;
   position: relative;
   &:not(:last-child) {
-    margin-right: ${props => (props.isSplitScreen ? '20px' : '40px')};
+    margin-right: 40px;
     &:after {
       content: '';
       background: url(${footerPolygon}) center/cover;
       width: 10px;
       height: 10px;
       position: absolute;
-      right:${props => (props.isSplitScreen ? '-15px' : '-25px')};
-      top: ${props => (props.isSplitScreen ? '6px' : '10px')};
+      right: -25px;
+      top: 10px;
     }
+
+    ${breakpoint('lg')`
+      ${props => props.isSplitScreen && `
+        margin-right: 20px;
+        &:after {
+          right: -15px;
+          top: 6px;
+        }
+      `}
+    `}
   }
 `;
 
