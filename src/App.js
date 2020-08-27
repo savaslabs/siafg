@@ -12,6 +12,9 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './constants';
 import { createGlobalStyle } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-61514316-5');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const GlobalStyles = createGlobalStyle`
   body {
