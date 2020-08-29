@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Highlight from 'react-highlighter';
 import GlossaryTooltip from './GlossaryTooltip';
@@ -7,8 +7,9 @@ import breakpoint from 'styled-components-breakpoint';
 import ReactMarkdown from 'react-markdown';
 
 const CardWrapper = styled.article`
+  border: solid 1px ${(props) => (props.isFocused ? props.theme.colors.primaryPurple : 'transparent')}; 
   box-shadow: 0px 4px 4px rgba(89, 62, 191, 0.3);
-  transition: box-shadow 0.5s ease-out;
+  transition: box-shadow 0.5s ease-out, border-color 0.2s;
   padding: 20px;
   background: white;
   border-radius: 10px;
@@ -135,6 +136,11 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
   // eslint-disable-next-line
   let title;
 
+  // For Cards with a CardLink, that element will get focus during keyboard
+  // navigation. When that happens, we'll update the Card component's state so
+  // we can give the entire Card a focus style.
+  const [focused, setFocused] = useState(false);
+
   const scrollToTerm = e => {
     // const mainArea = document.getElementById('main-area');
     const element = document.getElementById(e.currentTarget.value);
@@ -214,7 +220,7 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
       className={answer && 'answer-card'}
     >
       <HighlightMarkStyles />
-      <CardWrapper {...renderId()} className="card">
+      <CardWrapper {...renderId()} className="card" isFocused={focused}>
         <h1>{search ? <Highlight search={search}>{renderH1()}</Highlight> : renderH1()}</h1>
         {explanation && (
           <div className="answer">
@@ -262,7 +268,12 @@ const Card = ({ answer, term, explanation, resource, page, search, index, listLe
           </>
         )}
         {resource?.link && (
-          <CardLink href={resource?.link} target="_blank">
+          <CardLink
+            href={resource?.link}
+            target="_blank"
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+          >
             <span className="sr-only">{`Open ${resource?.title} in new window.`}</span>
           </CardLink>
         )}

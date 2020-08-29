@@ -51,9 +51,9 @@ const SearchInput = styled.input`
 `;
 
 const NoResultsText = styled.p`
-  height: ${(props) => (props.isVisible ? 'auto' : 0)};
-  margin: ${(props) => (props.isVisible ? 'inherit' : 0)};
-  padding-top: ${(props) => (props.isVisible ? '10px' : 0)};
+  height: auto;
+  margin: inherit;
+  padding-top: 10px;
 
   em {
     color: ${(props) => props.theme.colors.primaryPurple};
@@ -146,23 +146,22 @@ const SearchBar = () => {
           </ClearSearch>
         )}
       </SearchOutline>
-      <Animated
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-        animationInDuration={50}
-        animationOutDuration={50}
-        isVisible={searchResults.length === 0 && searchTerm.length > 1}
-        animateOnMount={false}
-        className="no-results"
-      >
-        <NoResultsText
-          isVisible={searchResults.length === 0 && searchTerm.length > 1}
+      {searchResults.length === 0 && searchTerm.length > 1 && (
+        <Animated
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          animationInDuration={50}
+          animationOutDuration={50}
+          animateOnMount={false}
+          className="no-results"
         >
-          <em>No results found</em>
-          <br />
-          <a href="mailto:info@savaslabs.com">Email us</a> to add a term.
-        </NoResultsText>
-      </Animated>
+          <NoResultsText>
+            <em>No results found</em>
+            <br />
+            <a href="mailto:info@savaslabs.com">Email us</a> to add a term.
+          </NoResultsText>
+        </Animated>
+      )}
     </SearchContainer>
   );
 };
