@@ -176,6 +176,10 @@ const HomeIcon = styled(NavItem)`
       content: url(${home});
     }
   `}
+
+  ${breakpoint('lg')`
+    display: none;
+  `}
 `;
 
 const Header = ({ home }) => {
@@ -247,7 +251,7 @@ const Header = ({ home }) => {
             }
           })}
         </Menu>
-        <Footer menuEmbed />
+        {open && <Footer menuEmbed />}
       </NavWrapper>
     </HeaderWrapper>
   );

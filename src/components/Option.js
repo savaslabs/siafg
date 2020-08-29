@@ -74,7 +74,7 @@ const Option = ({ option }) => {
   let position = location.state.position || 0;
 
   const handleClick = e => {
-    if (e.type === 'click' || e.code === 'Enter') {
+    if (e.type === 'click' || e.key === 'Enter') {
       const { nextPage } = e.target.dataset;
       const { answer } = e.target.dataset;
 
