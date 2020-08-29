@@ -133,6 +133,7 @@ const FooterWrapper = styled.footer`
       pointer-events: none;
       font-size: 0;
       opacity: 0;
+      display: none;
     `}
   `}
 
