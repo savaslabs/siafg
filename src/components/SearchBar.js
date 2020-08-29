@@ -51,8 +51,6 @@ const SearchInput = styled.input`
 `;
 
 const NoResultsText = styled.p`
-  height: auto;
-  margin: inherit;
   padding-top: 10px;
 
   em {
