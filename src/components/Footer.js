@@ -35,12 +35,14 @@ const Footer = props => {
     >
       <FooterContainer isSplitScreen={props.split}>
         <LogoLink
-          href="https://savaslabs.com"
+          href="https://savaslabs.com/labs"
           target="_blank"
           rel="noopener noreferrer"
           isSplitScreen={props.split}
         >
-          <span className="sr-only">Open Savas Labs website in new window.</span>
+          <span className="sr-only">
+            Open the Labs page of the Savas Labs website in new window.
+          </span>
           <LabsLogoMobile />
           <LabsLogo />
         </LogoLink>
@@ -126,7 +128,9 @@ const FooterWrapper = styled.footer`
       margin-top: -105px;
     `}
 
-    ${props => props.menuEmbed && `
+    ${props =>
+      props.menuEmbed &&
+      `
       padding: 0;
       height: 0;
       width: 0;
