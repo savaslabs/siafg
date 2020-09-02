@@ -7,7 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import ReactMarkdown from 'react-markdown';
 
 const CardWrapper = styled.article`
-  border: solid 1px ${(props) => (props.isFocused ? props.theme.colors.primaryPurple : 'transparent')}; 
+  border: solid 1px ${props => (props.isFocused ? props.theme.colors.primaryPurple : 'transparent')};
   box-shadow: 0px 4px 4px rgba(89, 62, 191, 0.3);
   transition: box-shadow 0.5s ease-out, border-color 0.2s;
   padding: 20px;
@@ -16,6 +16,11 @@ const CardWrapper = styled.article`
   position: relative;
   line-height: 1.5;
   font-size: 18px;
+
+  h1 {
+    font-size: 24px;
+    margin-top: 0;
+  }
 
   ${breakpoint('sm')`
     & > div.resource-summary {	
@@ -30,16 +35,10 @@ const CardWrapper = styled.article`
   `}
 
   ${breakpoint('lg')`
-    font-size: 20px;
     padding: 30px 70px;
   `}
 
   ${breakpoint('sm', 'lg')`
-    h1 {
-      font-size: 21px;
-      margin-top: 0;
-    }
-
     & > p {
       margin-bottom: 0;
     }
