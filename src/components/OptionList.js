@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 const OptionListContainer = styled.div`
   max-width: 450px;
-  margin: 0 auto 80px;
+  margin: 0 auto 20px;
 `;
 
 const Legend = styled.legend`

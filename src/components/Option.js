@@ -14,7 +14,7 @@ const OptionWrapper = styled.div`
   cursor: pointer;
 
   ${breakpoint('md')`
-    padding: 30px 70px;
+    padding: 20px 70px;
   `}
 
   &:after {
