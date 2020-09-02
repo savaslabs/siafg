@@ -39,7 +39,7 @@ const MainPageContent = styled.main`
     max-width: 60%;
     max-width: 700px;
     padding: 30px 0 30px 84px;
-    min-height: calc(100vh - 298px);
+    min-height: calc(100vh - 260px);
     justify-content: center;
   `}
 

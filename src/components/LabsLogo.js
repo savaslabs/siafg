@@ -6,7 +6,7 @@ export const LabsLogo = () => {
   return (
     <Logo
       id="logo"
-      height="110"
+      height="92"
       viewBox="0 0 573 345"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

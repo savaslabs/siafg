@@ -87,7 +87,6 @@ const Footer = props => {
 const FooterWrapper = styled.footer`
   width: 100vw;
   background: ${props => props.theme.colors.footerPurple};
-  padding: 10px 0;
   z-index: 100;
   margin-left: -60px;
   display: flex;
