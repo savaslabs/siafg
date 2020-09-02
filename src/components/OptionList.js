@@ -35,7 +35,7 @@ const optionList = ({ options }) => {
       <OptionsWrapper>
         {options?.length > 0 &&
           options.map((option, index) => {
-            return <Option option={option} key={index} />;
+            return <Option option={option} key={option.__id} />;
           })}
       </OptionsWrapper>
     </OptionListContainer>
