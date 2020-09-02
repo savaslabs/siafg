@@ -63,6 +63,7 @@ const OptionLabel = styled.label`
   z-index: 2;
   cursor: pointer;
   pointer-events: none;
+  font-size: 18px;
 `;
 
 const Option = ({ option }) => {

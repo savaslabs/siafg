@@ -18,7 +18,7 @@ const Legend = styled.legend`
   color: ${props => props.theme.colors.primaryPurple};
 
   ${breakpoint('lg')`
-    font-size: 21px;
+    font-size: 24px;
   `}
 `;
 
