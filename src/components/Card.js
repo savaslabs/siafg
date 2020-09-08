@@ -76,7 +76,7 @@ const RelatedTerm = styled.button`
   appearance: none;
   border: 0;
   background: transparent;
-  font-size: 20px;
+  font-size: 18px;
   font-family: inherit;
   padding: 0;
 
