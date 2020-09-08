@@ -15,10 +15,14 @@ import { Animated } from 'react-animated-css';
 import { Helmet } from 'react-helmet';
 
 const SplitScreenWrapper = styled.main`
+  ${breakpoint('sm', 'lg')`
+    height: ${props => (props.topic === 'archive' || props.topic === 'answer' ? '100vh' : 'auto')};
+  `}
+
   ${breakpoint('lg')`
     display: flex;
     padding-top: 45px;
-    min-height: calc(100% - 161px);
+    height: calc(100% - 250px);
   `}
 
   & > div.animated:first-child {
@@ -34,7 +38,6 @@ const MainArea = styled.div`
   width: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  height: ${props => (props.topic === 'archive' ? props.mainAreaHeight : 'auto')};
 
   ${breakpoint('lg')`
     width: 66.66vw;
@@ -42,6 +45,16 @@ const MainArea = styled.div`
     padding: 0 65px 0 75px;
     position: relative;
     margin-right: -38px;
+    margin-bottom: -100px;
+  `}
+
+  ${breakpoint('sm', 'lg')`
+  height: ${props =>
+    props.topic === 'archive'
+      ? 'calc(100% - 200px)'
+      : props.topic === 'answer'
+      ? 'calc(100% - 250px)'
+      : 'auto'};
   `}
 
   ${props =>
@@ -92,7 +105,6 @@ const Split = ({ page, topic }) => {
   const history = useHistory();
   const appData = useContext(AppDataContext);
   const { questions, answers, options, resources, glossary } = appData;
-  const [mainAreaHeight, setMainAreaHeight] = useState('100vh');
 
   // Read browser history state to determine what to render.
   useEffect(() => {
@@ -153,11 +165,6 @@ const Split = ({ page, topic }) => {
     }
   }, [location, appData, history, page, topic, answers, options, questions, resources]);
 
-  useEffect(() => {
-    const offset = document.getElementById('split-main')?.offsetTop;
-    setMainAreaHeight(`calc(100vh - ${offset}px)`);
-  }, []);
-
   const metaDescription =
     topic === 'answer'
       ? `${explanation.split('.')[0]}.`
@@ -179,9 +186,9 @@ const Split = ({ page, topic }) => {
         <meta property="og:url" content={`https://shouldiaskforgender.com${location.pathname}`} />
       </Helmet>
       <Header />
-      <SplitScreenWrapper mainAreaHeight={mainAreaHeight}>
+      <SplitScreenWrapper topic={topic}>
         <TitleArea title={title} description={description} topic={topic} />
-        <MainArea topic={topic} mainAreaHeight={mainAreaHeight} id="split-main">
+        <MainArea topic={topic} id="split-main">
           {topic === 'question' && (
             <QuestionWrapper>
               <Animated animationIn="fadeInUp" animationInDuration={300} animationInDelay={500}>

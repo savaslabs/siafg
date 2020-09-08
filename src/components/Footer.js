@@ -124,7 +124,6 @@ const FooterWrapper = styled.footer`
       `
       width: calc(33.33vw - 35px);
       background: transparent;
-      margin-top: -105px;
     `}
 
     ${props =>
