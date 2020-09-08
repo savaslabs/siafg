@@ -32,10 +32,12 @@ const OptionWrapper = styled.div`
     transition: opacity 300ms ease;
   }
 
-  &:hover,
-  &:focus {
-    &:after {
-      opacity: 1;
+  @media (pointer: fine) {
+    &:hover,
+    &:focus {
+      &:after {
+        opacity: 1;
+      }
     }
   }
 
