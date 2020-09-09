@@ -76,6 +76,11 @@ const TitleAreaContent = styled.div`
 
   p {
     margin-bottom: 0;
+
+    ${breakpoint('lg')`
+      font-size: 18px;
+      line-height: 1.5;
+  `};
   }
 `;
 

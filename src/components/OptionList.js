@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 const OptionListContainer = styled.div`
   max-width: 450px;
-  margin: 0 auto 80px;
+  margin: 0 auto 20px;
 `;
 
 const Legend = styled.legend`
@@ -18,7 +18,7 @@ const Legend = styled.legend`
   color: ${props => props.theme.colors.primaryPurple};
 
   ${breakpoint('lg')`
-    font-size: 21px;
+    font-size: 24px;
   `}
 `;
 
@@ -35,7 +35,7 @@ const optionList = ({ options }) => {
       <OptionsWrapper>
         {options?.length > 0 &&
           options.map((option, index) => {
-            return <Option option={option} key={index} />;
+            return <Option option={option} key={option.__id} />;
           })}
       </OptionsWrapper>
     </OptionListContainer>

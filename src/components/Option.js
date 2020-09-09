@@ -14,7 +14,7 @@ const OptionWrapper = styled.div`
   cursor: pointer;
 
   ${breakpoint('md')`
-    padding: 30px 70px;
+    padding: 20px 70px;
   `}
 
   &:after {
@@ -32,10 +32,12 @@ const OptionWrapper = styled.div`
     transition: opacity 300ms ease;
   }
 
-  &:hover,
-  &:focus {
-    &:after {
-      opacity: 1;
+  @media (pointer: fine) {
+    &:hover,
+    &:focus {
+      &:after {
+        opacity: 1;
+      }
     }
   }
 
@@ -63,6 +65,7 @@ const OptionLabel = styled.label`
   z-index: 2;
   cursor: pointer;
   pointer-events: none;
+  font-size: 18px;
 `;
 
 const Option = ({ option }) => {
