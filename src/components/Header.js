@@ -133,11 +133,11 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li`
   ${breakpoint('lg')`
-    padding-left: 65px;
+    padding-left: 55px;
   `}
 
   font-weight: 700;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 1.2;
 
   &:not(:first-child) {
@@ -159,13 +159,13 @@ const NavItem = styled(NavLink)`
     border-bottom: 4px solid ${props => props.theme.colors.primaryPurple};
 
     ${breakpoint('lg')`
-      border-bottom: 7px solid ${props => props.theme.colors.primaryPurple};
+      border-bottom: 4px solid ${props => props.theme.colors.primaryPurple};
       padding-bottom: 5px;
     `}
   }
 
   &:hover {
-    border-width: 7px;
+    border-width: 4px;
     text-decoration: none;
   }
 `;
