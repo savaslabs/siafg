@@ -4,8 +4,10 @@
 
 ## Local Development
 
-1. Clone project and run `yarn` from inside the project root to install theme dependencies.
+1. Make sure you're using node version 16.0.0 (should probably force this in a config file)
+6. Clone project and run `yarn` from inside the project root to install theme dependencies.
 1. Run `yarn start` to view the project in the browser.
+ 
 
 ## App Data
 
